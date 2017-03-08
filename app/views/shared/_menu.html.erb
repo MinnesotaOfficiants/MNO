@@ -1,0 +1,37 @@
+ <!-- this is the nav demo-->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class='container menu-container'>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <i class = 'fa fa-bell-o'></i>
+            Minnesota Officiants
+            <i class = 'fa fa-bell-o'></i>
+          <% end %>
+        </div>
+        <div class="collapse navbar-collapse" id="main-nav-collapse">
+         
+          <ul class="nav navbar-nav ">
+            <li> <%= link_to  '#' do %>
+             
+              Requests
+               <i class = 'fa fa-question-circle-o' ></i>
+            <% end %>
+              
+            </li>
+            <li> <%= link_to  '#' do %> 
+              
+               Weddings
+               <i class="fa fa-book" ></i>
+            <% end %>
+            </li>
+             
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
