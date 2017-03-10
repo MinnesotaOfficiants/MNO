@@ -1,0 +1,81 @@
+<%= form_for(@wedding) do |f| %>
+  <% if @wedding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wedding.errors.count, "error") %> prohibited this wedding from being saved:</h2>
+
+      <ul>
+      <% @wedding.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- beginning of form -->
+
+<div class = "container">
+  <div class = "row" id = "location">
+    <div class = "col-md-4">
+      Location: &nbsp <%= f.text_field :location %> 
+    </div>
+    <div class = "col-md-3">
+      Date: &nbsp <%= f.date_field :wedding_date %> 
+    </div>
+    <div class = "col-md-3">
+      Time: &nbsp <%= f.time_field :wedding_time %> 
+    </div>
+  </div><br> Rehearsal
+  <div class = "row" id = "rehearsals">
+    <div class = "col-md-1">
+      <%=  f.check_box :rehearsal %> 
+    </div>
+    <div class = "col-md-4">
+      Location: &nbsp <%= f.text_field :rehearsal_location %> 
+    </div>
+    <div class = "col-md-3">
+      Date: &nbsp <%= f.date_field :rehearsal_date %> 
+    </div>
+    <div class = "col-md-3">
+      Time: &nbsp <%= f.time_field :rehearsal_time %> 
+    </div>
+  </div>
+  <br />
+  <div class = "row" id = "brideC">
+    <div class = "col-md-3 ">
+      Bride:&nbsp&nbsp  <%= f.text_field :bride_first_name %>  
+
+    </div>
+    <div class = "col-md-2">
+      <%= f.text_field :bride_last_name %>  
+
+    </div>  
+
+      
+    <div class = "col-md-3">
+      Phone:&nbsp  <%= f.text_field :bride_phone %> 
+    </div>
+    <div class = "col-md-3">
+      Email:&nbsp  <%= f.text_field :bride_email %>
+    </div>
+  </div>  <br />
+  <div class = "row" id = "groom">
+    <div class = "col-md-3">
+      Groom:  <%= f.text_field :groom_first_name %>  
+    </div>
+    <div class = "col-md-2">
+      <%= f.text_field :groom_last_name %>  
+    </div>
+    <div class = "col-md-3">
+      Phone:&nbsp  <%= f.text_field :groom_phone %>
+    </div>
+    <div class = "col-md-3">
+      Email:&nbsp  <%= f.text_field :groom_email %>
+    </div> 
+  </div><br />
+<!-- here is the end -->
+    
+         
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

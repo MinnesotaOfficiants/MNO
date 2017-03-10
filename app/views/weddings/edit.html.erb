@@ -1,0 +1,7 @@
+<b>Editing Wedding</b> 
+&nbsp&nbsp<%=   @wedding.wedding_date.strftime("%Y-%m-%d") %>  <%= @wedding.bride_first_name %> <hr>
+  <%= render 'form' %>
+
+<!--
+<%= link_to 'Show', @wedding %> -->
+<%= link_to 'Back', weddings_path %>
