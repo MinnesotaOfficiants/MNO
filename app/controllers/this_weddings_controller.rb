@@ -1,14 +1,18 @@
 class WeddingsController < ApplicationController
   # before_action :require_user 
+  before_action :set_wedding, only: [:show, :edit, :update, :destroy]
 
+  # GET /weddings
+  # GET /weddings.json
   def index
-     @weddings=Wedding.all
+    # this will get the current loged-in user and only show next weddings
+    # @weddings = Wedding.where('user_id = (?)' , session[:user_id]).where('wedding_date > (?)', Date.today-14).order('wedding_date ')
   end
 
   # GET /weddings/1
   # GET /weddings/1.json
   def show
-    @weddings=Weddings.all
+
   end
   
 
