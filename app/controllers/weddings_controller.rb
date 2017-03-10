@@ -8,7 +8,7 @@ class WeddingsController < ApplicationController
   # GET /weddings/1
   # GET /weddings/1.json
   def show
-    @weddings=Weddings.all
+   
   end
   
 
@@ -29,7 +29,7 @@ class WeddingsController < ApplicationController
 
     respond_to do |format|
       if @wedding.save
-        format.html { redirect_to @wedding, notice: 'Wedding was successfully created.' }
+        format.html { redirect_to weddings_path, notice: 'Wedding was successfully created.' }
         format.json { render :show, status: :created, location: @wedding }
       else
         format.html { render :new }
@@ -42,9 +42,10 @@ class WeddingsController < ApplicationController
   # PATCH/PUT /weddings/1.json
   def update
     respond_to do |format|
+      @wedding=Wedding.find(params[:id])
       #binding.pry
       if @wedding.update(wedding_params)
-        format.html { redirect_to @wedding, notice: 'Wedding was successfully updated.' }
+        format.html { redirect_to weddings_path, notice: 'Wedding was successfully updated.' }
         format.json { render :show, status: :ok, location: @wedding }
       else
         format.html { render :edit }

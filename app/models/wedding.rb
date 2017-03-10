@@ -1,2 +1,3 @@
 class Wedding < ApplicationRecord
+  
 end
