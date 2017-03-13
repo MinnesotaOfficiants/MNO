@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309222438) do
+ActiveRecord::Schema.define(version: 20170313212509) do
 
   create_table "weddings", force: :cascade do |t|
     t.string   "bride_first_name"
@@ -31,6 +31,27 @@ ActiveRecord::Schema.define(version: 20170309222438) do
     t.text     "comments"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.boolean  "Ceremony_complete"
+    t.string   "Ask_for_review"
+    t.boolean  "ebook_sent"
+    t.boolean  "Fee_paid"
+    t.decimal  "fee_paid_amount"
+    t.integer  "guest_count"
+    t.decimal  "other_cost"
+    t.string   "package"
+    t.boolean  "Question_complete"
+    t.decimal  "referal_fee"
+    t.integer  "request_id"
+    t.string   "web_time"
+    t.string   "web_count"
+    t.string   "web_date"
+    t.integer  "user_id"
+    t.decimal  "wedding_cost"
+    t.integer  "status"
+    t.boolean  "counseling"
+    t.string   "first_choice"
+    t.string   "second_choice"
+    t.string   "third_choice"
   end
 
 end
