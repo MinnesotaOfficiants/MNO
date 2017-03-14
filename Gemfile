@@ -35,7 +35,8 @@ gem 'font-awesome-sass', '4.6.2'
 # use hirb gem for db table display
 gem "hirb" , '0.7.3'
 
-
+# gem to move data via dumps to and from other databases
+gem 'yaml_db'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

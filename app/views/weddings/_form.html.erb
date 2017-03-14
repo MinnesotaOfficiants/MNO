@@ -13,31 +13,6 @@
   <!-- beginning of form -->
 
 <div class = "container">
-  <div class = "row" id = "location">
-    <div class = "col-md-4">
-      Location: &nbsp <%= f.text_field :location %> 
-    </div>
-    <div class = "col-md-3">
-      Date: &nbsp <%= f.date_field :wedding_date %> 
-    </div>
-    <div class = "col-md-3">
-      Time: &nbsp <%= f.time_field :wedding_time %> 
-    </div>
-  </div><br> Rehearsal
-  <div class = "row" id = "rehearsals">
-    <div class = "col-md-1">
-      <%=  f.check_box :rehearsal %> 
-    </div>
-    <div class = "col-md-4">
-      Location: &nbsp <%= f.text_field :rehearsal_location %> 
-    </div>
-    <div class = "col-md-3">
-      Date: &nbsp <%= f.date_field :rehearsal_date %> 
-    </div>
-    <div class = "col-md-3">
-      Time: &nbsp <%= f.time_field :rehearsal_time %> 
-    </div>
-  </div>
   <br />
   <div class = "row" id = "brideC">
     <div class = "col-md-3 ">
@@ -70,7 +45,44 @@
     <div class = "col-md-3">
       Email:&nbsp  <%= f.text_field :groom_email %>
     </div> 
-  </div><br />
+  </div><br/>
+  <div class = "row" id = "location">
+    <div class = "col-md-4">
+      Location: &nbsp <%= f.text_field :location, :size=>"40" %> 
+    </div>
+    <div class = "col-md-3">
+      Date: &nbsp <%= f.date_field :wedding_date %> 
+    </div>
+    <div class = "col-md-3">
+      Time: &nbsp <%= f.time_field :wedding_time %> 
+    </div>
+  </div><br> Rehearsal
+  <div class = "row" id = "rehearsal">
+    <div class = "col-md-1">
+      <%=  f.check_box  :rehearsal ,class: "checkbox-inline" %> 
+    </div>
+    <div class = "col-md-4">
+      Location: &nbsp <%= f.text_field :rehearsal_location , :size => "40"%> 
+    </div>
+    <div class = "col-md-3">
+      Date: &nbsp <%= f.date_field :rehearsal_date %> 
+    </div>
+    <div class = "col-md-3">
+      Time: &nbsp <%= f.time_field :rehearsal_time %> 
+    </div>
+  </div>
+  <br />
+  
+  <!-- naw add the cost factors-->
+  <div class="field">
+    <%= f.radio_button :package_type ,"Budget" %>
+    <%= f.label :package_type ,"Budget" %>
+    <%= f.radio_button :package_type ,"Budget" %>
+    <%= f.label :package_type ,"Basic" %>
+    <%= f.radio_button :package_type ,"Standard" %>
+    <%= f.label :package_type ,"Standard" %>
+  </div>
+  
 <!-- here is the end -->
     
          

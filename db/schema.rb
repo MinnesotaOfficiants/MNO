@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313212509) do
+ActiveRecord::Schema.define(version: 20170314205001) do
 
   create_table "weddings", force: :cascade do |t|
     t.string   "bride_first_name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170313212509) do
     t.string   "first_choice"
     t.string   "second_choice"
     t.string   "third_choice"
+    t.integer  "package_type"
   end
 
 end
