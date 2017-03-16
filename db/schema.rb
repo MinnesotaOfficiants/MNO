@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314205001) do
+ActiveRecord::Schema.define(version: 20170315192436) do
 
-  create_table "weddings", force: :cascade do |t|
+  create_table "weddings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "bride_first_name"
     t.string   "bride_last_name"
     t.string   "groom_last_name"
@@ -28,31 +28,32 @@ ActiveRecord::Schema.define(version: 20170314205001) do
     t.string   "rehearsal_location"
     t.date     "rehearsal_date"
     t.time     "rehearsal_time"
-    t.text     "comments"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.text     "comments",           limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.boolean  "Ceremony_complete"
     t.string   "Ask_for_review"
     t.boolean  "ebook_sent"
     t.boolean  "Fee_paid"
-    t.decimal  "fee_paid_amount"
+    t.decimal  "fee_paid_amount",                  precision: 10
     t.integer  "guest_count"
-    t.decimal  "other_cost"
+    t.decimal  "other_cost",                       precision: 10
     t.string   "package"
     t.boolean  "Question_complete"
-    t.decimal  "referal_fee"
+    t.decimal  "referal_fee",                      precision: 10
     t.integer  "request_id"
     t.string   "web_time"
     t.string   "web_count"
     t.string   "web_date"
     t.integer  "user_id"
-    t.decimal  "wedding_cost"
+    t.decimal  "wedding_cost",                     precision: 10
     t.integer  "status"
     t.boolean  "counseling"
     t.string   "first_choice"
     t.string   "second_choice"
     t.string   "third_choice"
     t.integer  "package_type"
+    t.date     "fee_paid_date"
   end
 
 end
