@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wedding_id: 1
+  notes: MyText
+  contacted_email: false
+  email_sent_date: 2017-03-17
+  second_email: false
+  second_email_date: 2017-03-17
+  contacted_phone: false
+  contacted_phone-date: 2017-03-17
+  intro_meeting: false
+  meeting_date: 2017-03-17
+  user_id: 1
+  wedding_id: 1
+  closed: false
+
+two:
+  wedding_id: 1
+  notes: MyText
+  contacted_email: false
+  email_sent_date: 2017-03-17
+  second_email: false
+  second_email_date: 2017-03-17
+  contacted_phone: false
+  contacted_phone-date: 2017-03-17
+  intro_meeting: false
+  meeting_date: 2017-03-17
+  user_id: 1
+  wedding_id: 1
+  closed: false

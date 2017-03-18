@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315192436) do
+ActiveRecord::Schema.define(version: 20170318163801) do
+
+  create_table "inquiries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "wedding_id"
+    t.text     "notes",             limit: 65535
+    t.boolean  "contacted_email"
+    t.date     "email_sent_date"
+    t.boolean  "second_email"
+    t.date     "second_email_date"
+    t.date     "contacted_phone"
+    t.boolean  "intro_meeting"
+    t.date     "meeting_date"
+    t.integer  "user_id"
+    t.boolean  "closed"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.date     "phone-call_date"
+    t.date     "phone_call_date"
+  end
 
   create_table "weddings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "bride_first_name"

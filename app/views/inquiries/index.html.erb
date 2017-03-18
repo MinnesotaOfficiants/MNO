@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class = "container" >
+  <h1>inquies</h1>  
+  
+  <table>
+    <thead>
+      <tr>
+        <th width = 110px>Wedding date</th>
+        <th width = 220px>Bride</th>
+        <th width = 220p>Groom</th>
+        <th width = 110p>Phone</th>
+        <th width = 250p>Location</th>
+        
+       
+        
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @inquiries.each do |inquiry| %>
+        <tr>
+          <td><%= inquiry.wedding.wedding_date %></td>
+          <td><%= inquiry.wedding.bride_first_name.strip + ' ' + inquiry.wedding.bride_last_name.strip  %></td>
+          <td><% if inquiry.wedding.groom_first_name == nil %>
+                  <%= inquiry.wedding.groom_first_name  %>
+                <% else %>
+                  <%= inquiry.wedding.groom_first_name.strip + ' ' + inquiry.wedding.groom_last_name  %>
+                <% end %></td>
+          <td><%= inquiry.wedding.bride_phone %></td>
+          <td><%= inquiry.wedding.location%></td>
+          
+  
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  
+  <%= link_to 'New Inquiry', new_inquiry_path %>
+</div>

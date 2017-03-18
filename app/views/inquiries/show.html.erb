@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wedding:</strong>
+  <%= @inquiry.wedding_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @inquiry.notes %>
+</p>
+
+<p>
+  <strong>Contacted email:</strong>
+  <%= @inquiry.contacted_email %>
+</p>
+
+<p>
+  <strong>Email sent date:</strong>
+  <%= @inquiry.email_sent_date %>
+</p>
+
+<p>
+  <strong>Second email:</strong>
+  <%= @inquiry.second_email %>
+</p>
+
+<p>
+  <strong>Second email date:</strong>
+  <%= @inquiry.second_email_date %>
+</p>
+
+<p>
+  <strong>Contacted phone:</strong>
+  <%= @inquiry.contacted_phone %>
+</p>
+
+<p>
+  <strong>Contacted phone-date:</strong>
+  <%= @inquiry.contacted_phone-date %>
+</p>
+
+<p>
+  <strong>Intro meeting:</strong>
+  <%= @inquiry.intro_meeting %>
+</p>
+
+<p>
+  <strong>Meeting date:</strong>
+  <%= @inquiry.meeting_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @inquiry.user_id %>
+</p>
+
+<p>
+  <strong>Wedding:</strong>
+  <%= @inquiry.wedding_id %>
+</p>
+
+<p>
+  <strong>Closed:</strong>
+  <%= @inquiry.closed %>
+</p>
+
+<%= link_to 'Edit', edit_inquiry_path(@inquiry) %> |
+<%= link_to 'Back', inquiries_path %>
