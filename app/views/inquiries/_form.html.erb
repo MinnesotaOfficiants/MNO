@@ -10,16 +10,75 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :wedding_id %>
-    <%= f.number_field :wedding_id %>
+  <div class='container-fluid'>
+    <%= f.fields_for :wedding do |w| %>
+    <div class = "row" >
+      <div class = "col-sm-3 ">
+       <%= w.label :bride_first_name, "Bride" %>
+       <%= w.text_field :bride_first_name ,:size => "15"%>  
+  
+      </div>
+      <div class = "col-sm-2">
+        <%= w.text_field :bride_last_name,:size => "15" %>  
+      </div>
+      <div class = "col-sm-3">
+        <%= w.label :bride_phone, "Phone" %>
+        <%= w.text_field :bride_phone,:size => "10" %> 
+      </div>
+      <div class = "col-sm-4">
+        <%= w.label :bride_email, "Email" %>
+        <%= w.text_field :bride_email, :size => "25" %>
+      </div>
+    </div>  <br />
+    <!--< bride end-->
+  <div class = "row" >
+    <div class = "col-sm-3">
+      <%= w.label :groom_first_name, "Groom" %>
+      <%= w.text_field :groom_first_name,:size => "15" %>  
+    </div>
+    <div class = "col-sm-2">
+      <%= w.text_field :groom_last_name ,:size => "15"%>  
+    </div>
+    <div class = "col-sm-3">
+      <%= w.label :groom_phone, "Phone" %>
+      <%= w.text_field :groom_phone,:size => "10" %>
+    </div>
+    <div class = "col-sm-4">
+      <%= w.label :groom_email, "Email" %>
+      <%= w.text_field :groom_email,:size => "25" %>
+    </div> 
+  </div><br/> 
+  <!--groom end -->
+  <div class = "row" >
+    <div class = "col-sm-6">
+      <%= w.label :location, "location" %>
+      <%= w.text_field :location, :size=>"50" %> 
+    </div>
+    <div class = "col-sm-3">
+      <%= w.label :wedding_date, "Date" %>
+      <%= w.date_field :wedding_date, :size => "15" %> 
+    </div>
+    <div class = "col-sm-3">
+      <%= w.label :wedding_time, "Time" %>
+      <%= w.time_select :wedding_time, :size => "15"  %> 
+    </div>
+   
+  </div><br> 
+  <div class = "row ", id= "inquiry-with-line">
+     <div class="field">
+      <%= w.label :comments %>
+      <%= w.text_area :comments %>
+    </div>
+    
   </div>
+  <!--end location -->
+    <% end %>
+   
+  </div>  <!--end wedding-->
+ 
+  
 
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-  </div>
+  
 
   <div class="field">
     <%= f.label :contacted_email %>
@@ -47,8 +106,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :contacted_phone-date %>
-    <%= f.date_select :contacted_phone-date %>
+    <%= f.label :phone_call_date %>
+    <%= f.date_select :phone_call_date %>
   </div>
 
   <div class="field">
@@ -75,8 +134,8 @@
     <%= f.label :closed %>
     <%= f.check_box :closed %>
   </div>
-
+</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save" %>
   </div>
 <% end %>

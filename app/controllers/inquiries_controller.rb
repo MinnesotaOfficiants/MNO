@@ -4,7 +4,8 @@ class InquiriesController < ApplicationController
   # GET /inquiries
   # GET /inquiries.json
   def index
-    @inquiries = Inquiry.all
+    @inquiries=Inquiry.where(user_id: 75) 
+
   end
 
   # GET /inquiries/1

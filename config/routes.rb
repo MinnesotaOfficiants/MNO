@@ -5,4 +5,10 @@ Rails.application.routes.draw do
 
     end
   end
+  resources :inquiries do
+    member do
+      post 'close_wedding'
+      post 'book_wedding'
+    end
+  end
 end

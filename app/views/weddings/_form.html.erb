@@ -62,7 +62,7 @@
   <div class = "row" id = "location">
     <div class = "col-sm-6">
       <%= f.label :location, "location" %>
-      <%= f.text_field :location, :size=>"40" %> 
+      <%= f.text_field :location, :size=>"50" %> 
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_date, "Date" %>
@@ -70,14 +70,14 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_time, "Time" %>
-      <%= f.time_field :wedding_time, :size => "15"  %> 
+      <%= f.time_select :wedding_time, :size => "15"  %> 
     </div>
   </div><br> 
   
     Rehearsal
       <%=  f.check_box  :rehearsal ,class: "checkbox-inline" %> 
  <br/><br/>
-  <div class = "row" id = "rehearsal">
+  <div class = "row", id="wedding-with-line" >
     
     <div class = "col-sm-6">
      <%= f.label :rehearsal_location, "location" %>

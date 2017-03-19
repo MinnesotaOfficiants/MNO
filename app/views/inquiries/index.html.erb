@@ -21,7 +21,7 @@
     <tbody>
       <% @inquiries.each do |inquiry| %>
         <tr>
-          <td><%= inquiry.wedding.wedding_date %></td>
+          <td> <%=  link_to  inquiry.wedding.wedding_date, edit_inquiry_path(inquiry) %></td>
           <td><%= inquiry.wedding.bride_first_name.strip + ' ' + inquiry.wedding.bride_last_name.strip  %></td>
           <td><% if inquiry.wedding.groom_first_name == nil %>
                   <%= inquiry.wedding.groom_first_name  %>
