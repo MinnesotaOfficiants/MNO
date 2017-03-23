@@ -52,7 +52,7 @@
   <div class = "row" >
     <div class = "col-sm-6">
       <%= w.label :location, "location" %>
-      <%= w.text_field :location, :size=>"50" %> 
+      <%= w.text_field :location, :size=>"45" %> 
     </div>
     <div class = "col-sm-3">
       <%= w.label :wedding_date, "Date" %>
@@ -60,7 +60,7 @@
     </div>
     <div class = "col-sm-3">
       <%= w.label :wedding_time, "Time" %>
-      <%= w.time_select :wedding_time, :size => "15"  %> 
+      <%= w.time_field :wedding_time, :size => "15"  %> 
     </div>
    
   </div><br> 
@@ -79,37 +79,46 @@
   
 
   
+  <div class="row" >
+    <div class = "col-sm-4">
+      <div class="field">
+        <%= f.label :contacted_email %>
+        <%= f.check_box :contacted_email %>
+      </div>
+   
+      <div class="field">
+        <%= f.label :email_sent_date %>
+        <%= f.date_field :email_sent_date %>
+        <!--<%= f.date_select :email_sent_date, include_blank: true, use_month_numbers:  true, order: [:month,:day,  :year] %>-->
+      </div>
+     </div>
+    <div class = "col-sm-4">
+      <div class="field">
+        <%= f.label :second_email %>
+        <%= f.check_box :second_email %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :second_email_date %>
+        <%= f.date_field :second_email_date %>
 
-  <div class="field">
-    <%= f.label :contacted_email %>
-    <%= f.check_box :contacted_email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email_sent_date %>
-    <%= f.date_select :email_sent_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :second_email %>
-    <%= f.check_box :second_email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :second_email_date %>
-    <%= f.date_select :second_email_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :contacted_phone %>
-    <%= f.check_box :contacted_phone %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_call_date %>
-    <%= f.date_select :phone_call_date %>
-  </div>
-
+        <!--<%= f.date_select :second_email_date, include_blank: true, use_month_numbers:  true, order: [:month,:day,  :year] %>-->
+      </div>
+    </div>
+    <div class = "col-sm-4"> 
+      <div class="field">
+        <%= f.label :contacted_phone %>
+        <%= f.check_box :contacted_phone %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :phone_call_date %>
+        <%= f.date_field :phone_call_date %>
+        <!--<%= f.date_select :phone_call_date , include_blank: true,use_month_numbers:  true, order: [ :month, :day,:year] %>-->
+      </div>
+    </div>
+   
+    </div>
   <div class="field">
     <%= f.label :intro_meeting %>
     <%= f.check_box :intro_meeting %>
@@ -117,18 +126,10 @@
 
   <div class="field">
     <%= f.label :meeting_date %>
-    <%= f.date_select :meeting_date %>
+    <%= f.date_select :meeting_date,  use_month_numbers:  true, order: [ :month,:day, :year]  %>
   </div>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :wedding_id %>
-    <%= f.number_field :wedding_id %>
-  </div>
+  
 
   <div class="field">
     <%= f.label :closed %>
