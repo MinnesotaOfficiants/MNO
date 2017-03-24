@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'email_history/new'
+
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
    
