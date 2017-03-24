@@ -23,8 +23,7 @@ gem 'turbolinks', '5.0.0'
 gem 'jbuilder', '2.5.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '3.0'
-# Use ActiveModel has_secure_password use devise security
-gem 'devise' , '4.2.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # use bootstrap lib for layout and ui front end
@@ -33,9 +32,11 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'font-awesome-sass', '4.6.2'
 # use hirb gem for db table display
 gem "hirb" , '0.7.3'
-
+# encription gem for password hash
+gem 'bcrypt' 
 # gem to move data via dumps to and from other databases
 gem 'yaml_db'
+
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

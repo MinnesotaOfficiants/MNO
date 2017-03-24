@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318163801) do
+ActiveRecord::Schema.define(version: 20170324004609) do
 
   create_table "inquiries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "wedding_id"
@@ -26,7 +26,24 @@ ActiveRecord::Schema.define(version: 20170318163801) do
     t.boolean  "closed"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.date     "phone-call_date"
     t.date     "phone_call_date"
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "password_hash"
+    t.string   "email"
+    t.string   "password_salt"
+    t.string   "org_password"
+    t.boolean  "admin"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "title"
+    t.string   "user_phone"
+    t.decimal  "user_fee_pct",      precision: 10
+    t.string   "calendar_accouunt"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "weddings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
