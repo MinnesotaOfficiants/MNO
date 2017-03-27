@@ -1,8 +1,13 @@
 class WeddingsController < ApplicationController
-  # before_action :require_user 
+   before_action :require_user 
 
   def index
-     @weddings=Wedding.all
+     @user = User.find(session[:user_id])
+     if @user.admin?
+        @weddings=Wedding.where(status: "open")
+     else
+      @weddings=@user.weddings.where('wedding_date > (?)', Date.today-30).order(:wedding_date)
+    end
   end
 
   # GET /weddings/1

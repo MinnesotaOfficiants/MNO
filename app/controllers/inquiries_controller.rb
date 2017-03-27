@@ -1,10 +1,23 @@
 class InquiriesController < ApplicationController
+  before_action :require_user 
   before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
 
   # GET /inquiries
   # GET /inquiries.json
   def index
-    @inquiries=Inquiry.where(user_id: 75) 
+    
+     @user = User.find(session[:user_id])
+    # @inquiries = @user.inquiries
+    if @user.admin?
+      @inquiries = Inquiry.where(closed: false).order("id")
+    else
+      @inquiries = @user.inquiries.where(closed:  false)
+      
+      
+      # , closed: false
+    end
+
+    # @inquiries=Inquiry.where(user_id: 75) 
 
   end
 

@@ -6,7 +6,11 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:user_name], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to inquiries_path
+      if user.admin?
+         redirect_to weddings_path
+      else
+        redirect_to inquiries_path
+      end
     else
       flash.now.alert = "Invalid user name or password"
       render "new"
