@@ -2,7 +2,10 @@
 <br />
 <p >
   <div class = "container text-center" >
-    <%= button_to "Log In", log_in_path , method: :get, class: "btn btn-success"  %>
-
+    <% if logged_in? %>
+      <%= button_to "Log Out", log_out_path , method: :get, class: "btn btn-warning"  %>
+    <% else %>
+      <%= button_to "Log In", log_in_path , method: :get, class: "btn btn-success"  %>
+    <% end %>
   </div>
 </p>

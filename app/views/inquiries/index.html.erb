@@ -11,6 +11,7 @@
         <th width = 220px>Bride</th>
         <th width = 220p>Groom</th>
         <th width = 110p>Phone</th>
+        <th width = 110p>email sent date</th>
         <th width = 250p>Location</th>
         
        
@@ -29,6 +30,7 @@
                   <%= inquiry.wedding.groom_first_name.strip + ' ' + inquiry.wedding.groom_last_name  %>
                 <% end %></td>
           <td><%= inquiry.wedding.bride_phone %></td>
+           <td><%= inquiry.email_sent_date %></td>
           <td><%= inquiry.wedding.location%></td>
           
   

@@ -11,7 +11,8 @@ class InquiriesController < ApplicationController
     if @user.admin?
       @inquiries = Inquiry.where(closed: false).order("id")
     else
-      @inquiries = @user.inquiries.where(closed:  false)
+      @tmp = @user.inquiries.where(closed:  false)
+      @inquiries = @tmp.order("email_sent_date desc").all
       
       
       # , closed: false
