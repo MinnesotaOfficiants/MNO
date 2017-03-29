@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324183729) do
+ActiveRecord::Schema.define(version: 20170329220438) do
 
   create_table "email_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date     "date_sent"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20170324183729) do
     t.datetime "updated_at",                      null: false
     t.date     "phone-call_date"
     t.date     "phone_call_date"
+  end
+
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "pmt_date"
+    t.decimal  "pmt_amount", precision: 10
+    t.string   "pmt_type"
+    t.string   "pmt_method"
+    t.string   "reference"
+    t.integer  "wedding_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
