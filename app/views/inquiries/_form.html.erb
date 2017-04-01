@@ -89,17 +89,18 @@
             <span class ="btn btn-default btn-info"> Close </span>
           <% end %>
         </div>
-        <div class = "col col-sm-2" >
-          <%= link_to book_wedding_inquiry_path(@inquiry) ,  method: :post  do  %>
-            <span class ="btn btn-default btn-info"> Book </span>
-          <% end %>
-        </div>
         <div class = "col col-sm-3">
           <div class="field">
             <%= f.label :closed %>
             <%= f.check_box :closed %>
           </div>
         </div>
+        <div class = "col col-sm-2" >
+          <%= link_to book_wedding_inquiry_path(@inquiry) ,  method: :post  do  %>
+            <span class ="btn btn-default btn-info"> Book </span>
+          <% end %>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -155,7 +156,29 @@
         <%= f.date_select :meeting_date,  use_month_numbers:  true, order: [ :month,:day, :year]  %>
       </div><br />
     </div>
-    
+    <%= select "etemp", "id",  EmailTemplate.where("template_type='Request'").where("user_id=0 or user_id=?" , 
+    session[:user_id]).collect {|et| [et.template_title, et.id]} %>
+    <!--add the email history in a table-->
+     Email history 
+      <!-- add the email listing -->
+        <table>
+        <tr>
+          <th width  = "140px">Date sent</th>
+          <th width  = "180px">Template </th>
+        </tr>
+      
+        <!-- todo change this from fields to output text -->
+        <% @inquiry.email_histories.each do |e| %>
+       
+        <tr>
+          <td> <%= e.date_sent %> </td>
+              
+         <td>  <%= e.email_template.template_title %></td>
+         
+         </tr>
+         <% end %>
+       
+      </table>
 
  
   </div> <!--end fluid container -->
