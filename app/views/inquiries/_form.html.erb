@@ -145,40 +145,60 @@
     </div>
    
     </div>
-    <div class = "row" >
-      <div class="field">
-        <%= f.label :intro_meeting %>
-        <%= f.check_box :intro_meeting %>
-      </div>
-    
-      <div class="field last-item" >
-        <%= f.label :meeting_date %>
-        <%= f.date_select :meeting_date,  use_month_numbers:  true, order: [ :month,:day, :year]  %>
-      </div><br />
-    </div>
-    <%= select "etemp", "id",  EmailTemplate.where("template_type='Request'").where("user_id=0 or user_id=?" , 
-    session[:user_id]).collect {|et| [et.template_title, et.id]} %>
-    <!--add the email history in a table-->
-     Email history 
-      <!-- add the email listing -->
-        <table>
-        <tr>
-          <th width  = "140px">Date sent</th>
-          <th width  = "180px">Template </th>
-        </tr>
+    <div class = "row last-item" >
+      <div class = "col col-sm-6">
+        <div class="field">
+          <%= f.label :intro_meeting %>
+          <%= f.check_box :intro_meeting %>
+        </div>
       
-        <!-- todo change this from fields to output text -->
-        <% @inquiry.email_histories.each do |e| %>
-       
-        <tr>
-          <td> <%= e.date_sent %> </td>
-              
-         <td>  <%= e.email_template.template_title %></td>
-         
-         </tr>
-         <% end %>
-       
-      </table>
+        <div class="field " >
+          <%= f.label :meeting_date %>
+          <%= f.date_select :meeting_date,  use_month_numbers:  true, order: [ :month,:day, :year]  %>
+        </div><br />
+       </div>
+    </div>
+      
+   
+    <!--add the email history in a table-->
+      <div class="panel panel-info">
+        <div class="panel-heading">Email History &emsp;&emsp; 
+       <!--<%= link_to  %> -->
+           <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> &emsp;&emsp;
+           <%= select "etemp", "id",  EmailTemplate.where("template_type='Request'").where("user_id=0 or user_id=?" , 
+            session[:user_id]).collect {|et| [et.template_title, et.id]} %>
+            <!--add button to send email--> 
+           
+             <!--<span class ="btn btn-small btn-info"> Send email  <i class = 'fa fa-envelope' ></i> </span>-->
+          </div>
+      
+       <!--<div class = "row" >-->
+       <!--  <div class = "col col-sm-3">-->
+           <table >
+            <tr>
+              <th width  = "140px">Date sent</th>
+              <th width  = "180px">Template </th>
+            </tr>
+          
+            <!-- todo change this from fields to output text -->
+            <% @inquiry.email_histories.each do |e| %>
+           
+            <tr>
+              <td> <%= e.date_sent %> </td>
+                  
+             <td>  <%= e.email_template.template_title %></td>
+             
+             </tr>
+             <% end %>
+           
+          </table>
+       <!--  </div>-->
+       <!--</div>-->
+    </div>
+    <span class = "last-item"></span>
+  
+   
+      
 
  
   </div> <!--end fluid container -->
