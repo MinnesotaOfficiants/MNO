@@ -1,5 +1,5 @@
 class Inquiry < ApplicationRecord
-  
+  enum closed: [:isopen, :isclosed, :isbooked]
   
   # belongs_to :user
   belongs_to :user
@@ -13,20 +13,29 @@ class Inquiry < ApplicationRecord
    after_update :on_update
 
   # curl -X PATCH http://localhost:3000/inquiries/154 -D '{ inquiry: { closed: true } }'
+   # moved the inquiry close to the actual button
+  # put in an after update to close the wedding
+  after_update :on_update
+
+  
   def on_update
-    if closed_changed? && closed?
-      puts "Closing Wedding related to this inquiry"
-      wedding.update!(status: :closed)
-  end
+    #byebug
+    if self.isclosed?
+      puts "closeing wedding related to this inquiry"
+      wedding.closed!
+    elsif self.isbooked?
+       puts "booking wedding related to this inquiry"
+      wedding.booked!
+    end
   end
 
   def close_status
-    # puts "*" * 88
-    # puts self
-    update_attributes(closed: true)
-    # puts "*" * 88
-    # puts self
-    # puts "*" * 88
+  #   # puts "*" * 88
+  #   # puts self
+    update_attributes(closed: :isclosed)
+  #   # puts "*" * 88
+  #   # puts self
+  #   # puts "*" * 88
   end
   
 end

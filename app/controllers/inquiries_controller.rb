@@ -76,6 +76,57 @@ class InquiriesController < ApplicationController
     end
   end
 
+   def close_wedding
+      # when a wedding is closed we update status to closed (3) 
+      # and close  all requests for wedding_id 
+      #binding.pry
+      # find the request 
+      # can user do this action?
+      #update status to closed
+      # redirect user to request url
+
+      puts "find request"
+     @inquiry =  Inquiry.find(params[:id])
+     #to do autorization
+     puts "close status"
+     @inquiry.close_status
+     puts "redirect"
+     # @wedding = Wedding.find(@request.wedding_id)
+      # close each request
+
+      # @wedding.requests.each do |r|
+      #   r.closed = TRUE
+      #   r.save
+      #   end
+
+     # closed = 3 booked = 4 update wedding to closed
+      # @wedding.status = 3
+      #  @wedding.save
+       redirect_to inquiries_url
+
+  end
+  def book_wedding
+   # when a wedding is booked we update status to booked (4)
+      # and close  all requests for wedding_id 
+      #binding.pry
+      @inquiry =  Inquiry.find(params[:id])
+      @wedding = Wedding.find(@inquiry.wedding_id)
+      # close each request
+
+      @wedding.inquiries.each do |r|
+        r.closed = :isbooked
+        r.save
+      end
+
+     # closed = 3 booked = 4 update wedding to closed
+      @wedding.status = :booked
+      @wedding.user_id = current_user.id
+       @wedding.save
+       redirect_to inquiries_url
+
+  end
+ 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inquiry

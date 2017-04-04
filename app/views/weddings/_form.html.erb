@@ -35,7 +35,7 @@
     <div class = "col-sm-3">
       
       <%= f.label :bride_phone, "Phone" %>
-      <%= f.text_field :bride_phone,:size => "10" %> 
+      <%= f.text_field :bride_phone,:size => "11" %> 
     </div>
     <div class = "col-sm-4">
       <%= f.label :bride_email, "Email" %>
@@ -52,7 +52,7 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :groom_phone, "Phone" %>
-      <%= f.text_field :groom_phone,:size => "10" %>
+      <%= f.text_field :groom_phone,:size => "11" %>
     </div>
     <div class = "col-sm-4">
       <%= f.label :groom_email, "Email" %>
@@ -98,7 +98,7 @@
   <br />
   
   <!-- naw add the cost factors-->
-  <div class="field">
+  <div class="field last-item"> Wedding type &nbsp &nbsp
     <%= f.radio_button :package_type ,"Budget" %>
     <%= f.label :package_type ,"Budget" %>
     <%= f.radio_button :package_type ,"Basic" %>
@@ -107,6 +107,55 @@
     <%= f.label :package_type ,"Standard" %>
   </div>
   
+      
+    <div class = "field last-item">
+      <!-- <div class = "col col-sml-3"> -->
+        <%= f.label :wedding_cost %>
+        <%= number_to_currency(f.text_field :wedding_cost) %>
+        <%= f.label :other_cost %>
+        <%= number_to_currency(f.text_field :other_cost) %>
+        <%= f.label :referal_fee, "Referal Fee" %>
+        <%= number_to_currency(f.text_field :referal_fee) %>
+
+      <!-- </div> -->
+
+    </div>
+
+
+     
+
+ 
+  <table >
+    <tr>
+      <th width  = "140px">Pmt Date</th>
+      <th width  = "140px">Pmt Type </th>
+      <th width  = "140px">Pmt Amount</th>
+      <th width  = "150px">Pmt Method</th>
+      <th width  = "150px">Reference</th>
+
+    </tr>
+
+    <% @wedding.payments.each do |p|  %>
+      <tr>
+          <td> <%= p.pmt_date %> </td>
+         <td> <%= p.pmt_type %> </td>
+         <td> <%= number_to_currency(p.pmt_amount) %> </td>
+         <td> <%= p.pmt_method %> </td>
+         <td> <%= p.reference %> </td>
+
+      </tr>
+      
+    <% end %> 
+
+  </table> <br />
+  <p><b>
+     Payment totals &nbsp
+    <%= number_to_currency(@wedding.payments.sum(:pmt_amount)) %></b>
+  </p>
+ 
+    
+
+</div>
 <!-- here is the end -->
     
    

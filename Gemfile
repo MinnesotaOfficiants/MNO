@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.4.0'
+gem 'puma', '~> 3.8.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.6'
 # Use Uglifier as compressor for JavaScript assets
@@ -57,6 +57,7 @@ group :development do
 end
 
 group :production do
+   gem  'mysql2', '>= 0.4.4'
  # use the postgres DB
-  gem 'pg' , '0.18.4'
+  #gem 'pg' , '0.20.0'
 end

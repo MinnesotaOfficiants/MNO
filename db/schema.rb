@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20170330023212) do
     t.boolean  "closed"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.date     "phone-call_date"
     t.date     "phone_call_date"
   end
 
