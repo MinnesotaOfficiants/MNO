@@ -37,5 +37,29 @@ class Inquiry < ApplicationRecord
   #   # puts self
   #   # puts "*" * 88
   end
+  def test_method
+   # 'mailto:'+ self.wedding.bride_email +'?subject=Wedding ' + self.wedding.wedding_date.to_s + \
+    # '&body=Dear ' + self.wedding.bride_first_name + \
+    # ' and ' + self.wedding.groom_first_name + ',' +'\n' +EmailTemplate.find(4).template_content + '\n' + \
+     # User.find(75).get_salutation 
+  end
+  def send_inquiry_email
+
+    # prts needed for the email 1 hopefuly we gat a param with the template id
+    #for test we will assume the first contact templat"
+    "<a href = 'mailto:" + self.wedding.bride_email  + "?subject=Wedding " + self.wedding.wedding_date.to_s + "&body=Dear " + self.wedding.bride_first_name << "' >"
+
+
+     # ' and ' << self.wedding.groom_first_name << ',' << "'"
+
+    # '<a href = "mailto:'+ self.wedding.bride_email + '?subject=Wedding ' +\
+    #  self.wedding.wedding_date.to_s  +\
+    #  '&body=Dear ' + self.wedding.bride_first_name + \
+    #  +EmailTemplate.find(4).template_content + '\n' + \
+    #   User.find(75).get_salutation +'" >'
+     
+
+
+  end
   
 end

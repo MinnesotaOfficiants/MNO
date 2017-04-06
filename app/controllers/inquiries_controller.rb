@@ -136,7 +136,9 @@ class InquiriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def inquiry_params
       params.require(:inquiry).permit(:wedding_id, :notes, :contacted_email, :email_sent_date, 
-      :second_email, :second_email_date, :contacted_phone, :contacted_phone_date, 
-      :intro_meeting, :meeting_date, :user_id, :wedding_id, :closed)
+      :second_email, :second_email_date, :contacted_phone, :phone_call_date, 
+      :intro_meeting, :meeting_date, :user_id, :closed, Wedding_attributes: 
+      [:id, :bride_first_name, :bride_last_name, :bride_email, :bride_phone, :groom_first_name, 
+        :groom_last_name, :groom_email, :groom_phone, :wedding_date, :wedding_time])
     end
 end

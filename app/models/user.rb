@@ -16,11 +16,11 @@ class User < ApplicationRecord
   has_secure_password
 
 
-	def update_salutation
+	def get_salutation
 		# full name on line 1
 		# phone on line 2
 		# email on line 3
-	@string = first_name.strip + " " + last_name.strip  + "\n" + user_phone + "\n" + user_email
+	     @string = self.first_name+ " " + self.last_name.strip  + "\n" + self.user_phone + "\n" + self.email
 # 	update_attributes(salutation: @string)
 	end
 	

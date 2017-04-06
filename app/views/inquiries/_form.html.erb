@@ -164,7 +164,7 @@
       <div class="panel panel-info">
         <div class="panel-heading">Email History &emsp;&emsp; 
        <!--<%= link_to  %> -->
-           <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> &emsp;&emsp;
+           <% @inquiry.send_inquiry_email %>  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> </a>&emsp;&emsp;
            <%= select "etemp", "id",  EmailTemplate.where("template_type='Request'").where("user_id=0 or user_id=?" , 
             session[:user_id]).collect {|et| [et.template_title, et.id]} %>
             <!--add button to send email--> 

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'email_history/new'
+
+
+
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
    
    
-  get 'users/new'
-
-  get 'users/update'
+ 
   resources :users do
     member do
      
@@ -17,10 +17,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   
   resources :weddings do
-    member do
-
-    end
+      resources :payments
   end
+
   resources :sessions
   resources :inquiries do
     member do
