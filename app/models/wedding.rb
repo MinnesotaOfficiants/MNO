@@ -13,5 +13,8 @@ class Wedding < ApplicationRecord
 	def get_title
 		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
+	def get_header
+		self.bride_last_name + '-'+self.groom_last_name
+	end
   
 end

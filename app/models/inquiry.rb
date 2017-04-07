@@ -19,13 +19,15 @@ class Inquiry < ApplicationRecord
 
   
   def on_update
-    #byebug
+    byebug
     if self.isclosed?
       puts "closeing wedding related to this inquiry"
       wedding.closed!
     elsif self.isbooked?
        puts "booking wedding related to this inquiry"
       wedding.booked!
+    elsif self.isopen?
+      puts "not done"
     end
   end
 
@@ -47,16 +49,9 @@ class Inquiry < ApplicationRecord
 
     # prts needed for the email 1 hopefuly we gat a param with the template id
     #for test we will assume the first contact templat"
-    "<a href = 'mailto:" + self.wedding.bride_email  + "?subject=Wedding " + self.wedding.wedding_date.to_s + "&body=Dear " + self.wedding.bride_first_name << "' >"
+    "<a href = 'mailto:" + self.wedding.bride_email  + "?subject=Wedding " 
 
 
-     # ' and ' << self.wedding.groom_first_name << ',' << "'"
-
-    # '<a href = "mailto:'+ self.wedding.bride_email + '?subject=Wedding ' +\
-    #  self.wedding.wedding_date.to_s  +\
-    #  '&body=Dear ' + self.wedding.bride_first_name + \
-    #  +EmailTemplate.find(4).template_content + '\n' + \
-    #   User.find(75).get_salutation +'" >'
      
 
 

@@ -159,16 +159,53 @@
        </div>
     </div>
       
-   
+
+      <script>
+        var emailTo = '<%= @inquiry.wedding.bride_email %>'
+        var emailSubject = 'Wedding'
+
+        function onTemplateSelectChange (event) {
+          var templateId = event.target.value
+          fetch('<%= email_templates_url %>/' + templateId + '.json').then(function (response) {
+            if (response.ok) {
+              response.json().then(function (data) {
+
+                var emailBody = data.body
+
+                var mailTo = "mailto:" + emailTo + 
+                             "?subject=" + encodeURIComponent(emailSubject) + 
+                             "&body=" + encodeURIComponent(emailBody)
+
+                var el = document.getElementById('openEmailClient')
+                el.href = mailTo
+                el.style.visibility = 'visible'
+
+              }).catch(function (e) { alert('Error getting email template') })
+            }
+          }).catch(function (e) { alert('Error getting email template') })
+          return false
+        }
+     </script>
+
     <!--add the email history in a table-->
       <div class="panel panel-info">
         <div class="panel-heading">Email History &emsp;&emsp; 
        <!--<%= link_to  %> -->
-           <% @inquiry.send_inquiry_email %>  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> </a>&emsp;&emsp;
-           <%= select "etemp", "id",  EmailTemplate.where("template_type='Request'").where("user_id=0 or user_id=?" , 
-            session[:user_id]).collect {|et| [et.template_title, et.id]} %>
+           <%# @inquiry.send_inquiry_email %>  
+
+           &emsp;&emsp;
+           <% templates = EmailTemplate
+                            .where("template_type='Request'")
+                            .where("user_id=0 or user_id=?" , 
+                              session[:user_id]).collect {|et| [et.template_title, et.id]} %>
+           <%= select "etemp", "id",  templates, {}, { onchange: 'onTemplateSelectChange(event)' } %>
             <!--add button to send email--> 
            
+           &emsp;
+           <a id="openEmailClient" href="#" style="visibility: hidden">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+           </a>
+
              <!--<span class ="btn btn-small btn-info"> Send email  <i class = 'fa fa-envelope' ></i> </span>-->
           </div>
       

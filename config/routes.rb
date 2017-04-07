@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
    
@@ -27,4 +24,6 @@ Rails.application.routes.draw do
       post 'book_wedding'
     end
   end
+
+  resources :email_templates
 end

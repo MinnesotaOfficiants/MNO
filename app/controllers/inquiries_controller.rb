@@ -55,6 +55,8 @@ class InquiriesController < ApplicationController
   # PATCH/PUT /inquiries/1
   # PATCH/PUT /inquiries/1.json
   def update
+        byebug
+
     respond_to do |format|
       if @inquiry.update(inquiry_params)
         format.html { redirect_to @inquiry, notice: 'Inquiry was successfully updated.' }

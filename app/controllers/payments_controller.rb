@@ -38,6 +38,7 @@ class PaymentsController < ApplicationController
   def destroy
   end
   def get_wedding
+    # find the wedding for this payment
     @wedding = Wedding.find(params[:wedding_id])
   end
   private
