@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330023212) do
+ActiveRecord::Schema.define(version: 20170411155411) do
 
   create_table "email_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date     "date_sent"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20170330023212) do
     t.integer  "email_template_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "history_id"
+    t.string   "history_type"
+    t.index ["history_type", "history_id"], name: "index_email_histories_on_history_type_and_history_id", using: :btree
   end
 
   create_table "email_templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

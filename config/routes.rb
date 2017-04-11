@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" , to: "sessions#destroy", as: "log_out"
+  get "log_in" ,to: "sessions#new", as: "log_in"
    
    
  
@@ -15,10 +15,12 @@ Rails.application.routes.draw do
   
   resources :weddings do
       resources :payments
+      resources :inquiries
   end
 
   resources :sessions
   resources :inquiries do
+    
     member do
       post 'close_wedding'
       post 'book_wedding'

@@ -5,7 +5,7 @@ class Inquiry < ApplicationRecord
   belongs_to :user
   belongs_to :wedding 
   validates :wedding, presence: true
-  has_many :email_histories
+  has_many :email_histories, as: :history
   
   
   accepts_nested_attributes_for :wedding
@@ -19,7 +19,6 @@ class Inquiry < ApplicationRecord
 
   
   def on_update
-    byebug
     if self.isclosed?
       puts "closeing wedding related to this inquiry"
       wedding.closed!
