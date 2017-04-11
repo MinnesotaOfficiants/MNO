@@ -89,12 +89,7 @@
             <span class ="btn btn-default btn-info"> Close </span>
           <% end %>
         </div>
-        <div class = "col col-sm-3">
-          <div class="field">
-            <%= f.label :closed %>
-            <%= f.check_box :closed %>
-          </div>
-        </div>
+       
         <div class = "col col-sm-2" >
           <%= link_to book_wedding_inquiry_path(@inquiry) ,  method: :post  do  %>
             <span class ="btn btn-default btn-info"> Book </span>
@@ -162,15 +157,17 @@
 
       <script>
         var emailTo = '<%= @inquiry.wedding.bride_email %>'
-        var emailSubject = 'Wedding'
-
+        var emailSubject = 'Wedding ' +'<%= @inquiry.wedding.wedding_date.to_s %>'
+        var userSignature = '<%= current_user.first_name  %>' +" " +'<%= current_user.last_name %>'
+        var userSignature =userSignature + '\n' +'<%= current_user.email %>' +'\n' +'<%= current_user.user_phone %>'
         function onTemplateSelectChange (event) {
           var templateId = event.target.value
           fetch('<%= email_templates_url %>/' + templateId + '.json').then(function (response) {
             if (response.ok) {
               response.json().then(function (data) {
 
-                var emailBody = data.body
+                var emailBody =  '<%= @inquiry.email_salutation %>' +',' + data.body + '\n\n' + userSignature
+                
 
                 var mailTo = "mailto:" + emailTo + 
                              "?subject=" + encodeURIComponent(emailSubject) + 

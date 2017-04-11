@@ -16,16 +16,17 @@ Rails.application.routes.draw do
   resources :weddings do
       resources :payments
       resources :inquiries
+      resources :email_templates
   end
 
   resources :sessions
   resources :inquiries do
-    
+    resources :email_templates
     member do
       post 'close_wedding'
       post 'book_wedding'
     end
   end
-
-  resources :email_templates
+resources :email_templates
+  
 end

@@ -9,9 +9,9 @@ class InquiriesController < ApplicationController
      @user = User.find(session[:user_id])
     # @inquiries = @user.inquiries
     if @user.admin?
-      @inquiries = Inquiry.where(closed: false).order("id")
+      @inquiries = Inquiry.where(closed: :isopen ).order("id")
     else
-      @tmp = @user.inquiries.where(closed:  false)
+      @tmp = @user.inquiries.where(closed:  :isopen)
       @inquiries = @tmp.order("email_sent_date desc").all
       
       
@@ -55,11 +55,11 @@ class InquiriesController < ApplicationController
   # PATCH/PUT /inquiries/1
   # PATCH/PUT /inquiries/1.json
   def update
-        byebug
+        #byebug
 
     respond_to do |format|
       if @inquiry.update(inquiry_params)
-        format.html { redirect_to @inquiry, notice: 'Inquiry was successfully updated.' }
+        format.html { redirect_to inquiries_path, notice: 'Inquiry was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
         format.html { render :edit }
@@ -139,8 +139,8 @@ class InquiriesController < ApplicationController
     def inquiry_params
       params.require(:inquiry).permit(:wedding_id, :notes, :contacted_email, :email_sent_date, 
       :second_email, :second_email_date, :contacted_phone, :phone_call_date, 
-      :intro_meeting, :meeting_date, :user_id, :closed, Wedding_attributes: 
+      :intro_meeting, :meeting_date, :user_id, :closed, wedding_attributes: 
       [:id, :bride_first_name, :bride_last_name, :bride_email, :bride_phone, :groom_first_name, 
-        :groom_last_name, :groom_email, :groom_phone, :wedding_date, :wedding_time])
+        :groom_last_name, :groom_email, :groom_phone, :wedding_date, :wedding_time, :status, :comments ])
     end
 end

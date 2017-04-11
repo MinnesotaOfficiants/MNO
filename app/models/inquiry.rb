@@ -1,5 +1,5 @@
 class Inquiry < ApplicationRecord
-  enum closed: [:isopen, :isclosed, :isbooked]
+  enum closed: [:isopen, :isclosed]
   
   # belongs_to :user
   belongs_to :user
@@ -9,8 +9,8 @@ class Inquiry < ApplicationRecord
   
   
   accepts_nested_attributes_for :wedding
-   accepts_nested_attributes_for :email_histories
-   after_update :on_update
+  accepts_nested_attributes_for :email_histories
+  after_update :on_update
 
   # curl -X PATCH http://localhost:3000/inquiries/154 -D '{ inquiry: { closed: true } }'
    # moved the inquiry close to the actual button
@@ -22,11 +22,11 @@ class Inquiry < ApplicationRecord
     if self.isclosed?
       puts "closeing wedding related to this inquiry"
       wedding.closed!
-    elsif self.isbooked?
-       puts "booking wedding related to this inquiry"
-      wedding.booked!
-    elsif self.isopen?
-      puts "not done"
+    #elsif self.isopen?
+      # puts "booking wedding related to this inquiry"
+      #wedding.booked!
+    #elsif self.isopen?
+     # puts "not done"
     end
   end
 
@@ -39,21 +39,14 @@ class Inquiry < ApplicationRecord
   #   # puts "*" * 88
   end
   def test_method
-   # 'mailto:'+ self.wedding.bride_email +'?subject=Wedding ' + self.wedding.wedding_date.to_s + \
-    # '&body=Dear ' + self.wedding.bride_first_name + \
-    # ' and ' + self.wedding.groom_first_name + ',' +'\n' +EmailTemplate.find(4).template_content + '\n' + \
-     # User.find(75).get_salutation 
+    User.find(75).get_salutation 
   end
-  def send_inquiry_email
+  def email_salutation
 
     # prts needed for the email 1 hopefuly we gat a param with the template id
-    #for test we will assume the first contact templat"
-    "<a href = 'mailto:" + self.wedding.bride_email  + "?subject=Wedding " 
-
-
-     
-
+    "Dear " << self.wedding.bride_first_name + '  and ' + self.wedding.groom_first_name 
 
   end
+
   
 end
