@@ -59,14 +59,16 @@
       <%= f.text_field :groom_email,:size => "25" %>
     </div> 
   </div><br/>
+  Web date <%= @wedding.web_date %>
   <div class = "row" id = "location">
-    <div class = "col-sm-6">
+    <div class = "col-sm-5">
       <%= f.label :location, "location" %>
       <%= f.text_field :location, :size=>"45" %> 
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_date, "Date" %>
       <%= f.date_field :wedding_date, :size => "15" %> 
+      
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_time, "Time" %>
@@ -79,7 +81,7 @@
  <br/><br/>
   <div class = "row", id="wedding-with-line" >
     
-    <div class = "col-sm-6">
+    <div class = "col-sm-5">
      <%= f.label :rehearsal_location, "location" %>
      <%= f.text_field :rehearsal_location , :size => "40"%> 
     </div>

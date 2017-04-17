@@ -27,7 +27,8 @@ gem 'jbuilder', '2.5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # use bootstrap lib for layout and ui front end
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass'
+#, '3.3.7'
 #gem for font awsome gem for adding icons
 gem 'font-awesome-sass', '4.6.2'
 # use hirb gem for db table display

@@ -1,6 +1,6 @@
 <!-- wedding index -->
 <p id="notice"><%= notice %></p>
-<%=ENV['C9_USER']%>
+<!-- <%=current_user.first_name %> -->
 <h1>Listing Weddings</h1> <%= link_to 'New Wedding', new_wedding_path %>
  <div class = "container" id = "windex">
   <table>
@@ -13,12 +13,20 @@
     <tbody>
  
     <tr align = "left" text-color = "red">
-    
+        
         <th width = 100px>
-          Date 
+          <% if @user.admin? %>
+            <%= 'Go to' %>
+          <% else %>
+            <%= "Date" %>
+          <% end %> 
         </th>
         <th width = 90px>
-          Time 
+          <% if @user.admin? %>
+            <%= 'Date' %>
+          <% else %>
+            <%= "Time" %>
+          <% end %> 
         </th>
 
         <th width = 150px >
@@ -27,26 +35,46 @@
         <th width = 150px >
           Groom 
         </th>
-        <th width = 125px>
-          Phone 
+        <th width = 200px>
+          <% if @user.admin? %>
+            <%= ' Location' %>
+          <% else %>
+            <%= "Phone" %>
+          <% end %> 
         </th>
       
         
         <th>
-          Location 
+          <% if @user.admin? %>
+            <%= ' Officiant choice' %>
+          <% else %>
+            <%= "Location" %>
+          <% end %>  
         </th>
       </tr>
       <% @weddings.each do |wedding| %>
       
       <tr>
+
           <td>
-            <%=  link_to  wedding.wedding_date, edit_wedding_path(wedding) %>
+            <% if @user.admin? %>
+              <%= link_to  "Edit", edit_wedding_path(wedding)%>
+              <%=  link_to  "Assign", new_wedding_inquiry_path(wedding) %>
+             
+
+            <% else %>
+              <%=  link_to  wedding.wedding_date, edit_wedding_path(wedding) %>
+            <% end %>
           </td>
            <td >
-            <% if wedding.wedding_time == nil  %>
-              <%= "[TBD]" %>
+            <% if @user.admin? %>
+               <%= wedding.wedding_date.to_s %>
             <% else %>
-              <%= wedding.wedding_time.strftime("%I:%M %p")    %>
+              <% if wedding.wedding_time == nil  %>
+                <%= "[TBD]" %>
+              <% else %>
+                <%= wedding.wedding_time.strftime("%I:%M %p")    %>
+              <% end %>
             <% end %>
           </td>
           <td>
@@ -57,20 +85,32 @@
             <%= wedding.groom_first_name.strip + ' ' + wedding.groom_last_name  %>
           </td>
           <td>
-            <%= wedding.bride_phone %>
+            <% if @user.admin? %>
+             <%= wedding.location %>
+            <% else %>
+              <%= wedding.bride_phone %>
+            <% end %> 
+              
           </td>
           
            <td>
-            <%= wedding.location %>
+            <% if @user.admin? %>
+             <%= wedding.first_choice + ' - ' + wedding.second_choice %>
+            <% else %>
+             <%= wedding.location %>
+            <% end %> 
+
           </td>
 
       </tr>
+
         <!-- <tr>
           <td><%= link_to 'Show', wedding %></td>
           <td><%= link_to 'Edit', edit_wedding_path(wedding) %></td>
           <td><%= link_to 'Destroy', wedding, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
         </tr> -->
       <% end %>
+
     </tbody>
   </table>
 </div> <!-- container -->

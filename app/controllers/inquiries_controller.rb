@@ -29,7 +29,8 @@ class InquiriesController < ApplicationController
 
   # GET /inquiries/new
   def new
-    @inquiry = Inquiry.new
+    @wedding = Wedding.find(params[:wedding_id])
+    @inquiry = @wedding.inquiries.new
   end
 
   # GET /inquiries/1/edit
@@ -39,7 +40,9 @@ class InquiriesController < ApplicationController
   # POST /inquiries
   # POST /inquiries.json
   def create
-    @inquiry = Inquiry.new(inquiry_params)
+    @wedding = Wedding.find(params[:wedding_id])
+
+    @inquiry = @wedding.inquiries.new(inquiry_params)
 
     respond_to do |format|
       if @inquiry.save
