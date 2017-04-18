@@ -4,6 +4,8 @@ class WeddingsController < ApplicationController
   def index
      @user = User.find(session[:user_id])
      if @user.admin?
+        @result = Wedding.last
+        @result.get_new_weddings
         @weddings=Wedding.where("status = 'open' and (wedding_date > now() or wedding_date  IS NULL)").order(id: :desc)
      else
       @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
