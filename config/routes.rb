@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       resources :payments
       resources :inquiries
       resources :email_templates
+      member do
+        get 'get_new_web_requests'
+      end
   end
 
   resources :sessions

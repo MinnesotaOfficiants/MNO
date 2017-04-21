@@ -15,7 +15,9 @@ class User < ApplicationRecord
 	
   has_secure_password
 
-
+  def get_user_name
+    self.first_name+ " " + self.last_name 
+  end
 	def get_signature
 		# full name on line 1
 		# phone on line 2

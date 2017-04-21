@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       if user.admin?
+        # now get any new inquiries from mn site
+        
          redirect_to weddings_path
       else
         redirect_to inquiries_path

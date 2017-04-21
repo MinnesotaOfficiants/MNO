@@ -34,7 +34,7 @@ class Wedding < ApplicationRecord
 				state,
 				officiantchoice1,
 				officiantchoice2,
-				officiantchoice3 from wp_pods_request where iswebupdated = 1;
+				officiantchoice3 from wp_pods_request where iswebupdated = 2;
 				")
 		# res = my.query("select count(*) from wp_pods_request;")
 		# byebug
@@ -50,7 +50,7 @@ class Wedding < ApplicationRecord
 		   @newwedding.save
 		end
 		# now update the iswebupdated
-		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 1")
+		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 2")
 	end
 
   

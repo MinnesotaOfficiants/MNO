@@ -101,12 +101,20 @@
   
   <!-- naw add the cost factors-->
   <div class="field last-item"> Wedding type &nbsp &nbsp
-    <%= f.radio_button :package_type ,"Budget" %>
-    <%= f.label :package_type ,"Budget" %>
-    <%= f.radio_button :package_type ,"Basic" %>
-    <%= f.label :package_type ,"Basic" %>
-    <%= f.radio_button :package_type ,"Standard" %>
-    <%= f.label :package_type ,"Standard" %>
+    <span>  <%= f.radio_button :package_type ,"Budget" %>
+      <%= f.label :package_type ,"Budget" %>
+      <%= f.radio_button :package_type ,"Basic" %>
+      <%= f.label :package_type ,"Basic" %>
+      <%= f.radio_button :package_type ,"Standard" %>
+      <%= f.label :package_type ,"Standard" %>
+      
+    </span>
+    <span> 
+      <%= f.label :guest_count %> 
+      <%= f.text_field :guest_count %>
+    </span>
+
+
   </div>
   
       

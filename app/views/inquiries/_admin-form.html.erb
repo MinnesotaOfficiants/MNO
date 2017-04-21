@@ -10,10 +10,31 @@
       </ul>
     </div>
   <% end %> <!-- of error -->
+  <script type="text/javascript">
+    function onOfficiantSelectChange (event) {
+      var userID = event.target.value
+      var oObj = document.getElementById('inquiry_user_id')
+      oObj.value = userID
+      // now put out the officiants name
+      var w = event.target.selectedIndex
+      var userName = event.target.options[w].text
+      var oName = document.getElementById('officiantName')
+ 
+      
+      oName.value = userName
+      // alert(userID)
+
+    }
+  </script>
   <div class='container-fluid'>
+
    <% officiants = User.where("active = TRUE").order(:first_name).collect  {|of| [of.first_name + ' ' + of.last_name, of.id]} %>
-           <%= select "oname", "id",  officiants, {} %>
-    <%= f.label :user_id, "User _Id" %>
-    <%= f.text_field :user_id %>
+           <%= select "oname", "id",  officiants, {include_blank: 'None'}, { onchange: 'onOfficiantSelectChange(event)' } %>
+
+
+    <!-- # <%= f.label :user_id, "User _Id" %> -->
+    <%= f.hidden_field :user_id %> 
+    Assign this request to : 
+   <%= text_field_tag :officiantName %>
   </div>
 <% end %> <!-- of form -->

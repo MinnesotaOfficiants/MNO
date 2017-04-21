@@ -74,8 +74,11 @@ h1, h2, h3 {
 
 .alert-notice {
   display: none;
-}   
-
+} 
+  
+span + span {
+    margin-left: 10px;
+}
 #wedding-with-line {
   border-bottom: 2px solid #ccc;
 }

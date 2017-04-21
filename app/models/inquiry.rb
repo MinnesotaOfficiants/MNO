@@ -1,5 +1,5 @@
 class Inquiry < ApplicationRecord
-  enum closed: [:isopen, :isclosed]
+  enum closed: [:isopen, :isclosed, :isbooked]
   
   # belongs_to :user
   belongs_to :user
@@ -38,9 +38,7 @@ class Inquiry < ApplicationRecord
   #   # puts self
   #   # puts "*" * 88
   end
-  def test_method
-    User.find(75).get_salutation 
-  end
+  
   def email_salutation
 
     # prts needed for the email 1 hopefuly we gat a param with the template id

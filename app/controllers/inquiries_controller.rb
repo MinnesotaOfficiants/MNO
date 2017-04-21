@@ -123,11 +123,11 @@ class InquiriesController < ApplicationController
         r.save
       end
 
-     # closed = 3 booked = 4 update wedding to closed
+     # closed = 3 booked = 2 update wedding to booked
       @wedding.status = :booked
       @wedding.user_id = current_user.id
        @wedding.save
-       redirect_to inquiries_url
+       redirect_to weddings_url
 
   end
  
