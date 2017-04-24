@@ -31,7 +31,8 @@ class WeddingsController < ApplicationController
 
   # GET /weddings/1/edit
   def edit
-      @wedding=Wedding.find(params[:id])
+    @user = current_user
+    @wedding=Wedding.find(params[:id])
   end
 
   # POST /weddings

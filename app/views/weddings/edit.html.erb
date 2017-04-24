@@ -1,5 +1,9 @@
 <b>Editing Wedding</b> 
 &nbsp&nbsp  <%= @wedding.get_title %> <hr>
-  <%= render 'form' %>
+	<% if @user.admin? %>
+		<%= render 'admin_form' %>
+	<% else %>
+  	<%= render 'form' %>
+  <% end %>
 
 <%= link_to 'Back', edit_wedding_path(@wedding) %>

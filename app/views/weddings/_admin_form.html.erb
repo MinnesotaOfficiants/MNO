@@ -1,0 +1,129 @@
+<!-- this is the admin form  -->
+<%= form_for(@wedding) do |f| %>
+  <% if @wedding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wedding.errors.count, "error") %> prohibited this wedding from being saved:</h2>
+
+      <ul>
+      <% @wedding.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- beginning of form -->
+  
+  
+
+<div class = "container-fluid">
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div> 
+  <br />
+  <div class = "row" id = "brideC">
+    <div class = "col-sm-3 ">
+     <%= f.label :bride_first_name, "Bride" %>
+     <%= f.text_field :bride_first_name ,:size => "15"%>  
+
+    </div>
+    <div class = "col-sm-2">
+
+      <%= f.text_field :bride_last_name,:size => "15" %>  
+
+    </div>  
+
+      
+    <div class = "col-sm-3">
+      
+      <%= f.label :bride_phone, "Phone" %>
+      <%= f.text_field :bride_phone,:size => "11" %> 
+    </div>
+    <div class = "col-sm-4">
+      <%= f.label :bride_email, "Email" %>
+      <%= f.text_field :bride_email, :size => "25" %>
+    </div>
+  </div>  <br />
+  <div class = "row" id = "groom">
+    <div class = "col-sm-3">
+      <%= f.label :groom_first_name, "Groom" %>
+      <%= f.text_field :groom_first_name,:size => "15" %>  
+    </div>
+    <div class = "col-sm-2">
+      <%= f.text_field :groom_last_name ,:size => "15"%>  
+    </div>
+    <div class = "col-sm-3">
+      <%= f.label :groom_phone, "Phone" %>
+      <%= f.text_field :groom_phone,:size => "11" %>
+    </div>
+    <div class = "col-sm-4">
+      <%= f.label :groom_email, "Email" %>
+      <%= f.text_field :groom_email,:size => "25" %>
+    </div> 
+  </div><br/>
+  <div class = "last-item">
+   Web date <span><%= @wedding.web_date %></span> web time: <span> <%= @wedding.web_time %></span>
+    
+  </div>
+  <div class = "row" id = "location">
+  
+    
+    <div class = "col-sm-3">
+      <%= f.label :wedding_date, "Date" %>
+      <%= f.date_field :wedding_date, :size => "15" %> 
+      
+    </div>
+    <div class = "col-sm-3">
+      <%= f.label :wedding_time, "Time" %>
+      <%= f.time_field :wedding_time, :size => "15"  %> 
+    </div>
+    <div class = "col-sm-5">
+      <%= f.label :location, "location" %>
+      <%= f.text_field :location, :size=>"45" %> 
+    </div>
+  </div>
+  <span> 
+      <%= f.label :guest_count %> 
+      <%= f.text_field :guest_count %>
+    </span><br> 
+  
+    Comment<br />
+      <%=  f.text_area  :comments ,:size => "150 x 4" %> 
+ <br/><br/>
+ <!--  <div class = "row last-item" >
+    
+    <div class = "col-sm-5">
+     <%= f.label :rehearsal_location, "location" %>
+     <%= f.text_field :rehearsal_location , :size => "40"%> 
+    </div>
+     <div class = "col-sm-3"> 
+      <%= f.label :rehearsal_date, 'Date' %>
+      <%= f.date_field :rehearsal_date %> 
+    </div>
+    <div class = "col-sm-3">
+      <%= f.label :rehearsal_tine, 'Time' %>
+      <%= f.time_field :rehearsal_time,:size => "10" %> 
+    </div>
+    
+    
+   
+  </div> -->
+  <br />
+  
+  <!-- naw add the cost factors-->Wedding size &nbsp &nbsp
+  
+    
+
+
+  </div>
+  
+      
+    <br />
+ 
+    
+
+</div>
+<!-- here is the end -->
+    
+   
+  
+<% end %>

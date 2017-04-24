@@ -40,12 +40,14 @@ class Wedding < ApplicationRecord
 		# byebug
 		res.each do |row|
 
-		  @newwedding =  Wedding.new(:bride_first_name => row["bridefirstname"], :bride_last_name => row["bridelastname"],
+		  @newwedding =  Wedding.new(:bride_first_name => row["bridefirstname"], 
+		  	:bride_last_name => row["bridelastname"],
 		   	:groom_first_name => row["groomfirstname"], :groom_last_name => row["groomlastname"], 
 		   	:web_date => row["weddingdate"],:web_time => row["weddingtime"], 
 		   	:web_count => row["numberofguests"], :bride_email => row["email"], :bride_phone => row["phone"],
 		   	:location => row["location"], :first_choice => row["officiantchoice1"], 
-		   	:second_choice => row["officiantchoice2"], :third_choice => row["officiantchoice3"], :comments => row["comments"],
+		   	:guest_count => row["numberofguests"],:second_choice => row["officiantchoice2"], 
+		   	:third_choice => row["officiantchoice3"], :comments => row["comments"],
 		   	:status => 0)
 		   @newwedding.save
 		end

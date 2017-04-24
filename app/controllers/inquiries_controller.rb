@@ -5,8 +5,8 @@ class InquiriesController < ApplicationController
   # GET /inquiries
   # GET /inquiries.json
   def index
-    
-     @user = User.find(session[:user_id])
+     # @user = User.find(session[:user_id])
+     @user = current_user
     # @inquiries = @user.inquiries
     if @user.admin?
       @inquiries = Inquiry.where(closed: :isopen ).order("id")
