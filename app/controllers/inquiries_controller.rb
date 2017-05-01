@@ -1,6 +1,7 @@
 class InquiriesController < ApplicationController
   before_action :require_user 
   before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
+  #before_action :get_wedding 
 
   # GET /inquiries
   # GET /inquiries.json
@@ -40,13 +41,14 @@ class InquiriesController < ApplicationController
   # POST /inquiries
   # POST /inquiries.json
   def create
+    #byebug
     @wedding = Wedding.find(params[:wedding_id])
-
+    @wedding.update_attribute(:status, :assigned)
     @inquiry = @wedding.inquiries.new(inquiry_params)
 
     respond_to do |format|
       if @inquiry.save
-        format.html { redirect_to @inquiry, notice: 'Inquiry was successfully created.' }
+        format.html { redirect_to weddings_path, notice: 'Inquiry was successfully created.' }
         format.json { render :show, status: :created, location: @inquiry }
       else
         format.html { render :new }
