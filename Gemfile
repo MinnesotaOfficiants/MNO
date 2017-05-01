@@ -29,6 +29,8 @@ gem 'jbuilder', '2.5.0'
 # use bootstrap lib for layout and ui front end
 gem 'bootstrap-sass'
 #, '3.3.7'
+# gem for date picker
+gem 'bootstrap-datepicker-rails'
 #gem for font awsome gem for adding icons
 gem 'font-awesome-sass', '4.6.2'
 # use hirb gem for db table display
@@ -46,12 +48,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   #gem 'pry'
-end
 
-group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen', '3.0.5'
+  #gem 'web-console'
+  #gem 'listen', '3.0.5'
   
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
