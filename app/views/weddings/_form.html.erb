@@ -67,7 +67,7 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_date, "Date" %>
-      <%= f.date_field :wedding_date, :size => "15" %> 
+      <%= f.date_field :wedding_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'   %> 
       
     </div>
     <div class = "col-sm-3">
@@ -87,7 +87,7 @@
     </div>
      <div class = "col-sm-3"> 
       <%= f.label :rehearsal_date, 'Date' %>
-      <%= f.date_field :rehearsal_date %> 
+      <%= f.date_field :rehearsal_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'   %> 
     </div>
     <div class = "col-sm-3">
       <%= f.label :rehearsal_tine, 'Time' %>
@@ -171,6 +171,60 @@
     
 
 </div>
+<!-- now add email history -->
+
+      <script>
+        var emailTo = '<%= @wedding.bride_email %>'
+        var emailSubject = 'Wedding ' +'<%= @wedding.wedding_date.to_s %>'
+        var userSignature = '<%= current_user.first_name  %>' +" " +'<%= current_user.last_name %>'
+        var userSignature =userSignature + '\n' +'<%= current_user.email %>' +'\n' +'<%= current_user.user_phone %>'
+        function onTemplateSelectChange (event) {
+          var templateId = event.target.value
+          fetch('<%= email_templates_url %>/' + templateId + '.json').then(function (response) {
+            if (response.ok) {
+              response.json().then(function (data) {
+
+                var emailBody =  '<%= @wedding.email_salutation %>' +',' + data.body + '\n\n' + userSignature
+                
+
+                var mailTo = "mailto:" + emailTo + 
+                             "?subject=" + encodeURIComponent(emailSubject) + 
+                             "&body=" + encodeURIComponent(emailBody)
+
+                var el = document.getElementById('openEmailClient')
+                el.href = mailTo
+                el.style.visibility = 'visible'
+
+              }).catch(function (e) { alert('Error getting email template') })
+            }
+          }).catch(function (e) { alert('Error getting email template') })
+          return false
+        }
+     </script>
+
+    <!--add the email history in a table-->
+      <div class="panel panel-info">
+        <div class="panel-heading">Email History &emsp;&emsp; 
+       <!--<%= link_to  %> -->
+           <%# @inquiry.send_inquiry_email %>  
+
+           &emsp;&emsp;
+           <% templates = EmailTemplate
+                            .where("template_type='Wedding'")
+                            .where("user_id=0 or user_id=?" , 
+                              session[:user_id]).order(:template_title).collect {|et| [et.template_title, et.id]} %>
+           <%= select "etemp", "id",  templates, {include_blank: 'None'}, { onchange: 'onTemplateSelectChange(event)' } %>
+            <!--add button to send email--> 
+           
+           &emsp;
+           <a id="openEmailClient" href="#" style="visibility: hidden">
+
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+           </a>
+
+             <!--<span class ="btn btn-small btn-info"> Send email  <i class = 'fa fa-envelope' ></i> </span>-->
+          </div>
+
 <!-- here is the end -->
     
    

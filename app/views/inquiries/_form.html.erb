@@ -59,7 +59,9 @@
     </div>
     <div class = "col-sm-3">
       <%= w.label :wedding_date, "Date" %>
-      <%= w.date_field :wedding_date, "data-provide" => 'datepicker'   %> 
+      <%= w.date_field :wedding_date, "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %> 
+      <!-- add a hidden field for the formated date -->
+
     </div>
     <div class = "col-sm-3">
       <%= w.label :wedding_time, "Time" %>
@@ -109,7 +111,7 @@
    
       <div class="field">
         <%= f.label :email_sent_date %>
-        <%= f.date_field :email_sent_date  %>
+        <%= f.date_field :email_sent_date, "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
         <!--<%= f.date_select :email_sent_date, include_blank: true, use_month_numbers:  true, order: [:month,:day,  :year] %>-->
       </div>
      </div>
@@ -121,7 +123,7 @@
     
       <div class="field">
         <%= f.label :second_email_date %>
-        <%= f.date_field :second_email_date %>
+        <%= f.date_field :second_email_date, "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
 
         <!--<%= f.date_select :second_email_date, include_blank: true, use_month_numbers:  true, order: [:month,:day,  :year] %>-->
       </div>
@@ -134,7 +136,7 @@
     
       <div class="field">
         <%= f.label :phone_call_date %>
-        <%= f.text_field :phone_call_date,  "data-provide" => 'datepicker' %>
+        <%= f.date_field :phone_call_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
         <!--<%= f.date_select :phone_call_date , include_blank: true,use_month_numbers:  true, order: [ :month, :day,:year] %>-->
       </div>
     </div>
@@ -149,7 +151,7 @@
       
         <div class="field " >
           <%= f.label :meeting_date %>
-          <%= f.date_select :meeting_date,  use_month_numbers:  true, order: [ :month,:day, :year]  %>
+          <%= f.date_field :meeting_date,  "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
         </div><br />
        </div>
     </div>

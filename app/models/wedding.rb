@@ -16,6 +16,14 @@ class Wedding < ApplicationRecord
 	def get_header
 		self.bride_last_name + '-'+self.groom_last_name
 	end
+	
+  def email_salutation
+
+    # prts needed for the email 1 hopefuly we gat a param with the template id
+    "Dear " << self.bride_first_name + '  and ' + self.groom_first_name 
+
+  end
+	
 	def get_new_weddings
 		require "mysql2"
 		mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
