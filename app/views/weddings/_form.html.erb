@@ -225,6 +225,23 @@
              <!--<span class ="btn btn-small btn-info"> Send email  <i class = 'fa fa-envelope' ></i> </span>-->
           </div>
 
+           <table >
+            <tr>
+              <th width  = "140px">Date sent</th>
+              <th width  = "180px">Template </th>
+            </tr>
+            
+            <!-- todo change this from fields to output text -->
+            <% @wedding.email_histories.each do |e| %>
+            <tr>
+              <td> <%= e.date_sent %> </td>
+             <td>  <%= e.email_template.template_title %> </td>
+             
+             </tr>
+             <% end %>
+           
+          </table>
+
 <!-- here is the end -->
     
    

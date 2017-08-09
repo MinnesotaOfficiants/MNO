@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   
-   attr_accessor   :password, :password_confirmation
+    attr_accessor   :password, :password_confirmation
   
   # attr_accessor :password
   before_save :encrypt_password
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :weddings
 	has_many :inquiries
 	
-  has_secure_password
+  # has_secure_password
 
   def get_user_name
     self.first_name+ " " + self.last_name 

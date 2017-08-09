@@ -12,7 +12,8 @@ gem 'sass-rails', '5.0.6'
 gem 'uglifier', '3.0.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '4.2.1'
-# See https://github.com/rails/execjs#readme for more supported runtimes
+# See https://github.com/rails/execjs
+#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
@@ -36,7 +37,7 @@ gem 'font-awesome-sass', '4.6.2'
 # use hirb gem for db table display
 gem "hirb" , '0.7.3'
 # encription gem for password hash
-gem 'bcrypt' 
+gem 'bcrypt'  
 # gem to move data via dumps to and from other databases
 gem 'yaml_db'
 

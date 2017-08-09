@@ -39,6 +39,11 @@ class Inquiry < ApplicationRecord
   #   # puts "*" * 88
   end
   
+  def update_email_history(templateid)
+    byebug
+    # add the email history when sending out an email through the app
+    self.email_histories.build(:date_sent => Time.now, :email_template_id =>templateid )
+  end
   def email_salutation
 
     # prts needed for the email 1 hopefuly we gat a param with the template id

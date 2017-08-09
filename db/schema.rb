@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20170413190256) do
     t.text     "template_content", limit: 65535
     t.string   "template_footer"
     t.string   "template_title"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                     default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at",                     default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string   "template_type"
   end
 
@@ -99,15 +99,15 @@ ActiveRecord::Schema.define(version: 20170413190256) do
     t.text     "comments",           limit: 65535
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.boolean  "Ceremony_complete"
+    t.boolean  "ceremony_complete"
     t.string   "Ask_for_review"
     t.boolean  "ebook_sent"
-    t.boolean  "Fee_paid"
+    t.boolean  "fee_paid"
     t.decimal  "fee_paid_amount",                  precision: 10
     t.integer  "guest_count"
     t.decimal  "other_cost",                       precision: 10
     t.string   "package"
-    t.boolean  "Question_complete"
+    t.boolean  "question_complete"
     t.decimal  "referal_fee",                      precision: 10
     t.integer  "request_id"
     t.string   "web_time"

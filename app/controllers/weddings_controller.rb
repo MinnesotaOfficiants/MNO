@@ -18,7 +18,7 @@ class WeddingsController < ApplicationController
   end
   
   def get_new_web_requests
-    byebug
+    # byebug
     @result = Wedding.last
     @result.get_new_weddings
     redirect_to weddings_path
