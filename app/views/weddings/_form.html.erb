@@ -15,11 +15,25 @@
   
 
 <div class = "container-fluid">
-  <div class="actions">
-    <%= f.submit "Save" %>
-  </div> 
+  <!-- <span class = "picture">
+        
+        <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+  </span> -->
+   <div class="form-actions">
+    <div class = "row" >
+      <%= image_tag(@wedding.image_file, size: "100x100", class: "gravatar") if @wedding.image_file? %>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    </div>
+    </div><br />
+  <!-- <div class="actions">
+     <div class = "row" > 
+      <%= f.submit "Save" %>  
+    </div>
+
+  </div>  -->
   <br />
   <div class = "row" id = "brideC">
+   
     <div class = "col-sm-3 ">
      <%= f.label :bride_first_name, "Bride" %>
      <%= f.text_field :bride_first_name ,:size => "15"%>  
