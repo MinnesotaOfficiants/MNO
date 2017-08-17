@@ -21,16 +21,19 @@
   </span> -->
    <div class="form-actions">
     <div class = "row" >
-      <%= image_tag(@wedding.image_file, size: "100x100", class: "gravatar") if @wedding.image_file? %>
+      <% if @wedding.image_file.blank? %>
+        <span class = "picture">
+        
+          <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+        </span> 
+      <% else %>
+        <%= image_tag(@wedding.image_file, size: "100x100", class: "gravatar") if @wedding.image_file? %>
+      
+      <% end %>  
       <%= f.submit "Save", class: 'btn btn-success' %>
     </div>
     </div><br />
-  <!-- <div class="actions">
-     <div class = "row" > 
-      <%= f.submit "Save" %>  
-    </div>
-
-  </div>  -->
+  
   <br />
   <div class = "row" id = "brideC">
    

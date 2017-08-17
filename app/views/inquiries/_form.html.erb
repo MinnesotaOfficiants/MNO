@@ -13,12 +13,14 @@
   <div class='container-fluid'>
     <%= f.fields_for :wedding do |w| %>
     <div class="form-actions">
-      <!-- <span class = "picture">
+     <% if @inquiry.wedding.image_file.blank? %>
+       <span class = "picture">
         
-        <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
-      </span>  -->
-      <%= image_tag(@inquiry.wedding.image_file, size: "100x100", class: "gravatar") if @inquiry.wedding.image_file? %>
-
+        <%= w.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+        </span> 
+      <% else %>
+        <%= image_tag(@inquiry.wedding.image_file, size: "100x100", class: "gravatar") if @inquiry.wedding.image_file? %>
+      <% end %>
       <%= f.submit "Save", class: 'btn btn-success' %>
     </div><br />
     <div class = "row" >

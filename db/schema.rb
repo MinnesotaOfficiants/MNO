@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413190256) do
+ActiveRecord::Schema.define(version: 20170816173334) do
 
   create_table "email_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date     "date_sent"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20170413190256) do
     t.date     "meeting_date"
     t.integer  "user_id"
     t.boolean  "closed"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                      default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at",                      default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.date     "phone_call_date"
   end
 
@@ -97,10 +97,11 @@ ActiveRecord::Schema.define(version: 20170413190256) do
     t.date     "rehearsal_date"
     t.time     "rehearsal_time"
     t.text     "comments",           limit: 65535
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.boolean  "ceremony_complete"
-    t.string   "Ask_for_review"
+    t.string   "ask_for_review"
+    t.boolean  "no_pref"
     t.boolean  "ebook_sent"
     t.boolean  "fee_paid"
     t.decimal  "fee_paid_amount",                  precision: 10
@@ -122,6 +123,53 @@ ActiveRecord::Schema.define(version: 20170413190256) do
     t.string   "third_choice"
     t.integer  "package_type"
     t.date     "fee_paid_date"
+    t.string   "image_file"
+  end
+
+  create_table "weddings-save", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "bride_first_name"
+    t.string   "bride_last_name"
+    t.string   "groom_last_name"
+    t.string   "groom_first_name"
+    t.string   "bride_email"
+    t.string   "groom_email"
+    t.string   "bride_phone"
+    t.string   "groom_phone"
+    t.string   "location"
+    t.date     "wedding_date"
+    t.time     "wedding_time"
+    t.boolean  "rehearsal"
+    t.string   "rehearsal_location"
+    t.date     "rehearsal_date"
+    t.time     "rehearsal_time"
+    t.text     "comments",           limit: 65535
+    t.datetime "created_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.boolean  "ceremony_complete"
+    t.string   "ask_for_review"
+    t.boolean  "no_pref"
+    t.boolean  "ebook_sent"
+    t.boolean  "fee_paid"
+    t.decimal  "fee_paid_amount",                  precision: 10
+    t.integer  "guest_count"
+    t.decimal  "other_cost",                       precision: 10
+    t.string   "package"
+    t.boolean  "question_complete"
+    t.decimal  "referal_fee",                      precision: 10
+    t.integer  "request_id"
+    t.string   "web_time"
+    t.string   "web_count"
+    t.string   "web_date"
+    t.integer  "user_id"
+    t.decimal  "wedding_cost",                     precision: 10
+    t.integer  "status"
+    t.boolean  "counseling"
+    t.string   "first_choice"
+    t.string   "second_choice"
+    t.string   "third_choice"
+    t.integer  "package_type"
+    t.date     "fee_paid_date"
+    t.string   "image_file",         limit: 100
   end
 
 end
