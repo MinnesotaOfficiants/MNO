@@ -36,6 +36,10 @@ class InquiriesController < ApplicationController
 
   # GET /inquiries/1/edit
   def edit
+    @inquiry = Inquiry.find(params[:id])
+    @email_history = @inquiry.email_histories
+
+    # redirect_to inquiry_edit_path
   end
 
   # POST /inquiries

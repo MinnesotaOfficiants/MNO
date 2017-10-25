@@ -1,0 +1,62 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this wedding from being saved:</h2>
+
+      <ul>
+      <% @usererrors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--  add the user fields and dropdown for the email templates for editing -->
+
+<section id="user-info-section">
+	<%= f.submit "Save", class: 'btn btn-success' %>
+	<div class="row" >
+      <div class = "col-sm-4">
+      	<table class="table">
+  				<thead class="thead-default">
+						<th>Title</th>
+						<th>First name</th>
+						<th>Last name</th>
+					</thead>
+					<tr>
+						<td><%= f.text_field :title %></td>
+						<td><%= f.text_field :first_name %></td>
+						<td><%= f.text_field :last_name %></td>
+					</tr>
+
+  			</table>
+        <table class="table">
+  				<thead class="thead-default">
+						<th>Phone</th>
+						<th>Email</th>
+						<th>Calendar</th>
+					</thead>
+					<tr>
+						<td><%= f.text_field :user_phone %></td>
+						<td><%= f.text_field :email %></td>
+						<td><%= f.text_field :calendar_account %></td>
+					</tr>
+
+  			</table>
+		</div>
+	</dir>
+
+</section>
+<section id = "user-edit-template">
+	Edit email template <br/>
+	
+	<% templates = EmailTemplate
+      .where("user_id=?" , 
+        session[:user_id]).order(:template_title).collect {|et| [et.template_title, et.id]} %>
+             <%= select "etemp", "id",  templates, {include_blank: 'Select'} , id: 'template-select'  %>
+             
+      <!-- <button class= 'btn,btn-warning', id = 'user-edit-button'>Edit</button>       -->
+     <%= link_to  "Edit" , edit_email_template_path ,class: 'btn btn-warning', id: 'user-edit-button' %>   
+</section>
+
+<% end %>
+

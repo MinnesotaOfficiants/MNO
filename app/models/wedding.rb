@@ -11,7 +11,8 @@ class Wedding < ApplicationRecord
 	accepts_nested_attributes_for :email_histories
 	accepts_nested_attributes_for :inquiries
 	def get_title
-		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
+		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name 
+		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
 	def get_header
 		self.bride_last_name + '-'+self.groom_last_name
@@ -26,7 +27,9 @@ class Wedding < ApplicationRecord
 	
 	def get_new_weddings
 		require "mysql2"
-		mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
+		#mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
+		
+		mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants")
 		res = mnosql.query("select created, 
 			bridefirstname ,
 				bridelastname ,
@@ -46,6 +49,7 @@ class Wedding < ApplicationRecord
 				")
 		# res = my.query("select count(*) from wp_pods_request;")
 		# byebug
+		#akl 10/17/17  add this for counseling   if(locate('Pre',preparations)>0,1,0) as counseling
 		res.each do |row|
 
 		  @newwedding =  Wedding.new(:bride_first_name => row["bridefirstname"], 

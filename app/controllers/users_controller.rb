@@ -4,4 +4,10 @@ class UsersController < ApplicationController
 
   def update
   end
+
+  def edit
+  	#byebug
+  	@user=current_user
+
+  end
 end

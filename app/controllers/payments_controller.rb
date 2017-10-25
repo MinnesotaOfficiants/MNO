@@ -10,15 +10,18 @@ class PaymentsController < ApplicationController
   end
 
   def create
+    # byebug
   	 @payment = @wedding.payments.new(payment_params)
-
+     @payment.pmt_date = DateTime.current
+     
     respond_to do |format|
       if @payment.save
         format.html { redirect_to edit_wedding_path(@wedding), notice: 'payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+        format.js
       else
         format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
+        # format.json { render json: @payment.errors, status: :unprocessable_entity }
+        format.js 
       end
     end
   end

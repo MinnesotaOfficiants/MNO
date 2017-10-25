@@ -19,5 +19,21 @@
 //= require turbolinks
 //= require_tree .
 
+$(function () {
 
+    $('#add-pmt-btn').click("<% j @wedding.payments.create %>")
+})
+
+$(function () {
+    $('#template-select').on('change' ,() => {
+        var b =  $('#template-select').val();
+        
+
+         var button = $('#user-edit-button');
+         var str = button.attr('href').replace(/\d\d/,b);
+          button.attr('href', str);
+         
+         return false;
+    })
+})
 

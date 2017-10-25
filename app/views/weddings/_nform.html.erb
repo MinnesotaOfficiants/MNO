@@ -1,0 +1,108 @@
+<%= form_for [@wedding], remote: true do |f| %>
+  <% if @wedding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wedding.errors.count, "error") %> prohibited this wedding from being saved:</h2>
+
+      <ul>
+      <% @wedding.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- beginning of form -->
+  
+  
+
+<div class = "container-fluid">
+   <%= f.submit "Save", class: 'btn btn-success' %>
+ 
+  <div class = "row" id = "brideC">
+   
+    <div class = "col-sm-3 ">
+     <%= f.label :bride_first_name, "Bride" %>
+     <%= f.text_field :bride_first_name ,:size => "15"%>  
+
+    </div>
+    <div class = "col-sm-2">
+
+      <%= f.text_field :bride_last_name,:size => "15" %>  
+
+    </div>  
+
+      
+    <div class = "col-sm-3">
+      
+      <%= f.label :bride_phone, "Phone" %>
+      <%= f.text_field :bride_phone,:size => "11" %> 
+    </div>
+    <div class = "col-sm-4">
+      <%= f.label :bride_email, "Email" %>
+      <%= f.text_field :bride_email, :size => "25" %>
+    </div>
+  </div>  <br />
+  <div class = "row" id = "groom">
+    <div class = "col-sm-3">
+      <%= f.label :groom_first_name, "Groom" %>
+      <%= f.text_field :groom_first_name,:size => "15" %>  
+    </div>
+    <div class = "col-sm-2">
+      <%= f.text_field :groom_last_name ,:size => "15"%>  
+    </div>
+    <div class = "col-sm-3">
+      <%= f.label :groom_phone, "Phone" %>
+      <%= f.text_field :groom_phone,:size => "11" %>
+    </div>
+    <div class = "col-sm-4">
+      <%= f.label :groom_email, "Email" %>
+      <%= f.text_field :groom_email,:size => "25" %>
+    </div> 
+    <div>
+       <%= f.label :comments %><br/>
+      <%= f.text_area :comments ,:size => "65 x 3"%>
+    </div>
+  </div><br/>
+  </div>
+<!-- here is the end -->
+<!-- now add payments -->
+<section id = "payments-section">
+ 
+ <!--  <div>
+    <%= add_child_button "add Payment",:payments,"#payments" %>
+    <%= new_fields_template f, :payments %>
+  </div> -->
+   <div>
+    
+        <%# @wedding.payments.create %>
+
+      <%= link_to 'Add Payment',
+        wedding_payments_path(@wedding, { 
+          payment: {
+            pmt_date: DateTime.current.iso8601,
+            pmt_amount: 0,
+            pmt_type: '',
+            pmt_method: '',
+            reference: ''
+          }
+        }),
+        method: :post,
+        remote: true
+      %>
+<%#
+         id: 'add-pmt-btn',
+         classname: 'btn btn-default btn-info'
+       }
+      <span id = 'add-pmt-btn', class ="btn btn-default btn-info"> Add Payment </span>
+%>
+    
+  </div>
+
+  <div id="show-pmt">
+    <%= render 'weddings/payments_list' %>
+  </div>
+
+</section>
+    
+   
+  
+<% end %>

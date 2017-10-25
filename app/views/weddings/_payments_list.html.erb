@@ -1,0 +1,25 @@
+<%= form_for [@wedding], remote: true do |f| %>
+    <table>
+       <tr>
+        <th width  = "140px"> Date </th>
+          <th width  = "140px"> type </th>
+          <th width = "140px">amount </th>
+          <th width = "140px">Method </th>
+          <th width = "140px">Reference </th>
+        </tr>
+
+         <br/><br/>
+
+        <section id = 'render-payment'>
+          <div id =  'payments'>
+           <%= f.fields_for :payments do |builder| %>
+              <section id = 'show-pmt'>
+								<%= render "weddings/payment_fields", :f => builder %>
+             </section>
+       
+            <% end %>
+          </div>
+        </section>
+
+    </table>
+<% end %>

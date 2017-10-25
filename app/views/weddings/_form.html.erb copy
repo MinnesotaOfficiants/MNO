@@ -15,7 +15,10 @@
   
 
 <div class = "container-fluid">
-  
+  <!-- <span class = "picture">
+        
+        <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+  </span> -->
    <div class="form-actions">
     <div class = "row" >
       <% if @wedding.image_file.blank? %>
@@ -144,35 +147,7 @@
       <!-- </div> -->
 
     </div>
-    <section id = "payments-section">
- 
- 
-     <div>
-      
-        <%= link_to 'Add Payment',
-          wedding_payments_path(@wedding, { 
-            payment: {
-              pmt_date: DateTime.current.iso8601,
-              pmt_amount: 0,
-              pmt_type: '',
-              pmt_method: '',
-              reference: ''
-            }
-          }),
-          method: :post,
-          remote: true
-        %>
-  
-      
-      </div>
-
-      <div id="show-pmt">
-        <%= render 'weddings/payments_list' %>
-      </div>
-
-    </section>
-
-    <!-- <div class = "last-item" >
+    <div class = "last-item" >
       <%= link_to new_wedding_payment_path(@wedding) do  %>
          <span class ="btn btn-default btn-success" > Add Payment </span>
       <% end %>
@@ -204,13 +179,16 @@
       
     <% end %> 
 
-  </table> <br />-->
+  </table> <br />
   <p><b>
      Payment totals &nbsp
     <%= number_to_currency(@wedding.payments.sum(:pmt_amount)) %></b>
   </p>
  
-    <!-- now add email history -->
+    
+
+</div>
+<!-- now add email history -->
 
       <script>
         var emailTo = '<%= @wedding.bride_email %>'
@@ -283,6 +261,6 @@
 
 <!-- here is the end -->
     
-   <
+   
   
 <% end %>

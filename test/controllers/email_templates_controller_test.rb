@@ -1,7 +1,14 @@
 require 'test_helper'
 
 class EmailTemplatesControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get new" do
+    get email_templates_new_url
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get email_templates_edit_url
+    assert_response :success
+  end
+
 end

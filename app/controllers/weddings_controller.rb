@@ -14,9 +14,24 @@ class WeddingsController < ApplicationController
   # GET /weddings/1
   # GET /weddings/1.json
   def show
-   
+    @wedding=Wedding.find(params[:id])
+    @email_history=@wedding.email_histories
+    @payments=@wedding.payments
   end
-  
+  def add_payment
+    # make a call to add an empty wedding payment
+    #then refresc edit
+   @wedding=Wedding.find(params[:id])
+   
+    #@wedding.update(wedding_params)
+    @wedding.payments.create
+    respond_to do |format|
+      format.html {  redirect_to edit_wedding_path }
+      format.js
+    end
+
+
+  end
   def get_new_web_requests
     # byebug
     @result = Wedding.last
