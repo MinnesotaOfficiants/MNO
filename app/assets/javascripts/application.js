@@ -29,7 +29,7 @@ $(function () {
          var str = button.attr('href').replace(/\d\d/,b);
           button.attr('href', str);
          
-         return false;
+         // return false;
     })
 })
 

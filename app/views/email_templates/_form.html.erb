@@ -1,4 +1,7 @@
-<%= form_for(@email_template) do |f| %>
+<%= form_for(@email_template, remote: true, id: "templateForm") do |f| %>
+<script type="text/javascript">
+  $('form#templateForm').trigger('submit.rails');
+</script>
   <% if @email_template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@email_template.errors.count, "error") %> prohibited this email_template from being saved:</h2>
@@ -19,21 +22,28 @@
       var userSignature1 = '<%= current_user.first_name  %>' +" " +'<%= current_user.last_name %>';
       var userSignature =userSignature1 + '\n' +'<%= current_user.email %>' +'\n' +'<%= current_user.user_phone %>';
       var salutation = "Dear " + userSignature1 +", \n";
-      var bodyText = '<%= j @email_template.template_content %>' + '\n\n';
-      var footerText = '<%= j @email_template.template_footer %>';
+      var bodyText = '<%=  j @email_template.template_content %>' + '\n\n';
+      var footerText = '<%= j  @email_template.template_footer %>';
       console.log(salutation);
       
-      var emailBody = salutation + bodyText + userSignature + footerText;
-      var mailTo = 'mailto:' + emailTo + "?subject=" + encodeURIComponent(emailSubject)
-       // +
-       //         "&body=" + encodeURIComponent(emailBody)
-       // // alert(mailTo);
-        bbb = document.getElementById('sendEmailTemplate');
-        bbb.href = mailTo ;
-        console.log(bbb.href);
+      var emailBody = salutation + bodyText + userSignature +"\n" + footerText; 
+      var mailTo = 'mailto:' + emailTo + "?subject=" + encodeURIComponent(emailSubject) +
+        "&body=" + encodeURIComponent(emailBody)
+       // alert(mailTo);
+       mText = $("#sendEmailTemplate")
+       mText.attr('href', mailTo)
 
-       
+        // mText = document.getElementById('sendEmailTemplate')
+        // bbb = document.getElementById('sendEmailTemplate').href 
+        // console.log(bbb)
 
+        // mText.href = mText + mailTo
+        //  bbb = document.getElementById('sendEmailTemplate').href 
+
+        console.log(mText.attr('href'))
+
+        // bbb.href = mailTo ;
+      
    }
   </script>
   <section id="template">
@@ -47,11 +57,12 @@
           <!-- <span class="glyphicon glyphicon-mail"></span>&nbsp; -->
         </div>
         <div class = 'col col-md-3'>
-          <a   href="#" id = "sendEmailTemplate" >send
+          <a   href="mailto:" id = "sendEmailTemplate" >send
             <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
 
           </a>
         </div>
+      
       </div>
       <div class = 'row'>
         <table>

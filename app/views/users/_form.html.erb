@@ -46,13 +46,28 @@
 	</dir>
 
 </section>
+<script type="text/javascript">
+	function getTemplate (event) {
+        var b =  event.target.value
+        // $('#template-select').val()
+        
+        console.log(b)
+         var button = $('#user-edit-button');
+         console.log(button)
+         var str = button.attr('href').replace(/\d\d/,b);
+          button.attr('href', str);
+         
+         // return false;
+	}
+	
+</script>
 <section id = "user-edit-template">
 	Edit email template <br/>
 	
 	<% templates = EmailTemplate
       .where("user_id=?" , 
         session[:user_id]).order(:template_title).collect {|et| [et.template_title, et.id]} %>
-             <%= select "etemp", "id",  templates, {include_blank: 'Select'} , id: 'template-select'  %>
+             <%= select "etemp", "id",  templates, {include_blank: 'Select'} , {onchange: 'getTemplate(event)'}  %>
              
       <!-- <button class= 'btn,btn-warning', id = 'user-edit-button'>Edit</button>       -->
      <%= link_to  "Edit" , edit_email_template_path ,class: 'btn btn-warning', id: 'user-edit-button' %>   
