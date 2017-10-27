@@ -144,7 +144,7 @@
       <!-- </div> -->
 
     </div>
-    <section id = "payments-section">
+    <!-- <section id = "payments-section"> -->
  
  
      <div>
@@ -160,7 +160,8 @@
             }
           }),
           method: :post,
-          remote: true
+          remote: true, 
+          class: "btn btn-default btn-info"
         %>
   
       
@@ -170,7 +171,7 @@
         <%= render 'weddings/payments_list' %>
       </div>
 
-    </section>
+    <!-- </section> -->
 
     <!-- <div class = "last-item" >
       <%= link_to new_wedding_payment_path(@wedding) do  %>
@@ -233,6 +234,7 @@
                 var el = document.getElementById('openEmailClient')
                 el.href = mailTo
                 el.style.visibility = 'visible'
+                console.log(el.href)
 
               }).catch(function (e) { alert('Error getting email template') })
             }

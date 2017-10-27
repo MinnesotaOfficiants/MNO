@@ -19,10 +19,6 @@
 //= require turbolinks
 //= require_tree .
 
-$(function () {
-
-    $('#add-pmt-btn').click("<% j @wedding.payments.create %>")
-})
 
 $(function () {
     $('#template-select').on('change' ,() => {
@@ -36,4 +32,6 @@ $(function () {
          return false;
     })
 })
+
+
 

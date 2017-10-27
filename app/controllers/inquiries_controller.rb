@@ -130,10 +130,9 @@ class InquiriesController < ApplicationController
       end
 
      # closed = 3 booked = 2 update wedding to booked
-      @wedding.status = :booked
-      @wedding.user_id = current_user.id
-       @wedding.save
-       redirect_to weddings_url
+     @wedding.book(current_user)
+     
+      redirect_to weddings_url
 
   end
  
@@ -150,6 +149,7 @@ class InquiriesController < ApplicationController
       :second_email, :second_email_date, :contacted_phone, :phone_call_date, 
       :intro_meeting, :meeting_date, :user_id, :closed, wedding_attributes: 
       [:id, :bride_first_name, :bride_last_name, :bride_email, :bride_phone, :groom_first_name, 
-        :groom_last_name, :groom_email, :groom_phone, :wedding_date, :wedding_time, :status, :comments ])
+        :groom_last_name, :groom_email, :groom_phone, :wedding_date, :wedding_time, :status, 
+        :comments, :package_type, :rehearsal ])
     end
 end

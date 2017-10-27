@@ -1,0 +1,80 @@
+<%= form_for(@email_template) do |f| %>
+  <% if @email_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@email_template.errors.count, "error") %> prohibited this email_template from being saved:</h2>
+
+      <ul>
+      <% @email_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <script type="text/javascript">
+    function setEmailButton () {
+        // make a test email for a template
+      var emailTo = '<%= current_user.email %>';
+     
+       var emailSubject = '<%= @email_template.template_type %>  test ' ;
+      var userSignature1 = '<%= current_user.first_name  %>' +" " +'<%= current_user.last_name %>';
+      var userSignature =userSignature1 + '\n' +'<%= current_user.email %>' +'\n' +'<%= current_user.user_phone %>';
+      var salutation = "Dear " + userSignature1 +", \n";
+      var bodyText = '<%= j @email_template.template_content %>' + '\n\n';
+      var footerText = '<%= j @email_template.template_footer %>';
+      console.log(salutation);
+      
+      var emailBody = salutation + bodyText + userSignature + footerText;
+      var mailTo = 'mailto:' + emailTo + "?subject=" + encodeURIComponent(emailSubject)
+       // +
+       //         "&body=" + encodeURIComponent(emailBody)
+       // // alert(mailTo);
+        bbb = document.getElementById('sendEmailTemplate');
+        bbb.href = mailTo ;
+        console.log(bbb.href);
+
+       
+
+   }
+  </script>
+  <section id="template">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+    <dir class = "form-actions">
+      <div class='row'>
+        <div class = 'col col-md-2'>
+          <a href = "#" id = "emailSetEnvelope"  onclick = 'setEmailButton()'>
+            <span class="glyphicon glyphicon-envelope"></span>
+          </a> &nbsp;
+          <!-- <span class="glyphicon glyphicon-mail"></span>&nbsp; -->
+        </div>
+        <div class = 'col col-md-3'>
+          <a   href="#" id = "sendEmailTemplate" >send
+            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+
+          </a>
+        </div>
+      </div>
+      <div class = 'row'>
+        <table>
+          <thead class="thead-default">
+            <th width = "180px">Title</th>
+            <th width = "100px">type</th>
+          </thead>
+          <tr> 
+            <td><%= f.text_field :template_title %></td>
+
+            <td> <%= f.select( :template_type, ['Test','Request','Wedding'],{})%></td>
+          </tr>
+        </table>
+      </div>
+      <div class ="row" >
+        Content <br>
+        <%= f.text_area :template_content , :size => "80x10" %> 
+      </div>
+       <div class ="row" >
+        Footer <br>
+        <%= f.text_area :template_footer , :size => "70x4" %> 
+      </div>
+    </dir>
+
+  </section>
+<% end %>

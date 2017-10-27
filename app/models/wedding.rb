@@ -24,6 +24,25 @@ class Wedding < ApplicationRecord
     "Dear " << self.bride_first_name + '  and ' + self.groom_first_name 
 
   end
+  def book(current_user)
+  	byebug
+  	 self.status = :booked
+     self.user_id = current_user.id
+      case self.package_type
+      	when  "Budget"
+         self.wedding_cost = 175
+	       when "Basic"
+	       	self.wedding_cost = 295
+	       when "Standard"
+	       	self.wedding_cost = 395
+       end
+       if self.rehearsal? 
+       		self.wedding_cost = self.wedding_cost + 100
+       end
+       self.referal_fee = self.wedding_cost * current_user.user_fee_pct/100
+
+       self.save
+  end
 	
 	def get_new_weddings
 		require "mysql2"

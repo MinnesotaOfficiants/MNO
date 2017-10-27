@@ -83,7 +83,23 @@
       <%= w.label :comments %><br/>
       <%= w.text_area :comments ,:size => "65 x 3"%>
     </div>
-    
+     <div class="field last-item"> Wedding type &nbsp &nbsp
+    <span>  <%= w.radio_button :package_type ,"Budget" %>
+      <%= w.label :package_type ,"Budget" %>
+      <%= w.radio_button :package_type ,"Basic" %>
+      <%= w.label :package_type ,"Basic" %>
+      <%= w.radio_button :package_type ,"Standard" %>
+      <%= w.label :package_type ,"Standard" %>
+      
+    </span>
+    <span> 
+      <%= w.label :guest_count %> 
+      <%= w.text_field :guest_count %>
+    </span>
+    <span>Rehearsal  <%=  w.check_box :rehearsal ,class: "checkbox-inline" %> </span>
+
+
+  </div>
   </div>
   <!--end location -->
 <% end %>
@@ -198,14 +214,14 @@
          
        </script>
 
-      <script type="text/javascript">
+     <!--  <script type="text/javascript">
         function setHistory  (val1) {
           
           var oTemplate = document.getElementById('etemp_id')
           var templateid = oTemplate.value
           
         }
-      </script>
+      </script> -->
         <div class="panel panel-info">
           <div class="panel-heading">Email History &emsp;&emsp; 
          <!--<%= link_to  %> -->
