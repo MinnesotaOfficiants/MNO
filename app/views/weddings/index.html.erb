@@ -4,6 +4,11 @@
 
 <h1>Listing Weddings</h1> 
 <% if @user.admin? %>
+  <!-- make a simple search form for all booked wedding date -->
+  <%= form_tag weddings_path, method: :get do %>
+    <%= date_field_tag :search , params[:search] ,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd' %>
+    <%= submit_tag "Search date" %>
+  <% end %> 
  <%= link_to get_new_web_requests_wedding_path(@weddings) ,  method: :get  do  %>
     <span class ="btn btn-default btn-info"> Refresh </span>
   <% end %>
@@ -78,7 +83,8 @@
           </td>
            <td >
             <% if @user.admin? %>
-               <%= wedding.wedding_date.to_s %>
+                <%= wedding.wedding_date.to_s %>
+            
             <% else %>
               <% if wedding.wedding_time == nil  %>
                 <%= "[TBD]" %>
@@ -104,8 +110,14 @@
           </td>
           
            <td>
-            <% if @user.admin? %>
-             <%= wedding.first_choice + ' - ' + wedding.second_choice %>
+            <% if @user.admin?  %>
+              
+              <% if wedding.status == "booked" %>
+                <%= User.find(wedding.user_id).first_name + ' - ' + User.find(wedding.user_id).last_name %>                
+                <% else %> 
+
+                <%= wedding.first_choice + ' - ' + wedding.second_choice %>
+                <% end %>
             <% else %>
              <%= wedding.location %>
             <% end %> 

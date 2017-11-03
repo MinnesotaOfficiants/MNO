@@ -2,11 +2,13 @@ class WeddingsController < ApplicationController
    before_action :require_user 
 
   def index
-     @user = User.find(session[:user_id])
-     if @user.admin?
+    @user = User.find(session[:user_id])
+    # byebug
+   
+    if @user.admin?
        
-        @weddings=Wedding.where("status = 'open' and (wedding_date > now() or wedding_date  IS NULL)").order(id: :desc)
-     else
+      @weddings = Wedding.search(params[:search])
+    else
       @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
     end
   end

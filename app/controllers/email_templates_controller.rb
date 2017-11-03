@@ -1,5 +1,6 @@
 class EmailTemplatesController < ApplicationController
  def show
+    #byebug
     @template=EmailTemplate.find(params[:id])
     @body=@template.template_content
     render json: { 

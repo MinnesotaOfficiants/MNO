@@ -21,16 +21,7 @@
 
 
 $(function () {
-    $('#template-select').on('change' ,() => {
-        var b =  $('#template-select').val();
-        
-
-         var button = $('#user-edit-button');
-         var str = button.attr('href').replace(/\d\d/,b);
-          button.attr('href', str);
-         
-         // return false;
-    })
+    
 })
 
 

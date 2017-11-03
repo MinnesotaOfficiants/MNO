@@ -10,7 +10,7 @@
         <%= form_tag sessions_path do %>
           <p>
             <%= label_tag :user_name %><br />
-            <%= text_field_tag :user_name, params[:user_name] , id: "logInName"  %>
+            <%= text_field_tag :user_name, params[:user_name] , id: "logInName",autofocus: "true"  %>
           </p>
           <p>
             <%= label_tag :password %><br />

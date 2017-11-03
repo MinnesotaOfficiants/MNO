@@ -14,6 +14,17 @@ class Wedding < ApplicationRecord
 		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
+	def  self.search(search)
+		#byebug
+		if search.present?
+    	where("status = 2 and wedding_date = ? ", search).order(wedding_time: :desc)
+
+    else
+			where("status = 0 and (wedding_date >= now() or wedding_date  IS NULL)").order(id: :desc)
+
+    end
+		
+	end
 	def get_header
 		self.bride_last_name + '-'+self.groom_last_name
 	end
