@@ -171,41 +171,7 @@
         <%= render 'weddings/payments_list' %>
       </div>
 
-    <!-- </section> -->
-
-    <!-- <div class = "last-item" >
-      <%= link_to new_wedding_payment_path(@wedding) do  %>
-         <span class ="btn btn-default btn-success" > Add Payment </span>
-      <% end %>
-
-    </div>
-
-     
-
- 
-  <table >
-    <tr>
-      <th width  = "140px">Pmt Date</th>
-      <th width  = "140px">Pmt Type </th>
-      <th width  = "140px">Pmt Amount</th>
-      <th width  = "150px">Pmt Method</th>
-      <th width  = "150px">Reference</th>
-
-    </tr>
-
-    <% @wedding.payments.each do |p|  %>
-      <tr>
-          <td> <%= p.pmt_date %> </td>
-         <td> <%= p.pmt_type %> </td>
-         <td> <%= number_to_currency(p.pmt_amount) %> </td>
-         <td> <%= p.pmt_method %> </td>
-         <td> <%= p.reference %> </td>
-
-      </tr>
-      
-    <% end %> 
-
-  </table> <br />-->
+   
   <p><b>
      Payment totals &nbsp
     <%= number_to_currency(@wedding.payments.sum(:pmt_amount)) %></b>
@@ -242,6 +208,25 @@
           return false
         }
      </script>
+     <script type="text/javascript">
+       function recordHistory(event) {
+        // make a url to record history route
+        var templateId = $('#emailSelectW').val();
+        var weddingId = '<%= @wedding.id %>';
+        // debugger
+         $.ajax({
+            url: "/email_history/Create/?type=wedding"+"&template_id="+templateId+"&id="+weddingId,
+            type: "post",
+            data: {email_history: {template_id: templateId, id: weddingId} },
+            success: function(){
+              alert('Saved Successfully');
+            },
+            error: function(){
+             alert('Error');
+            }
+          });
+       }
+     </script>
 
     <!--add the email history in a table-->
       <div class="panel panel-info">
@@ -254,11 +239,11 @@
                             .where("template_type='Wedding'")
                             .where("user_id=0 or user_id=?" , 
                               session[:user_id]).order(:template_title).collect {|et| [et.template_title, et.id]} %>
-           <%= select "etemp", "id",  templates, {include_blank: 'None'}, { onchange: 'onTemplateSelectChange(event)' } %>
+           <%= select "etemp", "id",  templates, {include_blank: 'None'}, { onchange: 'onTemplateSelectChange(event)' ,id: 'emailSelectW'} %>
             <!--add button to send email--> 
            
            &emsp;
-           <a id="openEmailClient" href="#" style="visibility: hidden">
+           <a id="openEmailClient" href="#" style="visibility: hidden" onclick = 'recordHistory(event)'>
 
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
            </a>
