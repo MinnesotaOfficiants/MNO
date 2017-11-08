@@ -9,14 +9,24 @@ class EmailTemplatesController < ApplicationController
        
     
   end
+
   def not_show
      render json: {
       body: "This is the template number #{params[:id]}" 
      }
   end
+  def new
+    @email_template = EmailTemplate.new
+  end
+  
+  def preview
+    
+    @email_template = EmailTemplate.find(params[:id])
+  end
   def edit
   		@email_template = EmailTemplate.find(params[:id])
   end
+
 
   def update
   	 respond_to do |format|

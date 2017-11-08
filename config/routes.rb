@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'email_templates/new'
+  # get 'email_templates/new'
 
-  get 'email_templates/edit'
+  # get 'email_templates/edit'
 
   get "log_out" , to: "sessions#destroy", as: "log_out"
   get "log_in" ,to: "sessions#new", as: "log_in"
@@ -36,6 +36,12 @@ Rails.application.routes.draw do
       post 'book_wedding'
     end
   end
-resources :email_templates
+resources :email_templates do
+  member do
+    get 'preview'
+  end
+end
+
+
   
 end
