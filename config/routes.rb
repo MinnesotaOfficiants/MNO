@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   get "log_out" , to: "sessions#destroy", as: "log_out"
   get "log_in" ,to: "sessions#new", as: "log_in"
    
-   
+   get "fee_report" , to: "weddings#fee_report"
  
   resources :users do
     member do
+     
      
     end
   end
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
       member do
         get 'get_new_web_requests'
         post 'add_payment'
+        post "set_fee_payment"
+       
       end
   end
 

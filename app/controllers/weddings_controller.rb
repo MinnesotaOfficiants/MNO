@@ -10,7 +10,17 @@ class WeddingsController < ApplicationController
       @weddings = Wedding.search(params[:search])
     else
       @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
+    
     end
+  end
+  def set_fee_payment
+    byebug
+    @wedding = Wedding.find(params[:id])
+    @wedding.make_fee_payment
+  end
+  def fee_report
+    # byebug
+    @user_fees=Wedding.where("user_id = ?  and (fee_paid_date is null or fee_paid_date >  (?)) ", 75, Date.today - 180).order("fee_paid_date is null desc, fee_paid_date desc")
   end
 
   # GET /weddings/1

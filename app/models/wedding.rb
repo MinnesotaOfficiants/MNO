@@ -14,6 +14,14 @@ class Wedding < ApplicationRecord
 		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
+	def make_fee_payment
+		byebug
+		self.fee_paid =  true
+		self.fee_paid_date =  Date.today 
+		self.fee_paid_amount = self.referal_fee
+		self.save
+
+	end
 	def  self.search(search)
 		#byebug
 		if search.present?

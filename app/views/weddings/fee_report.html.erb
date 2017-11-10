@@ -1,0 +1,36 @@
+
+
+<div class = "container">
+	<table> 
+		
+  <tr>
+  	<th width = "400px"> Wedding </th>
+  	<th width = "100px"> Fee </th>
+  	<th width = "60px"> Pay</th>
+		<th width = "60px"> Paid </th>
+  	<th width = "100px"> Paid date </th>
+ 
+  	<th width = "100px"> Paid Amt </th>
+  </tr>
+   <% @user_fees.each do |fee| %>
+  	<tr>
+    	<td><%= fee.get_title %> </td>
+			<td><%= number_to_currency(fee.referal_fee) %></td>
+			<td><%= link_to set_fee_payment_wedding_path(fee) ,  method: :post, remote: true  do  %>
+            <span class ="btn btn_secondary btn-sm btn-info"> Pay </span> 
+            <% end %></td>
+			<td><%= check_box_tag :fee_paid , "1", fee.fee_paid %></td>
+
+			<td><%= fee.fee_paid_date %></td>
+			<td><%= number_to_currency(fee.fee_paid_amount) %></td>
+  	</tr>
+	<% end %>
+	
+	</table>
+
+	
+			
+		
+
+<br>
+</div>
