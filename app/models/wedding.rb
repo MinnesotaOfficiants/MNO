@@ -15,7 +15,8 @@ class Wedding < ApplicationRecord
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
 	def make_fee_payment
-		byebug
+		# byebug
+		self.update_columns(fee_paid: true, fee_paid_date: Date.today,fee_paid_amount: self.referal_fee)
 		self.fee_paid =  true
 		self.fee_paid_date =  Date.today 
 		self.fee_paid_amount = self.referal_fee

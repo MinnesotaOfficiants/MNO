@@ -14,15 +14,22 @@ class WeddingsController < ApplicationController
     end
   end
   def set_fee_payment
-    byebug
+    # byebug
     @wedding = Wedding.find(params[:id])
     @wedding.make_fee_payment
+    redirect_to fee_report_path
   end
   def fee_report
     # byebug
-    @user_fees=Wedding.where("user_id = ?  and (fee_paid_date is null or fee_paid_date >  (?)) ", 75, Date.today - 180).order("fee_paid_date is null desc, fee_paid_date desc")
+    @user_fees=Wedding.where("user_id = ?  and (fee_paid_date is null or fee_paid_date >  (?)) ", current_user.id, Date.today - 180).order("fee_paid_date is null desc, fee_paid_date desc")
   end
-
+  
+  def send_fee_email
+    @feeReport=Wedding.where("user_id = ? and fee_paid_date = (?)", current_user.id, Date.today)
+    if @feeReport.count < 1
+      redirect_to fee_report_path, notice: "There are no fees ready."
+    end
+  end
   # GET /weddings/1
   # GET /weddings/1.json
   def show

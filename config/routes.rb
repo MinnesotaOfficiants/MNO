@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "log_in" ,to: "sessions#new", as: "log_in"
    
    get "fee_report" , to: "weddings#fee_report"
+   get "send_fee_email" , to: "weddings#send_fee_email"
+
+       
  
   resources :users do
     member do
@@ -26,7 +29,6 @@ Rails.application.routes.draw do
         get 'get_new_web_requests'
         post 'add_payment'
         post "set_fee_payment"
-       
       end
   end
 

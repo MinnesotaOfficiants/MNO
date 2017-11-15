@@ -1,0 +1,48 @@
+<h3>Send Admin Fee Email</h3>
+<div class = "container">
+	<script type="text/javascript">
+	     
+	        // make a test email for a template
+	        function setFeeEmailButton () {
+	      var emailTo = "jim@minnesotaofficiants.com";
+	     
+	       var emailSubject = 'I am sending payments for these fees' ;
+	      var userSignature1 = '<%= current_user.get_user_name  %>' ;
+	      var userSignature =userSignature1 + '\n' +'<%= current_user.email %>' +'\n' +'<%= current_user.user_phone %>';
+	      var salutation = "Dear Jim,"+ '\n' ;
+	      var bodyText = $('#feeText').text() + '\n\n';
+	      console.log(bodyText);
+	      
+	      var emailBody = salutation + bodyText + userSignature ; 
+	      var tmpText = encodeURIComponent(bodyText)
+	      // tmpText = tmpText.replace(/%26%2339%3B/g, "%27")
+	      // emailBody = emailBody.replace(/'/g, "%27")
+	      var mailTo = 'mailto:' + emailTo + "?subject=" + encodeURIComponent(emailSubject) +
+	        "&body=" + encodeURIComponent(emailBody)
+	       // alert(mailo);
+	      mailButton = document.getElementById("textFeeEmail")
+	      mailButton.href = mailTo
+
+
+	        console.log(tmpText) 
+
+	      }
+	   
+	  </script>
+	 
+	  <br>
+	  <a  href = '#' id = "textFeeEmail" class = "btn btn-sml btn-success">send admin email</a>
+	  <p id = "feeText">
+	  	<% @feeReport.each do |feetext| %>
+	  	<%= feetext.get_title+ "  ~  " + number_to_currency(feetext.fee_paid_amount) %>
+	  	<% end %>
+	  	<br><br>
+	  	Total <%= number_to_currency(@feeReport.sum(:fee_paid_amount)) %>
+
+	  </p>
+	  <br>
+	  <script type="text/javascript">
+	  	window.onload = setFeeEmailButton()
+	  </script>
+	</div>
+
