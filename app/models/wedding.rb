@@ -45,15 +45,17 @@ class Wedding < ApplicationRecord
 
   end
   def book(current_user)
-  	byebug
+  	 byebug
   	 self.status = :booked
      self.user_id = current_user.id
       case self.package_type
-      	when  "Budget"
+      	when  "Budget" 
          self.wedding_cost = 175
 	       when "Basic"
 	       	self.wedding_cost = 295
 	       when "Standard"
+	       	self.wedding_cost = 395
+	       else
 	       	self.wedding_cost = 395
        end
        if self.rehearsal? 

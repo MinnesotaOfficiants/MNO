@@ -45,7 +45,7 @@ class InquiriesController < ApplicationController
   # POST /inquiries
   # POST /inquiries.json
   def create
-    #byebug
+    # byebug
     @wedding = Wedding.find(params[:wedding_id])
     @wedding.update_attribute(:status, :assigned)
     @inquiry = @wedding.inquiries.new(inquiry_params)

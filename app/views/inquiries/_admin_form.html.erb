@@ -36,6 +36,8 @@
 
     <!-- # <%= f.label :user_id, "User _Id" %> -->
     <%= f.hidden_field :user_id %> 
+     <%= f.hidden_field :closed, value: :isopen %> 
+
     Assign this request to : 
    <%= text_field_tag :officiantName %>
   </div>
