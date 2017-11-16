@@ -17,19 +17,9 @@
 <div class = "container-fluid">
   
    <div class="form-actions">
-    <div class = "row" >
-      <% if @wedding.image_file.blank? %>
-        <span class = "picture">
-        
-          <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
-        </span> 
-      <% else %>
-        <%= image_tag(@wedding.image_file, size: "100x100", class: "gravatar") if @wedding.image_file? %>
-      
-      <% end %>  
-      <%= f.submit "Save", class: 'btn btn-success' %>
-    </div>
-    </div><br />
+    
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div><br />
   
   <br />
   <div class = "row" id = "brideC">
@@ -72,7 +62,26 @@
       <%= f.label :groom_email, "Email" %>
       <%= f.text_field :groom_email,:size => "25" %>
     </div> 
-  </div><br/>
+     
+
+  </div>
+  <div class = "row">
+    <div class = "col-md-3 well">
+            <%= image_tag(@wedding.image_file.url, size: "160x200 >", class: "gravatar") if @wedding.image_file? %>
+      <span class = "picture" >
+        <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+
+      </span>
+    </div>
+    <div class = 'col-md-9'>
+      comments<br>
+      <%= f.text_area :comments ,cols: 100 , rows: 10 %>
+    </div>
+ </div>
+    
+ 
+  
+  <br/>
 
   Web date <%= @wedding.web_date %>
   <div class = "row" id = "location">
@@ -82,12 +91,12 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_date, "Date" %>
-      <%= f.date_field :wedding_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'   %> 
-      
+      <%= f.date_field :wedding_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'   %>
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_time, "Time" %>
-      <%= f.time_field :wedding_time, :size => "15"  %> 
+             <%= f.time_select  :wedding_time, {minute_step: 30, ampm: true}   %>      
+<!-- -->
     </div>
   </div><br> 
   
@@ -271,6 +280,16 @@
           </table>
 
 <!-- here is the end -->
+<script type="text/javascript">
+  $("#cwedding_image_file").bind("change", function() {
+    size_in)megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5){
+      alert("Maximum size for file is 5MB. Please chose a smaller file");
+      
+    }
+  });
+  
+</script>
     
    <
   

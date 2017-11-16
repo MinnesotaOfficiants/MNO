@@ -10,6 +10,8 @@ class Wedding < ApplicationRecord
 	accepts_nested_attributes_for :payments
 	accepts_nested_attributes_for :email_histories
 	accepts_nested_attributes_for :inquiries
+	mount_uploader :image_file , PictureUploader 
+	validate :image_size
 	def get_title
 		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
@@ -107,6 +109,13 @@ class Wedding < ApplicationRecord
 		# now update the iswebupdated
 		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 2")
 	end
+	private 
+		
+		def image_size 
+			if image_file.size > 5.megabytes
+				errors.add(:image_file, "Should be less than 5 MB")
+			end
+		end
 
   
 end

@@ -24,3 +24,6 @@
 test_wedding_2017-03-18.sql
 users_2017-03-24.sql
 test-wedding_2017-03-18.sql
+# Ignore image files
+/public/uploads/*
+

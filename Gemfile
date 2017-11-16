@@ -43,6 +43,11 @@ gem "hirb" , '0.7.3'
 gem 'bcrypt'  
 # gem to move data via dumps to and from other databases
 gem 'yaml_db'
+# add these gems for the image uploader carrierwave and minimagick
+gem 'carrierwave' , '1.2.1'
+
+gem 'mini_magick' , '4.8.0'
+
 
 
 group :development, :test do

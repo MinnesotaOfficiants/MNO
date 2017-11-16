@@ -73,9 +73,11 @@ h1, h2, h3 {
     
 }
 
+/*
 .alert-notice {
   display: none;
 } 
+*/
   
 span + span {
     margin-left: 10px;
@@ -90,3 +92,12 @@ span + span {
 .last-item {
    border-bottom: 2px solid #ccc
 }
+
+/*
+.picture img {
+  border-top: 10px;
+  max-width: 60px;
+  max-height: 50px;
+ 
+}
+*/
