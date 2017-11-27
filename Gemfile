@@ -68,7 +68,7 @@ group :development, :test do
 end
 
 group :production do
-  gem  'mysql2', '>= 0.4.4'
+  
   # use the postgres DB
-   # gem 'pg' , '0.20.0'
+    gem 'pg' , '0.20.0'
 end
