@@ -72,6 +72,6 @@ group :production do
   
   # use the postgres DB
     gem 'pg' , '>= 0.21.0'
-    gem  'mysql2', '>= 0.4.4'
+    # gem  'mysql2', '>= 0.4.4'
 
 end
