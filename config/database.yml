@@ -23,5 +23,10 @@ test:
   
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: wedding
+  #pool: 5
+  username: root
+  host: localhost
   
