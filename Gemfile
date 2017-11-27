@@ -53,8 +53,8 @@ gem 'mini_magick' , '4.8.0'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
  # gem 'sqlite3'
- gem 'pg'
- # gem  'mysql2', '>= 0.4.4'
+  # gem 'pg'
+ gem  'mysql2', '>= 0.4.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   #gem 'pry'
@@ -71,5 +71,5 @@ end
 group :production do
   
   # use the postgres DB
-    gem 'pg' , '0.20.0'
+    gem 'pg' , '>= 0.21.0'
 end
