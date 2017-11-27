@@ -89,10 +89,11 @@ class WeddingsController < ApplicationController
   # PATCH/PUT /weddings/1.json
   def update
     respond_to do |format|
+      @user =current_user
       @wedding=Wedding.find(params[:id])
       #binding.pry
       if @wedding.update(wedding_params)
-        format.html { redirect_to weddings_path, notice: 'Wedding was successfully updated.' }
+        format.html { render :edit, notice: 'Wedding was successfully updated.' }
         format.json { render :show, status: :ok, location: @wedding }
       else
         format.html { render :edit }

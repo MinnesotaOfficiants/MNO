@@ -91,7 +91,7 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_date, "Date" %>
-      <%= f.date_field :wedding_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'   %>
+      <%= f.date_field :wedding_date,data:{prvide:'datepicker'}  %>
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_time, "Time" %>
@@ -111,7 +111,7 @@
     </div>
      <div class = "col-sm-3"> 
       <%= f.label :rehearsal_date, 'Date' %>
-      <%= f.date_field :rehearsal_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'   %> 
+      <%= f.date_field :rehearsal_date,data:{prvide:'datepicker'}   %> 
     </div>
     <div class = "col-sm-3">
       <%= f.label :rehearsal_tine, 'Time' %>
@@ -279,7 +279,8 @@
              <% end %>
            
           </table>
-
+  
+<% end %>
 <!-- here is the end -->
 <script type="text/javascript">
   $("#cwedding_image_file").bind("change", function() {
@@ -292,6 +293,4 @@
   
 </script>
     
-   <
-  
-<% end %>
+   

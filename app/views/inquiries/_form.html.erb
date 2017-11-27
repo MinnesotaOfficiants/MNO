@@ -68,7 +68,7 @@
     <div class = "col-sm-3">
       <%= w.label :wedding_date, "Date" %>
 
-      <%= w.date_field :wedding_date,  "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %> 
+      <%= w.date_field :wedding_date, data:{prvide:'datepicker'} %> 
       <!-- add a hidden field for the formated date -->
 
     </div>
@@ -139,8 +139,8 @@
      
         <div class="field">
           <%= f.label :email_sent_date %>
-          <%= f.date_field :email_sent_date, "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
-          <!--<%= f.date_select :email_sent_date, include_blank: true, use_month_numbers:  true, order: [:month,:day,  :year] %>-->
+          <%= f.date_field :email_sent_date,data:{prvide:'datepicker'}   %>
+         
         </div>
        </div>
       <div class = "col-sm-4">
@@ -151,9 +151,9 @@
       
         <div class="field">
           <%= f.label :second_email_date %>
-          <%= f.date_field :second_email_date, "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
+          <%= f.date_field :second_email_date,data:{prvide:'datepicker'}   %>
 
-          <!--<%= f.date_select :second_email_date, include_blank: true, use_month_numbers:  true, order: [:month,:day,  :year] %>-->
+          
         </div>
       </div>
       <div class = "col-sm-4"> 
@@ -164,8 +164,8 @@
       
         <div class="field">
           <%= f.label :phone_call_date %>
-          <%= f.date_field :phone_call_date,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
-          <!--<%= f.date_select :phone_call_date , include_blank: true,use_month_numbers:  true, order: [ :month, :day,:year] %>-->
+          <%= f.date_field :phone_call_date,data:{prvide:'datepicker'}   %>
+          
         </div>
       </div>
      
@@ -179,7 +179,7 @@
         
           <div class="field " >
             <%= f.label :meeting_date %>
-            <%= f.date_field :meeting_date,  "data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd'  %>
+            <%= f.date_field :meeting_date,  data:{prvide:'datepicker'}   %>
           </div><br />
          </div>
       </div>
