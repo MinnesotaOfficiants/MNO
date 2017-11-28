@@ -27,6 +27,6 @@ production:
   encoding: unicode
   database: wedding
   #pool: 5
-  username: root
   host: localhost
+  password: 
   
