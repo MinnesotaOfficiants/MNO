@@ -25,8 +25,6 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: wedding
-  #pool: 5
-  host: localhost
-  password: 
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
   
