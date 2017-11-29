@@ -2,13 +2,11 @@
 #
 default: &default
 
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: wedding
-  username: root
-  host: localhost
-#   adapter: sqlite3
-#   pool: 5
+  username: allan
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 #   timeout: 5000
 
 development:

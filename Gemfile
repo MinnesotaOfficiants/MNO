@@ -47,14 +47,13 @@ gem 'yaml_db'
 gem 'carrierwave' , '1.2.1'
 
 gem 'mini_magick' , '4.8.0'
-
-
-
+gem 'pg'
+gem 'sqlite3'
+gem  'mysql2', '>= 0.4.4'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
  # gem 'sqlite3'
   # gem 'pg'
- gem  'mysql2', '>= 0.4.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   #gem 'pry'
@@ -71,7 +70,7 @@ end
 group :production do
   
   # use the postgres DB
-    gem 'pg' , '>= 0.21.0'
-    # gem  'mysql2', '>= 0.4.4'
+   # gem 'pg' 
+     
 
 end

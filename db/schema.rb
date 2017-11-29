@@ -10,33 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816173334) do
+ActiveRecord::Schema.define(version: 20171129171808) do
 
-  create_table "email_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "email_histories", id: :bigserial, force: :cascade do |t|
     t.date     "date_sent"
-    t.integer  "inquiry_id"
-    t.integer  "wedding_id"
-    t.integer  "email_template_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "history_id"
-    t.string   "history_type"
-    t.index ["history_type", "history_id"], name: "index_email_histories_on_history_type_and_history_id", using: :btree
+    t.bigint   "inquiry_id"
+    t.bigint   "wedding_id"
+    t.bigint   "email_template_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.bigint   "history_id"
+    t.string   "history_type",      limit: 255
+    t.index ["history_type", "history_id"], name: "idx_16868_index_email_histories_on_history_type_and_history_id", using: :btree
   end
 
-  create_table "email_templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.text     "template_content", limit: 65535
-    t.string   "template_footer"
-    t.string   "template_title"
-    t.datetime "created_at",                     default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at",                     default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.string   "template_type"
+  create_table "email_templates", id: :bigserial, force: :cascade do |t|
+    t.bigint   "user_id"
+    t.text     "template_content"
+    t.string   "template_footer",  limit: 255
+    t.string   "template_title",   limit: 255
+    t.datetime "created_at",                   default: -> { "now()" }, null: false
+    t.datetime "updated_at",                   default: -> { "now()" }, null: false
+    t.string   "template_type",    limit: 255
   end
 
-  create_table "inquiries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "wedding_id"
-    t.text     "notes",             limit: 65535
+  create_table "inquiries", id: :bigserial, force: :cascade do |t|
+    t.bigint   "wedding_id"
+    t.text     "notes"
     t.boolean  "contacted_email"
     t.date     "email_sent_date"
     t.boolean  "second_email"
@@ -44,130 +47,84 @@ ActiveRecord::Schema.define(version: 20170816173334) do
     t.boolean  "contacted_phone"
     t.boolean  "intro_meeting"
     t.date     "meeting_date"
-    t.integer  "user_id"
-    t.boolean  "closed"
-    t.datetime "created_at",                      default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at",                      default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.bigint   "user_id"
+    t.datetime "created_at",        default: -> { "now()" }, null: false
+    t.datetime "updated_at",        default: -> { "now()" }, null: false
     t.date     "phone_call_date"
+    t.integer  "closed"
   end
 
-  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "payments", id: :bigserial, force: :cascade do |t|
     t.date     "pmt_date"
-    t.decimal  "pmt_amount", precision: 10
-    t.string   "pmt_type"
-    t.string   "pmt_method"
-    t.string   "reference"
-    t.integer  "wedding_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.decimal  "pmt_amount",             precision: 10
+    t.string   "pmt_type",   limit: 255
+    t.string   "pmt_method", limit: 255
+    t.string   "reference",  limit: 255
+    t.bigint   "wedding_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "password_hash"
-    t.string   "email"
-    t.string   "password_salt"
-    t.string   "org_password"
+  create_table "users", id: :bigserial, force: :cascade do |t|
+    t.string   "password_hash",    limit: 255
+    t.string   "email",            limit: 255
+    t.string   "password_salt",    limit: 255
+    t.string   "org_password",     limit: 255
     t.boolean  "admin"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "title"
-    t.string   "user_phone"
-    t.decimal  "user_fee_pct",     precision: 10
-    t.string   "calendar_account"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "user_name"
+    t.string   "first_name",       limit: 255
+    t.string   "last_name",        limit: 255
+    t.string   "title",            limit: 255
+    t.string   "user_phone",       limit: 255
+    t.decimal  "user_fee_pct",                 precision: 10
+    t.string   "calendar_account", limit: 255
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "user_name",        limit: 255
     t.boolean  "active"
   end
 
-  create_table "weddings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "bride_first_name"
-    t.string   "bride_last_name"
-    t.string   "groom_last_name"
-    t.string   "groom_first_name"
-    t.string   "bride_email"
-    t.string   "groom_email"
-    t.string   "bride_phone"
-    t.string   "groom_phone"
-    t.string   "location"
+  create_table "weddings", id: :bigserial, force: :cascade do |t|
+    t.string   "bride_first_name",   limit: 255
+    t.string   "bride_last_name",    limit: 255
+    t.string   "groom_last_name",    limit: 255
+    t.string   "groom_first_name",   limit: 255
+    t.string   "bride_email",        limit: 255
+    t.string   "groom_email",        limit: 255
+    t.string   "bride_phone",        limit: 255
+    t.string   "groom_phone",        limit: 255
+    t.string   "location",           limit: 255
     t.date     "wedding_date"
     t.time     "wedding_time"
     t.boolean  "rehearsal"
-    t.string   "rehearsal_location"
+    t.string   "rehearsal_location", limit: 255
     t.date     "rehearsal_date"
     t.time     "rehearsal_time"
-    t.text     "comments",           limit: 65535
-    t.datetime "created_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.text     "comments"
+    t.datetime "created_at",                                    default: -> { "now()" }, null: false
+    t.datetime "updated_at",                                    default: -> { "now()" }, null: false
     t.boolean  "ceremony_complete"
-    t.string   "ask_for_review"
+    t.string   "ask_for_review",     limit: 255
     t.boolean  "no_pref"
     t.boolean  "ebook_sent"
     t.boolean  "fee_paid"
-    t.decimal  "fee_paid_amount",                  precision: 10
-    t.integer  "guest_count"
-    t.decimal  "other_cost",                       precision: 10
-    t.string   "package"
+    t.decimal  "fee_paid_amount",                precision: 10
+    t.bigint   "guest_count"
+    t.decimal  "other_cost",                     precision: 10
+    t.string   "package",            limit: 255
     t.boolean  "question_complete"
-    t.decimal  "referal_fee",                      precision: 10
-    t.integer  "request_id"
-    t.string   "web_time"
-    t.string   "web_count"
-    t.string   "web_date"
-    t.integer  "user_id"
-    t.decimal  "wedding_cost",                     precision: 10
-    t.integer  "status"
+    t.decimal  "referal_fee",                    precision: 10
+    t.bigint   "request_id"
+    t.string   "web_time",           limit: 255
+    t.string   "web_count",          limit: 255
+    t.string   "web_date",           limit: 255
+    t.bigint   "user_id"
+    t.decimal  "wedding_cost",                   precision: 10
+    t.bigint   "status"
     t.boolean  "counseling"
-    t.string   "first_choice"
-    t.string   "second_choice"
-    t.string   "third_choice"
-    t.integer  "package_type"
-    t.date     "fee_paid_date"
-    t.string   "image_file"
-  end
-
-  create_table "weddings-save", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "bride_first_name"
-    t.string   "bride_last_name"
-    t.string   "groom_last_name"
-    t.string   "groom_first_name"
-    t.string   "bride_email"
-    t.string   "groom_email"
-    t.string   "bride_phone"
-    t.string   "groom_phone"
-    t.string   "location"
-    t.date     "wedding_date"
-    t.time     "wedding_time"
-    t.boolean  "rehearsal"
-    t.string   "rehearsal_location"
-    t.date     "rehearsal_date"
-    t.time     "rehearsal_time"
-    t.text     "comments",           limit: 65535
-    t.datetime "created_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at",                                      default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.boolean  "ceremony_complete"
-    t.string   "ask_for_review"
-    t.boolean  "no_pref"
-    t.boolean  "ebook_sent"
-    t.boolean  "fee_paid"
-    t.decimal  "fee_paid_amount",                  precision: 10
-    t.integer  "guest_count"
-    t.decimal  "other_cost",                       precision: 10
-    t.string   "package"
-    t.boolean  "question_complete"
-    t.decimal  "referal_fee",                      precision: 10
-    t.integer  "request_id"
-    t.string   "web_time"
-    t.string   "web_count"
-    t.string   "web_date"
-    t.integer  "user_id"
-    t.decimal  "wedding_cost",                     precision: 10
-    t.integer  "status"
-    t.boolean  "counseling"
-    t.string   "first_choice"
-    t.string   "second_choice"
-    t.string   "third_choice"
-    t.integer  "package_type"
+    t.string   "first_choice",       limit: 255
+    t.string   "second_choice",      limit: 255
+    t.string   "third_choice",       limit: 255
+    t.bigint   "package_type"
     t.date     "fee_paid_date"
     t.string   "image_file",         limit: 100
   end
