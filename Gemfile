@@ -47,7 +47,7 @@ gem 'yaml_db'
 gem 'carrierwave' , '1.2.1'
 
 gem 'mini_magick' , '4.8.0'
-gem 'pg'
+# gem 'pg'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -71,7 +71,7 @@ end
 group :production do
   
   # use the postgres DB
-   # gem 'pg' 
+   gem 'pg' 
      
 
 end
