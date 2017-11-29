@@ -8,7 +8,7 @@ class CreateInquiries < ActiveRecord::Migration[5.0]
       t.boolean :second_email
       t.date :second_email_date
       t.boolean :contacted_phone
-      t.date :contacted_phone
+      t.date :contacted_phone_date
       t.boolean :intro_meeting
       t.date :meeting_date
       t.integer :user_id
