@@ -67,6 +67,7 @@
   </div>
   <div class = "row">
     <div class = "col-md-3 well">
+           Photo
             <%= image_tag(@wedding.image_file.url, size: "160x200 >", class: "gravatar") if @wedding.image_file? %>
       <span class = "picture" >
         <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>

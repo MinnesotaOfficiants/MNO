@@ -68,7 +68,7 @@ class InquiriesController < ApplicationController
 
     respond_to do |format|
       if @inquiry.update(inquiry_params)
-        format.html { redirect_to inquiries_path, notice: 'Inquiry was successfully updated.' }
+        format.html { render :edit, notice: 'Inquiry was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
         format.html { render :edit }

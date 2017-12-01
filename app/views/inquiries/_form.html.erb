@@ -1,4 +1,6 @@
- <%= form_for [@inquiry ], remote: true do |f| %>
+ <%= form_for @inquiry , html: { multipart: true }  do |f| %>
+
+ <%= csrf_meta_tags %>
   <% if inquiry.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
@@ -13,16 +15,21 @@
   <div class='container-fluid'>
     <%= f.fields_for :wedding do |w| %>
     <div class="form-actions">
-     <% if @inquiry.wedding.image_file.blank? %>
-       <span class = "picture">
-        
-        <%= w.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
-        </span> 
-      <% else %>
-        <%= image_tag(@inquiry.wedding.image_file, size: "100x100", class: "gravatar") if @inquiry.wedding.image_file? %>
-      <% end %>
+      
       <%= f.submit "Save", class: 'btn btn-success' %>
-    </div><br />
+
+    <br />
+    <div class = "col-md-3 well">
+           Photo
+            <%= image_tag(@inquiry.wedding.image_file.url, size: "160x200 >", class: "gravatar") if @inquiry.wedding.image_file? %>
+      <span class = "picture" >
+        <%= w.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+
+      </span>
+    </div>
+
+      <!-- end -->
+    
     <div class = "row" >
       <div class = "col-sm-3 ">
        <%= w.label :bride_first_name, "Bride" %>
