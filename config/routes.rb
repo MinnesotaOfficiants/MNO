@@ -11,7 +11,7 @@ Rails.application.routes.draw do
    get "send_fee_email" , to: "weddings#send_fee_email"
 
        
- 
+ resources :searches 
   resources :users do
     member do
      

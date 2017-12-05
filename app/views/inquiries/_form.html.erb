@@ -19,14 +19,7 @@
     <%= f.fields_for :wedding do |w| %>
 
     <br />
-    <div class = "col-md-3 well">
-           Photo
-            <%= image_tag(@inquiry.wedding.image_file.url, size: "160x200 >", class: "gravatar") if @inquiry.wedding.image_file? %>
-      <span class = "picture" >
-        <%= w.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
-
-      </span>
-    </div>
+   
 
       <!-- end -->
   <div class="form-actions">
@@ -86,9 +79,17 @@
      
     </div><br> 
   <div class = "row last-item">
+     <div class = "col-md-3 well">
+           Photo
+            <%= image_tag(@inquiry.wedding.image_file.url, size: "160x200 >", class: "gravatar") if @inquiry.wedding.image_file? %>
+      <span class = "picture" >
+        <%= w.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+
+      </span>
+    </div>
      <div class="field">
       <%= w.label :comments %><br/>
-      <%= w.text_area :comments ,:size => "65 x 3"%>
+      <%= w.text_area :comments ,cols: 100 , rows: 10 %>
     </div>
      <div class="field last-item"> Wedding type &nbsp &nbsp
     <span>  <%= w.radio_button :package_type ,"Budget" %>

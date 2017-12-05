@@ -29,7 +29,7 @@ class Wedding < ApplicationRecord
 		#byebug
 		if search.present?
     	where("status = 2 and wedding_date = ? ", search).order(wedding_time: :desc)
-
+    	
     else
 			where("status = 0 and (wedding_date >= now() or wedding_date  IS NULL)").order(id: :desc)
 

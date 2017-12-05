@@ -6,10 +6,10 @@
 <% if @user.admin? %>
   <!-- make a simple search form for all booked wedding date -->
   <%= form_tag weddings_path, method: :get do %>
-    <%= date_field_tag :search , params[:search] ,"data-provide" => 'datepicker', "data-date-format" => 'yyyy-mm-dd' %>
+    <%= date_field_tag :search , params[:search] ,data:{prvide:'datepicker'}  %>
     <%= submit_tag "Search for date" %>
   <% end %> 
-  
+ 
 
  <%= link_to get_new_web_requests_wedding_path(@weddings) ,  method: :get  do  %>
     <span class ="btn btn-default btn-info"> Refresh </span>
@@ -17,7 +17,7 @@
 
   
 <% end %>
-
+ <%= link_to "Custom Search",new_search_path %><br>
 <%= link_to 'New Wedding', new_wedding_path %>
  <div class = "container" id = "windex">
   <table>
