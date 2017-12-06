@@ -8,7 +8,7 @@
 			<table>
 				<% @search.search_weddings.each do |w| %>	
 					<tr>
-						<td width = "300px"><%=  link_to  w.get_title, edit_wedding_path(w) %></td>
+						<td width = "340px"><%=  link_to  w.get_title, edit_wedding_path(w) %></td>
 						<td><%= w.location %></td>
 					</tr>
 				<% end %>

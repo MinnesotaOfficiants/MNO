@@ -3,14 +3,14 @@
 <%= form_for @search,html: {class: "form-horizontal"} do |s| %>
 	<div class="field">
 		<%= s.label :bride_firstname, "Bride's name" %><br>
-		<%= s.text_field :bride_firstname %>
-		<%= s.text_field :bride_lastname %>
+		<%= s.text_field :bride_firstname , placeholder: "First Name" %>
+		<%= s.text_field :bride_lastname, placeholder: "Last Name"  %>
 	</div>
 
 	<div class="field">
 		<%= s.label :groom_firstname, "Groom's name" %> <br>
-		<%= s.text_field :groom_firstname %>
-		<%= s.text_field :groom_lastname %>
+		<%= s.text_field :groom_firstname , placeholder: "First Name" %>
+		<%= s.text_field :groom_lastname , placeholder: "Last Name" %>
 	</div>
 	<div class="field">
 		<%= s.label :location %> <br>
