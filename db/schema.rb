@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129171808) do
+ActiveRecord::Schema.define(version: 20171206011025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171129171808) do
     t.datetime "updated_at",                    null: false
     t.bigint   "history_id"
     t.string   "history_type",      limit: 255
-    t.index ["history_type", "history_id"], name: "idx_16868_index_email_histories_on_history_type_and_history_id", using: :btree
+    t.index ["history_type", "history_id"], name: "idx_16981_index_email_histories_on_history_type_and_history_id", using: :btree
   end
 
   create_table "email_templates", id: :bigserial, force: :cascade do |t|
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20171129171808) do
     t.text     "template_content"
     t.string   "template_footer",  limit: 255
     t.string   "template_title",   limit: 255
-    t.datetime "created_at",                   default: -> { "now()" }, null: false
-    t.datetime "updated_at",                   default: -> { "now()" }, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "template_type",    limit: 255
   end
 
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 20171129171808) do
     t.boolean  "intro_meeting"
     t.date     "meeting_date"
     t.bigint   "user_id"
-    t.datetime "created_at",        default: -> { "now()" }, null: false
-    t.datetime "updated_at",        default: -> { "now()" }, null: false
+    t.integer  "closed",            default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.date     "phone_call_date"
-    t.integer  "closed"
   end
 
   create_table "payments", id: :bigserial, force: :cascade do |t|
@@ -65,6 +65,19 @@ ActiveRecord::Schema.define(version: 20171129171808) do
     t.datetime "updated_at",                            null: false
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.string   "bride_firstname"
+    t.string   "bride_lastname"
+    t.string   "groom_firstname"
+    t.string   "groom_lastname"
+    t.string   "location"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+  end
+
   create_table "users", id: :bigserial, force: :cascade do |t|
     t.string   "password_hash",    limit: 255
     t.string   "email",            limit: 255
@@ -75,10 +88,10 @@ ActiveRecord::Schema.define(version: 20171129171808) do
     t.string   "last_name",        limit: 255
     t.string   "title",            limit: 255
     t.string   "user_phone",       limit: 255
-    t.decimal  "user_fee_pct",                 precision: 10
+    t.decimal  "user_fee_pct",                 precision: 6, scale: 2
     t.string   "calendar_account", limit: 255
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.string   "user_name",        limit: 255
     t.boolean  "active"
   end
@@ -86,8 +99,8 @@ ActiveRecord::Schema.define(version: 20171129171808) do
   create_table "weddings", id: :bigserial, force: :cascade do |t|
     t.string   "bride_first_name",   limit: 255
     t.string   "bride_last_name",    limit: 255
-    t.string   "groom_last_name",    limit: 255
     t.string   "groom_first_name",   limit: 255
+    t.string   "groom_last_name",    limit: 255
     t.string   "bride_email",        limit: 255
     t.string   "groom_email",        limit: 255
     t.string   "bride_phone",        limit: 255
@@ -100,8 +113,8 @@ ActiveRecord::Schema.define(version: 20171129171808) do
     t.date     "rehearsal_date"
     t.time     "rehearsal_time"
     t.text     "comments"
-    t.datetime "created_at",                                    default: -> { "now()" }, null: false
-    t.datetime "updated_at",                                    default: -> { "now()" }, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.boolean  "ceremony_complete"
     t.string   "ask_for_review",     limit: 255
     t.boolean  "no_pref"

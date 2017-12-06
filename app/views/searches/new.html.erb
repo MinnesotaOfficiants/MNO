@@ -1,0 +1,36 @@
+<h2>Wedding Search</h2>
+
+<%= form_for @search, html: {class: "form-horizontal"} do |s| %>
+	<div class="field">
+		<%= s.label :bride_firstname %> <br>
+		<%= s.text_field :bride_firstname %>
+	</div>
+	<div class="field">
+		<%= s.label :bride_lastname %> <br>
+		<%= s.text_field :bride_lastname %>
+	</div>
+	<div class="field">
+		<%= s.label :groom_firstname %> <br>
+		<%= s.text_field :groom_firstname %>
+	</div>
+	<div class="field">
+		<%= s.label :groom_lastname %> <br>
+		<%= s.text_field :groom_lastname %>
+	</div>
+<div class="field">
+		Date Range <br>
+		<%= s.label :start_date %><%= s.date_field :start_date %>
+		<%= s.label :end_date %><%= s.date_field :end_date%>
+	</div>
+	<% if current_user.admin? %>
+		<div class="field">
+			<%= s.label :user_id, "officiant" %> <br>
+			<%= s.collection_select :user_id , User.where(active: :true), :id, 
+			:get_user_name, include_blank: :true %>
+		</div>
+	<% end %>
+	<div class="actions"><%= s.submit "Search", class: "btn btn-md btn-primary" %> </div>
+
+<% end %>
+
+<p><%= link_to "Back", weddings_path %></p>

@@ -1,0 +1,14 @@
+<h2>Search Results</h2>
+<h3><%= link_to "Back", new_search_path %></h3>
+<% if @search.search_weddings.empty? %>
+<p>No results found</p>
+
+<% else %>
+	<% @search.search_weddings.each do |w| %>
+		<div class = "container">
+			
+			<%=  link_to  w.wedding_date, edit_wedding_path(w) %>
+		</div>
+	<% end %>
+
+<% end %>
