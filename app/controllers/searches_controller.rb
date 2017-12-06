@@ -1,15 +1,21 @@
 class SearchesController < ApplicationController
 	def new
 		@search=Search.new
-		@officiants = User.where(active: true)
+		@user = current_user
 	end
 
 	def create
+		# byebug
+		# if not current_user.admin?
+		# 	search_params[:user_id] = current_user.id
+		# end
 		@search=Search.create(search_params)
+		
 		redirect_to @search
 	end
 	def show
 		@search=Search.find(params[:id])
+
 	end
 	private
 

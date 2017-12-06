@@ -4,11 +4,16 @@
 <p>No results found</p>
 
 <% else %>
-	<% @search.search_weddings.each do |w| %>
 		<div class = "container">
-			
-			<%=  link_to  w.wedding_date, edit_wedding_path(w) %>
+			<table>
+				<% @search.search_weddings.each do |w| %>	
+					<tr>
+						<td width = "300px"><%=  link_to  w.get_title, edit_wedding_path(w) %></td>
+						<td><%= w.location %></td>
+					</tr>
+				<% end %>
+			</table>
+
 		</div>
-	<% end %>
 
 <% end %>

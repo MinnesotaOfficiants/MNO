@@ -9,8 +9,10 @@ class WeddingsController < ApplicationController
        
       @weddings = Wedding.search(params[:search])
     else
+      @weddings = Wedding.search(params[:search])
+      # @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
       @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
-    
+
     end
   end
   def set_fee_payment
