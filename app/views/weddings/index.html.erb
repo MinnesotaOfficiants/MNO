@@ -30,101 +30,82 @@
     <tbody>
  
     <tr align = "left" text-color = "red">
-        
-        <th width = 100px>
-          <% if @user.admin? %>
-            <%= 'Go to' %>
-          <% else %>
-            <%= "Date" %>
-          <% end %> 
-        </th>
-        <th width = 90px>
-          <% if @user.admin? %>
-            <%= 'Date' %>
-          <% else %>
-            <%= "Time" %>
+        <% if @user.admin? %>
+          <th width = 80px>
+            Go To
           <% end %> 
         </th>
 
-        <th width = 150px >
-          Bride 
+        <th width = 330px>
+           Wedding
         </th>
-        <th width = 150px >
-          Groom 
+        <th width='75px'> Time </th>
+         <th width = '220px'>
+         Location
         </th>
-        <th width = 200px>
-          <% if @user.admin? %>
-            <%= ' Location' %>
-          <% else %>
-            <%= "Phone" %>
-          <% end %> 
+        <th width='100px'>
+          Phone
         </th>
-      
-        
-        <th>
-          <% if @user.admin? %>
-            <%= ' Officiant choice' %>
-          <% else %>
-            <%= "Location" %>
-          <% end %>  
-        </th>
+
+       
+       
+        <% if @user.admin? %>
+
+          <th width="180px">
+            Officiant Choice
+          </th>
+        <% end %>  
+       
       </tr>
       <% @weddings.each do |wedding| %>
       
       <tr>
 
-          <td>
-            <% if @user.admin? %>
-              <%= link_to  "Edit", edit_wedding_path(wedding)%>
-              <%=  link_to  "Assign", new_wedding_inquiry_path(wedding) %>
-             
+      <% if @user.admin? %>
 
-            <% else %>
-              <%=  link_to  wedding.wedding_date, edit_wedding_path(wedding) %>
-            <% end %>
-          </td>
-           <td >
-            <% if @user.admin? %>
-                <%= wedding.wedding_date.to_s %>
-            
-            <% else %>
-              <% if wedding.wedding_time == nil  %>
-                <%= "[TBD]" %>
-              <% else %>
-                <%= wedding.wedding_time.strftime("%I:%M %p")    %>
-              <% end %>
-            <% end %>
-          </td>
-          <td>
-            <%= wedding.bride_first_name.strip + ' ' + wedding.bride_last_name.strip  %>
-          </td>
-         
-          <td>
-            <%= wedding.groom_first_name.strip + ' ' + wedding.groom_last_name  %>
-          </td>
-          <td>
-            <% if @user.admin? %>
-             <%= wedding.location %>
-            <% else %>
-              <%= wedding.bride_phone %>
-            <% end %> 
-              
-          </td>
+        <td>
+        
+          <%=  link_to  "Assign", new_wedding_inquiry_path(wedding) %>
+       </td>
+     <% end %>
+     <td>
+        <%= link_to  wedding.get_title, edit_wedding_path(wedding)%>
+       
+     </td>
+       <td >
+        
+        <% if wedding.wedding_time == nil  %>
+          <%= "[TBD]" %>
+        <% else %>
+          <%= wedding.wedding_time.strftime("%I:%M %p")    %>
+        <% end %>
+
+      </td>
           
-           <td>
-            <% if @user.admin?  %>
-              
-              <% if wedding.status == "booked" %>
-                <%= User.find(wedding.user_id).first_name + ' - ' + User.find(wedding.user_id).last_name %>                
-                <% else %> 
+      <td>
+        
+         <%= wedding.location %>
+       </td>
+       <td>
+          <%= wedding.bride_phone %>
+       
+          
+      </td>
+          
+           
+        <% if @user.admin?  %>
+          <td>
+          <% if wedding.status == "booked" %>
+            <%= User.find(wedding.user_id).first_name + ' - ' + User.find(wedding.user_id).last_name %>                
+          <% else %> 
 
-                <%= wedding.first_choice + ' - ' + wedding.second_choice %>
-                <% end %>
-            <% else %>
-             <%= wedding.location %>
-            <% end %> 
-
+          <%= wedding.first_choice + ' - ' + wedding.second_choice + ' - ' %>
+          <% end %>
+         
           </td>
+        <% end %> 
+
+         
 
       </tr>
 

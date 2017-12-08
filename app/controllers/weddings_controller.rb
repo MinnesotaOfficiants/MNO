@@ -42,6 +42,7 @@ class WeddingsController < ApplicationController
   def add_payment
     # make a call to add an empty wedding payment
     #then refresc edit
+    byebug
    @wedding=Wedding.find(params[:id])
    
     #@wedding.update(wedding_params)
