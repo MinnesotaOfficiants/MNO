@@ -1,4 +1,4 @@
-<%= form_for [@wedding], remote: true do |f| %>
+<%= form_for(@wedding, html: { multipart: true }) do |f| %>
   <% if @wedding.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wedding.errors.count, "error") %> prohibited this wedding from being saved:</h2>
@@ -15,8 +15,13 @@
   
 
 <div class = "container-fluid">
-   <%= f.submit "Save", class: 'btn btn-success' %>
- 
+  
+   <div class="form-actions">
+    
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div><br />
+  
+  <br />
   <div class = "row" id = "brideC">
    
     <div class = "col-sm-3 ">
@@ -57,52 +62,101 @@
       <%= f.label :groom_email, "Email" %>
       <%= f.text_field :groom_email,:size => "25" %>
     </div> 
-    <div>
-       <%= f.label :comments %><br/>
-      <%= f.text_area :comments ,:size => "65 x 3"%>
+     
+  <br><br>
+  </div class="wedding-with-line">
+   <% if @wedding.web_date.present? %>
+      Web date <%= @wedding.web_date %>
+  <% end %>
+  <div class = "row" id = "location">
+    <div class = "col-sm-5">
+      <%= f.label :location, "location" %>
+      <%= f.text_field :location, :size=>"45" %> 
     </div>
-  </div><br/>
-  </div>
-<!-- here is the end -->
-<!-- now add payments -->
-<section id = "payments-section">
- 
- <!--  <div>
-    <%= add_child_button "add Payment",:payments,"#payments" %>
-    <%= new_fields_template f, :payments %>
-  </div> -->
-   <div>
+    <div class = "col-sm-3">
+      <%= f.label :wedding_date, "Date" %>
+      <%= f.date_field :wedding_date,data:{prvide:'datepicker'}  %>
+    </div>
+    <div class = "col-sm-3">
+      <%= f.label :wedding_time, "Time" %>
+             <%= f.time_select  :wedding_time, {minute_step: 30, ampm: true}   %>      
+<!-- -->
+    </div>
+  </div><br>
+  
+    Rehearsal
+      <%=  f.check_box  :rehearsal ,class: "checkbox-inline" %> 
+ <br/><br/>
+  <div class = "row", id="wedding-with-line" >
     
-        <%# @wedding.payments.create %>
-
-      <%= link_to 'Add Payment',
-        wedding_payments_path(@wedding, { 
-          payment: {
-            pmt_date: DateTime.current.iso8601,
-            pmt_amount: 0,
-            pmt_type: '',
-            pmt_method: '',
-            reference: ''
-          }
-        }),
-        method: :post,
-        remote: true
-      %>
-<%#
-         id: 'add-pmt-btn',
-         classname: 'btn btn-default btn-info'
-       }
-      <span id = 'add-pmt-btn', class ="btn btn-default btn-info"> Add Payment </span>
-%>
+    <div class = "col-sm-5">
+     <%= f.label :rehearsal_location, "location" %>
+     <%= f.text_field :rehearsal_location , :size => "40"%> 
+    </div>
+     <div class = "col-sm-3"> 
+      <%= f.label :rehearsal_date, 'Date' %>
+      <%= f.date_field :rehearsal_date,data:{prvide:'datepicker'}   %> 
+    </div>
+    <div class = "col-sm-3">
+      <%= f.label :rehearsal_tine, 'Time' %>
+      <%= f.time_field :rehearsal_time,:size => "10" %> 
+    </div>
     
-  </div>
-
-  <div id="show-pmt">
-    <%= render 'weddings/payments_list' %>
-  </div>
-
-</section>
     
    
+  </div>
+  <br>
+   <div class="field last-item"> Wedding type &nbsp &nbsp
+    <span>  <%= f.radio_button :package_type ,"Budget" %>
+      <%= f.label :package_type ,"Budget" %>
+      <%= f.radio_button :package_type ,"Basic" %>
+      <%= f.label :package_type ,"Basic" %>
+      <%= f.radio_button :package_type ,"Standard" %>
+      <%= f.label :package_type ,"Standard" %>
+      
+    </span>
+    <span> 
+      <%= f.label :guest_count %> 
+      <%= f.text_field :guest_count %>
+    </span>
+
+
+  </div>
+  <br />
+  <div class = "row">
+    <div class = "col-md-3 well">
+           Photo
+            <%= image_tag(@wedding.image_file.url, size: "160x200 >", class: "gravatar") if @wedding.image_file? %>
+      <span class = "picture" >
+        <%= f.file_field :image_file, accept: "image/jpeg, image/gif, image/png" %>
+
+      </span>
+    </div>
+    <div class = 'col-md-9'>
+      comments<br>
+      <%= f.text_area :comments ,cols: 100 , rows: 10 %>
+    </div>
+ </div>
+    
+  <% if not current_user.admin? %> 
+    <div class="field" style="visibility: hidden">
+        <%= f.label :user_id, "officiant" %> <br>
+      <%= f.collection_select :user_id , User.where(active: :true).order(:first_name), :id, :get_user_name , {:selected => current_user.id }  %>
+    </div>
+  <% else %> 
+    <div class="field" >
+      <%= f.label :user_id, "officiant" %> <br>
+      <%= f.collection_select :user_id , User.where(active: :true).order(:first_name), :id, :get_user_name ,  include_blank: :true %>
+    </div>
+  <% end %>
   
+  <br/>
+
+  
+  
+  <!-- naw add the cost factors-->
+ 
+  
+      
+   
 <% end %>
