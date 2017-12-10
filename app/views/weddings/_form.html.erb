@@ -166,7 +166,7 @@
         <%= link_to 'Add Payment',
           wedding_payments_path(@wedding, { 
             payment: {
-              pmt_date: DateTime.current.iso8601,
+              pmt_date: DateTime.current,
               pmt_amount: 0,
               pmt_type: '',
               pmt_method: '',
