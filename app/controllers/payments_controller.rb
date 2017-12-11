@@ -10,9 +10,9 @@ class PaymentsController < ApplicationController
   end
 
   def create
-     byebug
+    # byebug
   	 @payment = @wedding.payments.new(payment_params)
-     @payment.pmt_date = DateTime.current
+    # @payment.pmt_date = DateTime.current
      
     respond_to do |format|
       if @payment.save
