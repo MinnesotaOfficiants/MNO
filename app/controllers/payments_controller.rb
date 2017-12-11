@@ -10,9 +10,9 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    # byebug
+     byebug
   	 @payment = @wedding.payments.new(payment_params)
-    # @payment.pmt_date = DateTime.current
+     @payment.pmt_date = DateTime.current
      
     respond_to do |format|
       if @payment.save
@@ -47,7 +47,7 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-      params.require(:payment).permit!
-      #(:pmt_date, :pmt_amount, :pmt_type, :pmt_method, :reference, :wedding_id)
+      params.require(:payment).permit(:pmt_date, :pmt_amount, :pmt_type, 
+        :pmt_method, :reference, :wedding_id)
     end
 end
