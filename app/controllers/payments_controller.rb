@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   before_action :get_wedding
   def new
     #byebug
-  	@payment=@wedding.payments.new
+  	@payment=@wedding.payments.new(payment_params)
   end
 
   def edit
