@@ -75,7 +75,7 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_date, "Date" %>
-      <%= f.date_field :wedding_date,data:{prvide:'datepicker'}  %>
+      <%= f.date_field :wedding_date, data:{prvide:'datepicker'} %>
     </div>
     <div class = "col-sm-3">
       <%= f.label :wedding_time, "Time" %>
@@ -95,11 +95,12 @@
     </div>
      <div class = "col-sm-3"> 
       <%= f.label :rehearsal_date, 'Date' %>
-      <%= f.date_field :rehearsal_date,data:{prvide:'datepicker'}   %> 
+       <%= f.date_field :rehearsal_date,data:{prvide:'datepicker'} %> 
+
     </div>
     <div class = "col-sm-3">
       <%= f.label :rehearsal_tine, 'Time' %>
-      <%= f.time_field :rehearsal_time,:size => "10" %> 
+      <%= f.time_select :rehearsal_time, {minute_step: 30, ampm: true}  %> 
     </div>
     
     
@@ -166,7 +167,7 @@
         <%= link_to 'Add Payment',
           wedding_payments_path(@wedding, { 
             payment: {
-              pmt_date: DateTime.current,
+              pmt_date: '' ,
               pmt_amount: 0,
               pmt_type: '',
               pmt_method: '',

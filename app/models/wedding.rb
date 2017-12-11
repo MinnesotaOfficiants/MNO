@@ -47,7 +47,7 @@ class Wedding < ApplicationRecord
 
   end
   def book(current_user)
-  	 byebug
+  	 # byebug
   	 self.status = :booked
      self.user_id = current_user.id
       case self.package_type
