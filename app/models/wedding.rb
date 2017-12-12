@@ -107,7 +107,7 @@ class Wedding < ApplicationRecord
 		   @newwedding.save
 		end
 		# now update the iswebupdated
-		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 2")
+		#res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 2")
 	end
 	private 
 		
