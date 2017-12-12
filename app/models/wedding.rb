@@ -12,6 +12,7 @@ class Wedding < ApplicationRecord
 	accepts_nested_attributes_for :inquiries
 	mount_uploader :image_file , PictureUploader 
 	validate :image_size
+	require "rest-client"
 	def get_title
 		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name

@@ -52,6 +52,8 @@ gem 'pg'
 # use this when retriving from MNO
 gem "mysql2"
 
+gem 'rest-client'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
  # gem 'sqlite3'
