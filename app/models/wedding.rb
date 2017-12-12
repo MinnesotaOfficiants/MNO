@@ -12,7 +12,8 @@ class Wedding < ApplicationRecord
 	accepts_nested_attributes_for :inquiries
 	mount_uploader :image_file , PictureUploader 
 	validate :image_size
-	require "rest-client"
+
+
 	def get_title
 		@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
@@ -70,6 +71,7 @@ class Wedding < ApplicationRecord
   end
 	
 	def get_new_weddings
+		require "rest-client"
 		require "mysql2"
 		#mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
 		
