@@ -258,17 +258,21 @@
 
              <table >
               <tr>
-                <th width  = "140px">Date sent</th>
-                <th width  = "180px">Template </th>
+                <th width  = "145px">Date sent</th>
+                <th width  = "280px">Template </th>
               </tr>
-              <section id = 'inquiry-email-history'>
+               <!-- <section id = 'inquiry-email-history'> -->
                 <!-- todo change this from fields to output text -->
-                 <%= f.fields_for :email_histories do |builder| %>
-                  <div>
-                    <%= render "email_history", :f => builder %>
-                  </div>
+                 <%  @inquiry.email_histories.each do |e| %>
+                  
+                     <tr>
+                      <td> <%= e.date_sent %> </td>
+                      <td>  <%= e.email_template.template_title %> </td>
+             
+                    </tr>
+                 
                   <% end %>
-               </section>
+               <!-- </section> -->
               </table>
            </div>
          </div>

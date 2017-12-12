@@ -68,6 +68,12 @@ class InquiriesController < ApplicationController
 
     respond_to do |format|
       if @inquiry.update(inquiry_params)
+        if params[:etemp][:id].present?
+         history =  @inquiry.email_histories.new
+         history.date_sent=Date.current
+         history.email_template_id = params[:etemp][:id]
+         history.save
+        end
         format.html { render :edit, notice: 'Inquiry was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
