@@ -94,8 +94,14 @@ class WeddingsController < ApplicationController
     respond_to do |format|
       @user =current_user
       @wedding=Wedding.find(params[:id])
-      #binding.pry
+      byebug
       if @wedding.update(wedding_params)
+        if params[:etemp][:id].present?
+         history =  @wedding.email_histories.new
+         history.date_sent=Date.current
+         history.email_template_id = params[:etemp][:id]
+         history.save
+        end
         format.html { render :edit, notice: 'Wedding was successfully updated.' }
         format.json { render :show, status: :ok, location: @wedding }
       else
