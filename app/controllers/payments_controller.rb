@@ -1,21 +1,23 @@
 class PaymentsController < ApplicationController
-  before_action :get_wedding , only: [:show, :edit, :new, :create]
+ # before_action :get_wedding 
     #before_action :set_payment, only: [:show, :edit, :update, :destroy]
 
   def new
     #byebug
+    @wedding = Wedding.find(params[:wedding_id])
   	@payment=@wedding.payments.new
   end
 
   def edit
     #byebug
-    #@wedding=Wedding.find(params[:wedding_id])
+    @wedding=Wedding.find(params[:wedding_id])
     @payment = Payment.find(params[:id]) # @wedding.payments.find(params[:id])
 
   end
 
   def create
      #byebug
+     @wedding = Wedding.find(params[:wedding_id])
   	 @payment = @wedding.payments.new(payment_params)
     # @payment.pmt_date = DateTime.current
      
@@ -25,12 +27,13 @@ class PaymentsController < ApplicationController
         format.json { render :new , status: :created , location: @payment}
       else
         format.html { render :new }
-        # format.json { render json: @payment.errors, status: :unprocessable_entity }
-        format.js 
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+        #format.json {render :edit }
       end
     end
   end
    def update
+    @wedding = Wedding.find(params[:wedding_id])
     respond_to do |format|
       @payment = Payment.find(params[:id])
       @wedding=Wedding.find(@payment.wedding_id)
@@ -52,9 +55,7 @@ class PaymentsController < ApplicationController
     @wedding = Wedding.find(params[:wedding_id])
   end
   private
-  def set_payment
-    @payment=Payment.find(params[:id])
-  end
+  
   def payment_params
       params.require(:payment).permit(:id, :pmt_date, :pmt_amount, :pmt_type, 
         :pmt_method, :reference, :wedding_id)
