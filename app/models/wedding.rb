@@ -48,31 +48,33 @@ class Wedding < ApplicationRecord
     "Dear " << self.bride_first_name + '  and ' + self.groom_first_name 
 
   end
-  def calculate_cost
-  	 case self.package_type
-      	when  "Budget" 
-         self.wedding_cost = 175
-	       when "Basic"
+  def calculate_cost(current_user)
+  		#byebug
+  	if not self.wedding_cost.present?
+  		case self.package_type
+	    	when  "Budget" 
+	       self.wedding_cost = 175
+	      when "Basic"
 	       	self.wedding_cost = 295
-	       when "Standard"
+	      when "Standard"
 	       	self.wedding_cost = 395
-	       else
+	      else
 	       	self.wedding_cost = 395
-       end
-       if self.rehearsal? 
-       		self.wedding_cost = self.wedding_cost + 100
-       end
-       self.referal_fee = self.wedding_cost * current_user.user_fee_pct/100
-       if self.other_cost.present?
-       		self.wedding_cost = self.wedding_cost + self.other_cost
-       	end
+     	end
+     end
+     if self.rehearsal? 
+     		self.wedding_cost = self.wedding_cost + 100
+     end
+     self.referal_fee = self.wedding_cost * current_user.user_fee_pct
+     self.save
 
   end
+
   def book(current_user)
   	 # byebug
   	 self.status = :booked
      self.user_id = current_user.id
-     self.calculate_cost
+     self.calculate_cost(current_user)
        self.save
   end
 	

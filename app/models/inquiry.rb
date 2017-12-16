@@ -40,7 +40,7 @@ class Inquiry < ApplicationRecord
   end
   
   def update_email_history(templateid)
-    byebug
+    #byebug
     # add the email history when sending out an email through the app
     self.email_histories.build(:date_sent => Time.now, :email_template_id =>templateid )
   end

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions
+  resources :payments
   resources :inquiries do
     resources :email_templates
     resources :email_histories

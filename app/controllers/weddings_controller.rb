@@ -94,8 +94,8 @@ class WeddingsController < ApplicationController
     respond_to do |format|
       @user =current_user
       @wedding=Wedding.find(params[:id])
-      byebug
       if @wedding.update(wedding_params)
+        @wedding.calculate_cost(current_user)
         if params[:etemp][:id].present?
          history =  @wedding.email_histories.new
          history.date_sent=Date.current

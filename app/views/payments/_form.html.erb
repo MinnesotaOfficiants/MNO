@@ -1,12 +1,12 @@
 
-<%= form_for( [@wedding,@payment] ) do |f| -%>
+<%= form_for [@wedding,@payment]  do |f| -%>
 
-<div ><%= f.submit "Save", :class => "btn btn-success"%></div><br />
+<div ><%= f.submit "Save", :class => "btn btn-sm  btn-success"%></div><br />
 <table>
 	<tr>
 		<th size = "8px">Date</th>
-		<th size = "9px">Amount</th>
 		<th size = "8px">Type</th>
+		<th size = "9px">Amount</th>
 		<th size = "8px">Method</th>
 		<th size = "7px"> Reference</th>
 
@@ -14,8 +14,8 @@
 
 	<tr>
 		<td> <%= f.date_field :pmt_date ,data:{prvide:'datepicker'} %></td>
+		<td> <%= f.text_field :pmt_type %></td>		
 		<td><%= f.text_field :pmt_amount %> </td>
-		<td> <%= f.text_field :pmt_type %></td>
 		<td> <%= f.text_field :pmt_method %></td>
 		<td> <%= f.text_field :reference %></td>
 	</tr>
