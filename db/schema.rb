@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20171206011025) do
   end
 
   create_table "payments", id: :bigserial, force: :cascade do |t|
-    t.date     "pmt_date"
-    t.decimal  "pmt_amount",             precision: 10
+    t.date     "pmt_date" , default: Date.current
+    t.decimal  "pmt_amount",   default: 0 ,          precision: 10
     t.string   "pmt_type",   limit: 255
     t.string   "pmt_method", limit: 255
     t.string   "reference",  limit: 255
@@ -120,18 +120,18 @@ ActiveRecord::Schema.define(version: 20171206011025) do
     t.boolean  "no_pref"
     t.boolean  "ebook_sent"
     t.boolean  "fee_paid"
-    t.decimal  "fee_paid_amount",                precision: 10
-    t.bigint   "guest_count"
-    t.decimal  "other_cost",                     precision: 10
+    t.decimal  "fee_paid_amount",  default: 0 ,              precision: 10
+    t.bigint   "guest_count" , default: 0
+    t.decimal  "other_cost",      default: 0 ,               precision: 10
     t.string   "package",            limit: 255
     t.boolean  "question_complete"
-    t.decimal  "referal_fee",                    precision: 10
+    t.decimal  "referal_fee",     default: 0 ,               precision: 10
     t.bigint   "request_id"
     t.string   "web_time",           limit: 255
     t.string   "web_count",          limit: 255
     t.string   "web_date",           limit: 255
     t.bigint   "user_id"
-    t.decimal  "wedding_cost",                   precision: 10
+    t.decimal  "wedding_cost",         default: 0 ,          precision: 10
     t.bigint   "status"
     t.boolean  "counseling"
     t.string   "first_choice",       limit: 255
