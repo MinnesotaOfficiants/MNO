@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
  # before_action :get_wedding 
     #before_action :set_payment, only: [:show, :edit, :update, :destroy]
-
+  
   def new
     #byebug
     @wedding = Wedding.find(params[:wedding_id])
@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-     #byebug
+     byebug
      @wedding = Wedding.find(params[:wedding_id])
   	 @payment = @wedding.payments.new(payment_params)
     # @payment.pmt_date = DateTime.current

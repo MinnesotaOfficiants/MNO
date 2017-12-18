@@ -54,7 +54,13 @@ class Wedding < ApplicationRecord
   end
   def calculate_cost(current_user)
   		#byebug
-  	if not self.wedding_cost.present?
+		if self.wedding_cost.blank?
+			self.wedding_cost = 0
+		end
+		if self.other_cost.blank?
+			self.other_cost = 0
+		end
+  	if  self.wedding_cost == 0 
   		case self.package_type
 	    	when  "Budget" 
 	       self.wedding_cost = 175

@@ -91,9 +91,20 @@ class WeddingsController < ApplicationController
   # PATCH/PUT /weddings/1
   # PATCH/PUT /weddings/1.json
   def update
+   
     respond_to do |format|
       @user =current_user
       @wedding=Wedding.find(params[:id])
+       # byebug
+      if @wedding.wedding_cost.blank?
+        @wedding.wedding_cost=0
+      end
+       if @wedding.other_cost.blank?
+        @wedding.other_cost=0
+      end
+       if @wedding.referal_fee.blank?
+        @wedding.freferal_fee=0
+      end
       if @wedding.update(wedding_params)
         @wedding.calculate_cost(current_user)
         if params[:etemp][:id].present?
