@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def update
   	respond_to do |format|
-  	 	#byebug
 	      @user = current_user
 	      if @user.update(user_params)
 	        format.html { redirect_to edit_user_path(current_user), notice: 'email_template was successfully updated.' }
@@ -19,7 +18,6 @@ class UsersController < ApplicationController
   
 
   def edit
-  	#byebug
   	@user=current_user
 
   end

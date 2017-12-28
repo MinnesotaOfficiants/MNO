@@ -3,7 +3,6 @@ class WeddingsController < ApplicationController
 
   def index
     @user = User.find(session[:user_id])
-    # byebug
    
     if @user.admin?
        
@@ -42,7 +41,7 @@ class WeddingsController < ApplicationController
   def add_payment
     # make a call to add an empty wedding payment
     #then refresc edit
-    byebug
+    #byebug
    @wedding=Wedding.find(params[:id])
    
     #@wedding.update(wedding_params)
