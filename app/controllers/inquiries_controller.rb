@@ -12,12 +12,11 @@ class InquiriesController < ApplicationController
     if @user.admin?
       @inquiries = Inquiry.where(closed: :isopen ).order("id")
     else
-      byebug
+      #byebug
      # @tmp = @user.inquiries.where(closed:  :isopen)
       @inquiries = Inquiry.where(closed: :isopen).where("inquiries.user_id = ?" ,[@user.id]).
       includes(:wedding).order("weddings.wedding_date")
-     # @inquiries = Inquiry.where(closed:  :isopen).where( user_id: @user.id ).includes(:wedding).order("wedding_date desc")
-      #@temp=@tmp.includes(:wedding).order("wedding_date desc")
+     
       
       
       # , closed: false
