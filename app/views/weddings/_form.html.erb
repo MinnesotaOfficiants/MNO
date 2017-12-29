@@ -166,9 +166,9 @@
     <%= @wedding.payments.count %> totaling &nbsp
     <%= number_to_currency(@wedding.payments.sum(:pmt_amount)) %></b>&nbsp &nbsp
     <!-- for now untill fix for payment save online comment out -->
-   <% if false %>
+   
     <%= link_to new_wedding_payment_path(@wedding) do %>  
-    <% end %>
+    
     <span class = "btn btn-sm btn-primary">Add Payment</span>&nbsp &nbsp
     <% end %> 
     <b>Balance Due = <%= number_to_currency((@wedding.wedding_cost + @wedding.other_cost) -  @wedding.payments.sum(:pmt_amount)) %></b>

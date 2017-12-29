@@ -5,7 +5,6 @@ class SearchesController < ApplicationController
 	end
 
 	def create
-		# byebug
 		# if not current_user.admin?
 		# 	search_params[:user_id] = current_user.id
 		# end
