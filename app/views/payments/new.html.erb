@@ -1,29 +1,4 @@
-<p class = 'last-item'><b>  Add payment for</b> <%= @wedding.get_title %> <br /></p>
 
-<div class = 'container'>
-	<p>
-	<table>
-		<tr>
-			<th width = "140px">Date</th>
-			<th width = "140px">Type</th>
-			<th  width = "140px">Amount</th>
-			<th width = "140px"> Method</th>
-			<th width = "140px">Reference</th>
-			<th size = '7px'></th>
-		</tr>
-		<% @wedding.payments.each do |payment| %>
-			<tr>
-				<td><%= payment.pmt_date %></td>
-				<td><%= payment.pmt_type %></td>
-				<td><%= number_to_currency(payment.pmt_amount) %></td>
-				<td><%= payment.pmt_method %></td>
-				<td><%= payment.reference %></td>
-				<td></td>
-			</tr>
-		<% end %>
-	</table>
-</p>
-</div>
 
 <%= render 'form' %>
 <%= link_to 'Back', edit_wedding_path(@wedding) %>

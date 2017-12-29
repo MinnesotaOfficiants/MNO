@@ -1,9 +1,9 @@
 class PaymentsController < ApplicationController
   #before_action :get_wedding 
-    before_action :set_payment, only: [:show, :update, :destroy]
+  before_action :set_payment, only: [:show, :update, :destroy]
   
   def new
-   # byebug
+    #byebug
     @wedding = Wedding.find(params[:wedding_id])
   	@payment=@wedding.payments.new
   end
