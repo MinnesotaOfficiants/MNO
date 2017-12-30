@@ -34,7 +34,7 @@
       </div>
       <div class = "col-sm-3">
         <%= w.label :bride_phone, "Phone" %>
-        <%= w.text_field :bride_phone,:size => "10" %> 
+        <%= w.text_field :bride_phone,:size => "12" %> 
       </div>
       <div class = "col-sm-4">
         <%= w.label :bride_email, "Email" %>
@@ -52,7 +52,7 @@
       </div>
       <div class = "col-sm-3">
         <%= w.label :groom_phone, "Phone" %>
-        <%= w.text_field :groom_phone,:size => "10" %>
+        <%= w.text_field :groom_phone,:size => "12" %>
       </div>
       <div class = "col-sm-4">
         <%= w.label :groom_email, "Email" %>
@@ -74,7 +74,7 @@
       </div>
       <div class = "col-sm-3">
         <%= w.label :wedding_time, "Time" %>
-        <%= w.time_field :wedding_time, :size => "15"  %> 
+        <%= w.time_select  :wedding_time, {minute_step: 30, ampm: true}   %> 
       </div>
      
     </div><br> 

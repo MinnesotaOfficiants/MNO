@@ -8,7 +8,7 @@ class WeddingsController < ApplicationController
        
       @weddings = Wedding.search(params[:search])
     else
-      @weddings = Wedding.search(params[:search])
+      #@weddings = Wedding.search(params[:search])
       # @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
       @weddings=Wedding.where('user_id = ? and  wedding_date > (?)', @user.id, Date.today-30).order(:wedding_date)
 
@@ -102,15 +102,17 @@ class WeddingsController < ApplicationController
         @wedding.other_cost=0
       end
        if @wedding.referal_fee.blank?
-        @wedding.freferal_fee=0
+        @wedding.referal_fee = 0
       end
       if @wedding.update(wedding_params)
         @wedding.calculate_cost(current_user)
-        if params[:etemp][:id].present?
-         history =  @wedding.email_histories.new
-         history.date_sent=Date.current
-         history.email_template_id = params[:etemp][:id]
-         history.save
+        if not @user.admin?
+          if params[:etemp][:id].present?
+           history =  @wedding.email_histories.new
+           history.date_sent=Date.current
+           history.email_template_id = params[:etemp][:id]
+           history.save
+          end
         end
         format.html { render :edit, notice: 'Wedding was successfully updated.' }
         format.json { render :show, status: :ok, location: @wedding }
