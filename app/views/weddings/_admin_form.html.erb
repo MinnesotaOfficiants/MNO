@@ -17,7 +17,7 @@
 
 <div class = "container-fluid">
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit "Save",  class: 'btn btn-success' %>
   </div> 
   <br />
   <div class = "row" id = "brideC">
@@ -61,7 +61,8 @@
     </div> 
   </div><br/>
   <div class = "last-item">
-   Web date <span><%= @wedding.web_date %></span> web time: <span> <%= @wedding.web_time %></span>
+   Web date <span><%= @wedding.web_date %></span> &nbsp &nbsp web time: <span> <%= @wedding.web_time %></span> &nbsp &nbsp
+   <span>Wedding size &nbsp &nbsp <%= @wedding.web_count %></span>
     
   </div>
   <div class = "row" id = "location">
@@ -109,7 +110,7 @@
   </div> -->
   <br />
   
-  <!-- naw add the cost factors-->Wedding size &nbsp &nbsp <%= @wedding.web_count %>
+
   
     
 
