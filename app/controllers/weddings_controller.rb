@@ -22,7 +22,7 @@ class WeddingsController < ApplicationController
   end
   def fee_report
     # byebug
-    @user_fees=Wedding.where("user_id = ?  and (fee_paid_date is null or fee_paid_date >  (?)) ", current_user.id, Date.today - 180).order("fee_paid_date is null desc, fee_paid_date desc")
+    @user_fees=Wedding.where("user_id = ?  and (fee_paid_date is null or fee_paid_date >  (?)) ", current_user.id, Date.today - 250).order("fee_paid_date is null desc, fee_paid_date desc")
   end
   
   def send_fee_email
