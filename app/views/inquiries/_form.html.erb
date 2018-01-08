@@ -87,9 +87,18 @@
 
       </span>
     </div>
+    
      <div class="field">
       <%= w.label :comments %><br/>
       <%= w.text_area :comments ,cols: 100 , rows: 10 %>
+    </div>
+    <!-- show the info from the web in case admin not adding count or dates -->
+    <div class = "panel panel-info" >
+      <div class="panel-heading">Web wedding info: &nbsp 
+        <span>date <%= @inquiry.wedding.web_date %></span>&nbsp
+        <span>time <%= @inquiry.wedding.web_time %></span>&nbsp
+        <span>count <%= @inquiry.wedding.web_count %></span>
+      </div>
     </div>
      <div class="field last-item"> Wedding type &nbsp &nbsp
     <span>  <%= w.radio_button :package_type ,"Budget" %>
@@ -188,7 +197,8 @@
           <div class="field " >
             <%= f.label :meeting_date %>
             <%= f.date_field :meeting_date,  data:{prvide:'datepicker'}   %>
-          </div><br />
+          </div>
+          <br />
          </div>
       </div>
         
@@ -231,7 +241,7 @@
         }
       </script> -->
         <div class="panel panel-info">
-          <div class="panel-heading">Email History &emsp;&emsp; 
+          <div class="panel-heading">Email History &emsp;&emsp; </div>
          <!--<%= link_to  %> -->
              <%# @inquiry.send_inquiry_email %>  
 
