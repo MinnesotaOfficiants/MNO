@@ -19,11 +19,11 @@ class Wedding < ApplicationRecord
 
 
 	def get_title
-		 # if  not self.wedding_date  = nil 
-			# @title = self.web_date.to_s +' ' + self.bride_first_name + ' ' + self.bride_last_name
-		 # else
+		  if   self.wedding_date  = nil 
+			 @title = self.web_date.to_s +' ' + self.bride_first_name + ' ' + self.bride_last_name
+		 else
 		  	@title = self.wedding_date.strftime('%Y-%m-%d') + ' '+ self.bride_first_name + ' ' + self.bride_last_name
-		 # end 
+		  end 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
 	def make_fee_payment
