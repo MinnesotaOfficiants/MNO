@@ -19,7 +19,8 @@ class Wedding < ApplicationRecord
 
 
 	def get_title
-		  if   self.wedding_date  = nil 
+		
+		  if   self.wedding_date  == nil 
 			 @title = self.bride_first_name + ' ' + self.bride_last_name
 		 else
 		  	@title = self.wedding_date.strftime('%Y-%m-%d') + ' '+ self.bride_first_name + ' ' + self.bride_last_name
