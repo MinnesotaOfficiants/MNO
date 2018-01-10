@@ -16,9 +16,25 @@ class EmailTemplatesController < ApplicationController
      }
   end
   def new
-    @email_template = EmailTemplate.new
+    @email_template = current_user.email_templates.new
+
   end
   
+  def create
+    @email_template = current_user.email_templates.new(email_template_params)
+    respond_to do |format|
+      if @email_template.save
+        format.html { redirect_to edit_user_path(current_user), notice: 'Template was successfully created.' }
+        flash.now.alert = "New tempalte created"
+        format.json { render :show, status: :created, location: @template }
+      else
+        format.html { render :new }
+        format.json { render json: @template.errors, status: :unprocessable_entity }
+      end
+    end
+
+
+  end
   def preview
     
     @email_template = EmailTemplate.find(params[:id])

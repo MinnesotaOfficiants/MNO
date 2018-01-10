@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<<<<<<< HEAD
 
 <div class = "container media" >
   <h1>Requests</h1>  
+=======
+<div class = "container" >
+  <h1 >Requests</h1>  
+>>>>>>> add-new-template
   
   <table>
     <thead>
@@ -10,7 +15,7 @@
         <th width = 350px>Wedding </th>
         <th width = 110p>Phone</th>
         <th width = 110p>email sent date</th>
-        <th width = 250p>Location</th>
+        <th width = 290p>Location</th>
         
        
         
@@ -22,8 +27,13 @@
         <tr>
           <td> <%=  link_to  inquiry.wedding.get_title, edit_inquiry_path(inquiry) %></td>
         
-          <td><%= inquiry.wedding.bride_phone %></td>
-           <td><%= inquiry.email_sent_date %></td>
+          <td><%= inquiry.wedding.bride_phone  %></td>
+
+            
+            <td > <%= inquiry.email_sent_date %>
+              <% if inquiry.intro_meeting? %><span class="glyphicon glyphicon-ok meeting"></span><% end %>
+            </td>
+          
           <td><%= inquiry.wedding.location%></td>
           
   

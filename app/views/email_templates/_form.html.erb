@@ -50,14 +50,16 @@
     <%= f.submit "Save", class: 'btn btn-success' %>
     <dir class = "form-actions">
       <div class='row'>
-        <div class = 'col col-md-2'>
-          <!-- <a href = "#" id = "emailSetEnvelope"  onclick = 'setEmailButton()'> -->
-            <span class="glyphicon glyphicon-envelope">
-              <%= link_to 'preview', preview_email_template_path(@email_template) %>
-            </span>
-          </a> &nbsp;
-          <!-- <span class="glyphicon glyphicon-mail"></span>&nbsp; -->
-        </div>
+        <% if @email_template.id? %>
+          <div class = 'col col-md-2'>
+            <!-- <a href = "#" id = "emailSetEnvelope"  onclick = 'setEmailButton()'> -->
+              <span class="glyphicon glyphicon-envelope">
+                <%= link_to 'preview', preview_email_template_path(@email_template) %>
+              </span>
+            </a> &nbsp;
+            <!-- <span class="glyphicon glyphicon-mail"></span>&nbsp; -->
+          </div>
+        <% end %>
        <!--  <div class = 'col col-md-3'>
           <a   href="mailto:" id = "sendEmailTemplate" >send
             <span class="glyphicon glyphicon-send" aria-hidden="true"></span>

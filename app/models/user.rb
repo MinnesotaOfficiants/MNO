@@ -12,6 +12,7 @@ class User < ApplicationRecord
   
   has_many :weddings
 	has_many :inquiries
+  has_many :email_templates
 	
   # has_secure_password
 
