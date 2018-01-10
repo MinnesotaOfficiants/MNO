@@ -51,7 +51,7 @@
        
         <% if @user.admin? %>
 
-          <th width="180px">
+          <th width="280px">
             Officiant Choice
           </th>
         <% end %>  
@@ -99,7 +99,13 @@
             <%= User.find(wedding.user_id).first_name + ' - ' + User.find(wedding.user_id).last_name %>                
           <% else %> 
 
-          <%= wedding.first_choice + ' - ' + wedding.second_choice + ' - ' %>
+            <%= wedding.first_choice %> 
+            <% if wedding.second_choice? %>
+              <%= ' - ' + wedding.second_choice  %>
+            <% end %>
+            <% if wedding.third_choice? %>
+              <%= ' - ' + wedding.third_choice  %>
+            <% end %>
           <% end %>
          
           </td>
