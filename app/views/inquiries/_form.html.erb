@@ -101,20 +101,19 @@
       </div>
     </div>
      <div class="field last-item"> Wedding type &nbsp &nbsp
-    <span>  <%= w.radio_button :package_type ,"Budget" %>
-      <%= w.label :package_type ,"Budget" %>
-      <%= w.radio_button :package_type ,"Basic" %>
-      <%= w.label :package_type ,"Basic" %>
-      <%= w.radio_button :package_type ,"Standard" %>
-      <%= w.label :package_type ,"Standard" %>
-      
-    </span>
-    <span> 
-      <%= w.label :guest_count %> 
-      <%= w.text_field :guest_count %>
-    </span>
-    <span>Rehearsal  <%=  w.check_box :rehearsal ,class: "checkbox-inline" %> </span>
-
+      <span>  <%= w.radio_button :package_type ,"Budget" %>
+        <%= w.label :package_type ,"Budget" %>
+        <%= w.radio_button :package_type ,"Basic" %>
+        <%= w.label :package_type ,"Basic" %>
+        <%= w.radio_button :package_type ,"Standard" %>
+        <%= w.label :package_type ,"Standard" %>
+        
+      </span>
+      <span> 
+        <%= w.label :guest_count %> 
+        <%= w.text_field :guest_count %>
+      </span>
+      <span>Rehearsal  <%=  w.check_box :rehearsal ,class: "checkbox-inline" %> </span>
 
   </div>
   </div>

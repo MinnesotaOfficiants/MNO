@@ -22,6 +22,15 @@
 h1, h2, h3 {
   font-family: "Open Sans", sans-serif;
 }
+.contacted {
+  color: #ff3f33;
+
+}
+.meeting {
+  //color: #6cca19;
+  color: #ff3f33;
+}
+
 //background gradient
 .home-text, .navbar {
   background: #3a7bd5; /* fallback for old browsers */
@@ -78,7 +87,9 @@ h1, h2, h3 {
   display: none;
 } 
 */
-  
+
+
+
 span + span {
     margin-left: 10px;
 }

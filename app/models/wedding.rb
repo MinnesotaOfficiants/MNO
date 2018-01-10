@@ -22,7 +22,7 @@ class Wedding < ApplicationRecord
 		 # if  not self.wedding_date  = nil 
 			# @title = self.web_date.to_s +' ' + self.bride_first_name + ' ' + self.bride_last_name
 		 # else
-		  	@title = self.wedding_date.to_s + ' '+ self.bride_first_name + ' ' + self.bride_last_name
+		  	@title = self.wedding_date.strftime('%Y-%m-%d') + ' '+ self.bride_first_name + ' ' + self.bride_last_name
 		 # end 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end

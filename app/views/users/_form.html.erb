@@ -70,7 +70,10 @@
              <%= select "etemp", "id",  templates, {include_blank: 'Select'} , {onchange: 'getTemplate(event)'}  %>
              
       <!-- <button class= 'btn,btn-warning', id = 'user-edit-button'>Edit</button>       -->
-     <%= link_to  "Edit" , edit_email_template_path ,class: 'btn btn-warning', id: 'user-edit-button' %>   
+     <%= link_to  "Edit" , edit_email_template_path ,class: 'btn btn-sm  btn-warning', id: 'user-edit-button' %>
+     <%= link_to  "New" , new_email_template_path ,class: 'btn btn-sm btn-info', id: 'user-new-button' %>
+
+        
 </section>
 
 <% end %>
