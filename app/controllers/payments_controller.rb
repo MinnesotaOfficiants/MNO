@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   #before_action :get_wedding 
-  before_action :set_payment, only: [:show, :update, :destroy]
+  #before_action :set_payment, only: [:show, :update, :destroy]
   
   def new
     #byebug
@@ -11,13 +11,13 @@ class PaymentsController < ApplicationController
 
   def edit
     
-   # @wedding=Wedding.find(params[:wedding_id])
+    @wedding = Wedding.find(params[:wedding_id])
     @payment = Payment.find(params[:id]) # @wedding.payments.find(params[:id])
 
   end
 
   def create
-     
+
      @wedding = Wedding.find(params[:wedding_id])
   	 @payment = @wedding.payments.new(payment_params)
     # @payment.pmt_date = DateTime.current
@@ -35,10 +35,10 @@ class PaymentsController < ApplicationController
   end
    def update
 
-    #@wedding = Wedding.find(params[:wedding_id])
+    # @wedding = Wedding.find(params[:wedding_id])
     respond_to do |format|
       @payment = Payment.find(params[:id])
-      # @wedding=Wedding.find(@payment.wedding_id)
+      @wedding=Wedding.find(params[:wedding_id])
       if @payment.update(payment_params)
         format.html { redirect_to edit_wedding_path(@wedding), notice: 'payment was successfully updated.' }
         format.json { render :show, status: :ok, location: @payment }
@@ -53,7 +53,6 @@ class PaymentsController < ApplicationController
   end
   def get_wedding
     # find the wedding for this payment
-    #byebug
     @wedding = Wedding.find(params[:wedding_id])
   end
   private

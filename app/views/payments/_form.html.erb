@@ -1,5 +1,5 @@
 
-<%= form_for @payment  do |f| -%>
+<%= form_for [ @wedding, @payment]  do |f| -%>
 
 <div ><%= f.submit "Save", :class => "btn btn-sm  btn-success"%></div><br />
 <table>
