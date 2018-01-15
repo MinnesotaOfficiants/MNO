@@ -1,4 +1,4 @@
-<p class = 'last-item'><b>  Add payment for</b> <%= @wedding.get_title %> <br /></p>
+<p class = 'last-item'><b>  Add payment for</b> <%= @payment.wedding.get_title %> <br /></p>
 
 <div class = 'container'>
 	<p> Pervious payments
@@ -11,7 +11,7 @@
 			<th width = "140px">Reference</th>
 			<th size = '7px'></th>
 		</tr>
-		<% @wedding.payments.each do |payment| %>
+		<% @plist.each do |payment| %>
 			<tr>
 				<td><%= payment.pmt_date %></td>
 				<td><%= payment.pmt_type %></td>
@@ -26,5 +26,5 @@
 </div>
 
 <%= render 'form' %>
-<%= link_to 'Back', edit_wedding_path(@wedding) %>
+<%= link_to 'Back', edit_wedding_path(@payment.wedding) %>
 
