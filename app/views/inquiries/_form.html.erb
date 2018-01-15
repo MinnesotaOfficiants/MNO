@@ -212,7 +212,7 @@
             fetch('<%= email_templates_url %>/' + templateId + '.json').then(function (response) {
               if (response.ok) {
                 response.json().then(function (data) {
-                  var emailBody =  '<%= @inquiry.email_salutation %>' +',' + data.body + '\n\n' + userSignature
+                  var emailBody =  '<%= @inquiry.email_salutation %>'  + data.body + '\n\n' + userSignature
                   
                   var mailTo = "mailto:" + emailTo + 
                                "?subject=" + encodeURIComponent(emailSubject) + 

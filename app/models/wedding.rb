@@ -48,13 +48,13 @@ class Wedding < ApplicationRecord
 		
 	end
 	def get_header
-		self.bride_last_name + '-'+self.groom_last_name
+		self.bride_last_name + '-'+self.groom_last_name 
 	end
 	
   def email_salutation
 
     # prts needed for the email 1 hopefuly we gat a param with the template id
-    "Dear " << self.bride_first_name + '  and ' + self.groom_first_name 
+    "Dear " << self.bride_first_name + '  and ' + self.groom_first_name + ',\n\n'
 
   end
   def calculate_cost(current_user)

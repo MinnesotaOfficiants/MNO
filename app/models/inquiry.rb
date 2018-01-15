@@ -47,7 +47,7 @@ class Inquiry < ApplicationRecord
   def email_salutation
 
     # prts needed for the email 1 hopefuly we gat a param with the template id
-    "Dear " << self.wedding.bride_first_name + '  and ' + self.wedding.groom_first_name 
+    "Dear " << self.wedding.bride_first_name + '  and ' + self.wedding.groom_first_name + ',\n\n'
 
   end
 
