@@ -5,12 +5,13 @@ class PaymentsController < ApplicationController
   def new
     #byebug
     @wedding = Wedding.find(params[:wedding_id])
+    @plist=@wedding.payments.all
   	@payment=@wedding.payments.new
   end
 
   def edit
     
-    @wedding=Wedding.find(params[:wedding_id])
+   # @wedding=Wedding.find(params[:wedding_id])
     @payment = Payment.find(params[:id]) # @wedding.payments.find(params[:id])
 
   end
