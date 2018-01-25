@@ -62,24 +62,29 @@ class Wedding < ApplicationRecord
 		if self.wedding_cost.blank?
 			self.wedding_cost = 0
 		end
+		if self.rehearsal?
+			rehearsalcost=100
+		else
+				rehearsalcost = 0
+		end 
 		if self.other_cost.blank?
 			self.other_cost = 0
 		end
   	if  self.wedding_cost == 0 
   		case self.package_type
 	    	when  "Budget" 
-	       self.wedding_cost = 175
+	       self.wedding_cost = 175 + rehearsalcost
 	      when "Basic"
-	       	self.wedding_cost = 295
+	       	self.wedding_cost = 295 + rehearsalcost
 	      when "Standard"
-	       	self.wedding_cost = 395
+	       	self.wedding_cost = 395 + rehearsalcost
 	      else
-	       	self.wedding_cost = 395
+	       	self.wedding_cost = 395 + rehearsalcost
      	end
      end
-     if self.rehearsal? 
-     		self.wedding_cost = self.wedding_cost + 100
-     end
+     # if self.rehearsal? 
+     # 		self.wedding_cost = self.wedding_cost + 100
+     # end
      self.referal_fee = self.wedding_cost * current_user.user_fee_pct
      self.save
 

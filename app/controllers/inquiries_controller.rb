@@ -164,6 +164,6 @@ class InquiriesController < ApplicationController
       :intro_meeting, :meeting_date, :user_id, :closed, wedding_attributes: 
       [:id, :bride_first_name, :bride_last_name, :bride_email, :bride_phone, :groom_first_name, 
         :groom_last_name, :groom_email, :groom_phone, :wedding_date, :wedding_time, :status, 
-        :comments, :package_type, :rehearsal ,:image_file, :guest_count])
+        :comments, :package_type, :rehearsal ,:image_file, :guest_count,:location])
     end
 end
