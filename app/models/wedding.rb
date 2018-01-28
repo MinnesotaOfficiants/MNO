@@ -4,7 +4,7 @@ class Wedding < ApplicationRecord
   
   # belongs_to :user
 	has_many :inquiries 
-	has_many :payments, inverse_of: :weddings
+	has_many :payments, inverse_of: :wedding
 	has_many :email_histories, as: :history
 	
 	accepts_nested_attributes_for :payments
