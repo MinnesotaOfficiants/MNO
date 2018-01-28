@@ -19,6 +19,9 @@ id: <%= params[:id] %><br/>
 wedding_id: <%= params[:wedding_id] %><br/>
 </div>
 
+<%= Wedding.find(params[:wedding_id]).inspect %>
+<%= Payment.find(params[:id]).inspect %>
+
 <!--
 <p class = 'last-item'><b>  Edit payment for</b> <%#= @payment.wedding.get_title %> <br /></p>
 <%#= render "form" %>
