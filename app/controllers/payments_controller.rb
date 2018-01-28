@@ -12,7 +12,6 @@ class PaymentsController < ApplicationController
   def edit
     @wedding = Wedding.find(params[:wedding_id])
     @payment = Payment.find(params[:id]) # @wedding.payments.find(params[:id])
-    @checker = "Checking"
   end
 
   def create

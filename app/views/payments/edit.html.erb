@@ -1,33 +1,3 @@
-<div>
-<%= @checker %>
-</div>
-
-<div>
-Payment:
-<%= @payment.inspect %>
-</div>
-
-<br/><br/>
-
-<div>
-Wedding:
-<%= @wedding.inspect %>
-</div>
-
-<br/><br/>
-
-<div>
-Params:
-<%= params.inspect %><br/>
-id: <%= params[:id] %><br/>
-wedding_id: <%= params[:wedding_id] %><br/>
-</div>
-
-<%= Wedding.find(params[:wedding_id]).inspect %>
-<%= Payment.find(params[:id]).inspect %>
-
-<!--
-<p class = 'last-item'><b>  Edit payment for</b> <%#= @payment.wedding.get_title %> <br /></p>
-<%#= render "form" %>
-<%#= link_to 'Back', edit_wedding_path(@payment.wedding) %>
--->
+<p class = 'last-item'><b>  Edit payment for</b> <%= @payment.wedding.get_title %> <br /></p>
+<%= render "form" %>
+<%= link_to 'Back', edit_wedding_path(@payment.wedding) %>
