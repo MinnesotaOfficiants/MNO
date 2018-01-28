@@ -12,13 +12,6 @@ class PaymentsController < ApplicationController
   def edit
     @wedding = Wedding.find(params[:wedding_id])
     @payment = Payment.find(params[:id]) # @wedding.payments.find(params[:id])
-    logger.info "\n"
-    logger.info "PaymentsController#edit"
-    logger.info @payment.inspect
-    logger.info "Payment has a Wedding:"
-    logger.info @payment.wedding.inspect
-    logger.info "\n"
-    logger.info "\n"
   end
 
   def create
