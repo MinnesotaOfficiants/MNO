@@ -10,10 +10,15 @@ class PaymentsController < ApplicationController
   end
 
   def edit
-    
     @wedding = Wedding.find(params[:wedding_id])
     @payment = Payment.find(params[:id]) # @wedding.payments.find(params[:id])
-
+    puts "\n"
+    puts "PaymentsController#edit"
+    puts @payment.inspect
+    puts "Payment has a Wedding:"
+    puts @payment.wedding.inspect
+    puts "\n"
+    puts "\n"
   end
 
   def create

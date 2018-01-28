@@ -48,6 +48,5 @@ resources :email_templates do
   end
 end
 
-
-  
 end
+  

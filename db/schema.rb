@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206011025) do
+ActiveRecord::Schema.define(version: 20180125004636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171206011025) do
     t.datetime "updated_at",                    null: false
     t.bigint   "history_id"
     t.string   "history_type",      limit: 255
-    t.index ["history_type", "history_id"], name: "idx_16981_index_email_histories_on_history_type_and_history_id", using: :btree
+    t.index ["history_type", "history_id"], name: "idx_17824_index_email_histories_on_history_type_and_history_id", using: :btree
   end
 
   create_table "email_templates", id: :bigserial, force: :cascade do |t|
@@ -48,15 +48,15 @@ ActiveRecord::Schema.define(version: 20171206011025) do
     t.boolean  "intro_meeting"
     t.date     "meeting_date"
     t.bigint   "user_id"
-    t.integer  "closed",            default: 0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "closed"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.date     "phone_call_date"
   end
 
   create_table "payments", id: :bigserial, force: :cascade do |t|
-    t.date     "pmt_date" , default: Date.current
-    t.decimal  "pmt_amount",   default: 0 ,          precision: 10
+    t.date     "pmt_date"
+    t.decimal  "pmt_amount",             precision: 10
     t.string   "pmt_type",   limit: 255
     t.string   "pmt_method", limit: 255
     t.string   "reference",  limit: 255
@@ -113,25 +113,25 @@ ActiveRecord::Schema.define(version: 20171206011025) do
     t.date     "rehearsal_date"
     t.time     "rehearsal_time"
     t.text     "comments"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.boolean  "ceremony_complete"
     t.string   "ask_for_review",     limit: 255
     t.boolean  "no_pref"
     t.boolean  "ebook_sent"
     t.boolean  "fee_paid"
-    t.decimal  "fee_paid_amount",  default: 0 ,              precision: 10
-    t.bigint   "guest_count" , default: 0
-    t.decimal  "other_cost",      default: 0 ,               precision: 10
+    t.decimal  "fee_paid_amount",                precision: 10, scale: 2
+    t.bigint   "guest_count"
+    t.decimal  "other_cost",                     precision: 10
     t.string   "package",            limit: 255
     t.boolean  "question_complete"
-    t.decimal  "referal_fee",     default: 0 ,               precision: 10
+    t.decimal  "referal_fee",                    precision: 10, scale: 2
     t.bigint   "request_id"
     t.string   "web_time",           limit: 255
     t.string   "web_count",          limit: 255
     t.string   "web_date",           limit: 255
     t.bigint   "user_id"
-    t.decimal  "wedding_cost",         default: 0 ,          precision: 10
+    t.decimal  "wedding_cost",                   precision: 10
     t.bigint   "status"
     t.boolean  "counseling"
     t.string   "first_choice",       limit: 255
