@@ -27,7 +27,10 @@
 
 	            <% end %></td>
 	     <% end %>
-			<td><%= check_box_tag :fee_paid , "1", fee.fee_paid %></td>
+			<td>
+				  <% if fee.fee_paid? %><span class="glyphicon glyphicon-ok"></span><% end %>
+
+			</td>
 
 			<td><%= fee.fee_paid_date %></td>
 			<td><%= number_to_currency(fee.fee_paid_amount) %></td>

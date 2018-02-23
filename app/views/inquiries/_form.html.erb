@@ -98,6 +98,7 @@
         <span>date <%= @inquiry.wedding.web_date %></span>&nbsp
         <span>time <%= @inquiry.wedding.web_time %></span>&nbsp
         <span>count <%= @inquiry.wedding.web_count %></span>
+
       </div>
     </div>
      <div class="field last-item"> Wedding type &nbsp &nbsp
@@ -114,6 +115,8 @@
         <%= w.text_field :guest_count %>
       </span>
       <span>Rehearsal  <%=  w.check_box :rehearsal ,class: "checkbox-inline" %> </span>
+      &nbsp &nbsp &nbsp
+      Counseling <%= w.check_box :counseling, class: "checkbox-inline" %> 
 
   </div>
   </div>
