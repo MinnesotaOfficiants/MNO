@@ -15,7 +15,6 @@ gem 'uglifier', '3.0.0'
 gem 'coffee-rails', '4.2.1'
 # See https://github.com/rails/execjs
 #readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '4.1.1'
@@ -26,8 +25,7 @@ gem 'turbolinks', '5.0.0'
 # gem 'byebug'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '2.5.0'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '3.0'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -45,6 +43,7 @@ gem 'bcrypt'
 # gem to move data via dumps to and from other databases
 gem 'yaml_db'
 # add these gems for the image uploader carrierwave and minimagick
+#gem 'paperclip'
 gem 'carrierwave' , '1.2.1'
 
 gem 'mini_magick' , '4.8.0'
