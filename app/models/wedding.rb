@@ -37,7 +37,7 @@ class Wedding < ApplicationRecord
 
 	end
 	def  self.search(search)
-		byebug
+		#byebug
 		if search.present?
     	where("status = 2 and wedding_date = ? ", search).order(wedding_time: :desc)
     	
