@@ -37,7 +37,7 @@ class Wedding < ApplicationRecord
 
 	end
 	def  self.search(search)
-		#byebug
+		byebug
 		if search.present?
     	where("status = 2 and wedding_date = ? ", search).order(wedding_time: :desc)
     	
@@ -103,7 +103,7 @@ class Wedding < ApplicationRecord
 		require "mysql2"
 		#mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
 		
-		mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
+		mnosql = Mysql2::Client.new(:host => "localhost:3306",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
 		
 	
 
@@ -123,11 +123,13 @@ class Wedding < ApplicationRecord
 					state,
 					officiantchoice1,
 					officiantchoice2,
-					officiantchoice3 from wp_pods_request where iswebupdated = 2;
+					officiantchoice3,
+					if(locate('Pre',preparations)>0,true,false) as counseling
+					from wp_pods_request where iswebupdated = 1;
 					")
 			# res = my.query("select count(*) from wp_pods_request;")
 			# byebug
-			#akl 10/17/17  add this for counseling   if(locate('Pre',preparations)>0,1,0) as counseling
+			#akl 10/17/17  add this for counseling   if(locate('Pre',preparations)>0,true,false) as counseling
 		res.each do |row|
 
 		  @newwedding =  Wedding.new(:bride_first_name => row["bridefirstname"], 
@@ -138,12 +140,13 @@ class Wedding < ApplicationRecord
 		   	:location => row["location"], :first_choice => row["officiantchoice1"], 
 		   	:guest_count => row["numberofguests"],:second_choice => row["officiantchoice2"], 
 		   	:third_choice => row["officiantchoice3"], :comments => row["comments"],
+		   	:counseling => row["counseling"],
 		   	:status => 0)
 		   @newwedding.save
 		  
 		end
 		# now update the iswebupdated
-		#res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 2")
+		#res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 1")
 	end
 	private 
 		
