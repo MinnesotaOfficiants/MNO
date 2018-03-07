@@ -105,9 +105,9 @@ class Wedding < ApplicationRecord
 		#mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
 		
 		# use in dev
-		mnosql = Mysql2::Client.new(:host => "66.147.244.127:3306",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
+		#mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
 		# use in production
-		# => mnosql = Mysql2::Client.new(:host => "localhost:3306",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
+		 mnosql = Mysql2::Client.new(:host => "localhost:3306",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
 		
 	
 
