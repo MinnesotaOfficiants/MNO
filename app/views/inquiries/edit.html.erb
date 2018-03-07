@@ -1,5 +1,10 @@
 <b>Editing Inquiry</b>  <%= @inquiry.wedding.get_title %> <br />
 
-<%= render 'form', inquiry: @inquiry %>
+<% if @user.admin? %>
+	<%= render 'admin_form', inquiry: @inquiry %>
+<% else %>
+	<%= render 'form', inquiry: @inquiry %>
+
+<% end %>
 
 <%= link_to 'Back', inquiries_path %>

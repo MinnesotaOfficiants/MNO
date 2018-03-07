@@ -39,6 +39,8 @@ class InquiriesController < ApplicationController
 
   # GET /inquiries/1/edit
   def edit
+    #byebug
+    @user=current_user
     @inquiry = Inquiry.find(params[:id])
     @email_history = @inquiry.email_histories
 
@@ -68,18 +70,20 @@ class InquiriesController < ApplicationController
   # PATCH/PUT /inquiries/1.json
   def update
         #byebug
-
+    @user=current_user
     respond_to do |format|
       if @inquiry.update(inquiry_params)
-        if params[:etemp][:id].present?
-           history =  @inquiry.email_histories.new
-           history.date_sent=Date.current
-           history.email_template_id = params[:etemp][:id]
-           history.save
-         if @inquiry.contacted_email.blank?
-            @inquiry.contacted_email = TRUE
-            @inquiry.email_sent_date = Date.current
-            @inquiry.save
+        if not @user.admin?
+          if params[:etemp][:id].present?
+             history =  @inquiry.email_histories.new
+             history.date_sent=Date.current
+             history.email_template_id = params[:etemp][:id]
+             history.save
+           if @inquiry.contacted_email.blank?
+              @inquiry.contacted_email = TRUE
+              @inquiry.email_sent_date = Date.current
+              @inquiry.save
+            end
           end
         end
         format.html { render :edit, notice: 'Inquiry was successfully updated.' }

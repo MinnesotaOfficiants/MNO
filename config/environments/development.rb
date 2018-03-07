@@ -11,7 +11,9 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-
+ unless Rails.env.production? 
+    ENV['QUOTAGUARDSTATIC_URL']='http://neh4ytrzntswaz:Iu-mpJXyU503PEO7SexCCh_L2A@us-east-static-04.quotaguard.com:9293'
+  end
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true

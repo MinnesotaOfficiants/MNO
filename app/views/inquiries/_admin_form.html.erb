@@ -31,7 +31,7 @@
       <%= f.submit "Save", class: 'btn btn-success' %>
     </div><br />
    <% officiants = User.where("active = TRUE").order(:first_name).collect  {|of| [of.first_name + ' ' + of.last_name, of.id]} %>
-           <%= select "oname", "id",  officiants, {include_blank: 'None'}, { onchange: 'onOfficiantSelectChange(event)' } %>
+           <%= select "oname", "id",  officiants, {include_blank: 'None', :selected => @inquiry.user_id}, { onchange: 'onOfficiantSelectChange(event)' }  %>
 
 
     <!-- # <%= f.label :user_id, "User _Id" %> -->
