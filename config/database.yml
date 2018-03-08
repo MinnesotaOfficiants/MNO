@@ -9,6 +9,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 #   timeout: 5000
 
+
+
 development:
   <<: *default
   
@@ -25,4 +27,14 @@ production:
   encoding: unicode
   url:  <%= ENV["DATABASE_URL"] %>
   pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+
+  adapter: mysql2
+  encoding: utf8
+  database: minnesu5_mnofficiants
+  username:  minnesu5_FMP
+  password:  MN!#Wed13
+  timeout: 5000
+  #port: 3306
+  #database: minnesu5_mnofficiants
+
   
