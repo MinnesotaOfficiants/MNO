@@ -17,18 +17,25 @@
 
 <div class = "container-fluid">
   <div class = 'row' >
-    <div class = 'col-sm-3'>
+    <div class = 'col-sm-1'>
       <div class="actions">
         <%= f.submit "Save",  class: 'btn btn-success' %>
 
       </div> 
 
     </div>
-    <div class = 'col-sm-3'>
-      <% if @wedding.inquiries.count > 0 %>
-        <%= link_to "re-asign officiant", edit_inquiry_path(@wedding.inquiries.first) %>
+    <% if @wedding.inquiries.count > 0  %>
+      <% @inq = @wedding.inquiries.first %>
+        <% if @inq.closed = :isopen %>
+        <div class = 'col-sm-2'>
+          Assignd to <%= User.find(@inq.user_id).first_name %>  
+        </div>
+        
+        <div class = 'col-sm-2'>
+          <%= link_to "re-asign officiant request", edit_inquiry_path(@inq) , class: "btn btn-warning" %>
+        </div> 
       <% end %>
-    </div>
+    <% end %>
   </div>
   <br />
   <div class = "row" id = "brideC">
