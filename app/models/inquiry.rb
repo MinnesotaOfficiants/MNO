@@ -10,14 +10,25 @@ class Inquiry < ApplicationRecord
   
   accepts_nested_attributes_for :wedding
   accepts_nested_attributes_for :email_histories
-  after_update :on_update
+  #after_update :on_update
 
   # curl -X PATCH http://localhost:3000/inquiries/154 -D '{ inquiry: { closed: true } }'
    # moved the inquiry close to the actual button
   # put in an after update to close the wedding
   after_update :on_update
 
+
   
+
+  def self.search(search)
+    if search.present?
+      where("closed = 0 and inquiries.user_id = ? ", search).includes(:wedding).order("weddings.wedding_date")
+      
+    else
+      where("closed = 0 and (wedding_date >= now() or wedding_date  IS NULL)").includes(:wedding).order(:user_id).order("weddings.wedding_date")
+
+    end
+  end
   def on_update
     if self.isclosed?
       puts "closeing wedding related to this inquiry"

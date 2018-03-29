@@ -2,7 +2,36 @@
 
 <div class = "container" >
   <h1 >Requests</h1>  
+  <script type="text/javascript">
+    function onOfficiantSelectChangeList (event) {
+      var userID = event.target.value
+      var oObj = document.getElementById('search')
+      oObj.value = userID
+      // now put out the officiants name
+     // var w = event.target.selectedIndex
+      //var userName = event.target.options[w].text
+      //var oName = document.getElementById('officiantName')
+ 
+      
+      //oName.value = userName
+      // alert(userID)
 
+    }
+  </script>
+
+
+<% if @user.admin? %>
+  <!-- make a simple search form for all booked wedding date -->
+  <%= form_tag inquiries_path, method: :get do %>
+  <% officiants = User.where("active = TRUE").order(:first_name).collect  {|of| [of.first_name + ' ' + of.last_name, of.id]} %>
+           <%= select "oname", "id",  officiants, {include_blank: 'All'}, { onchange: 'onOfficiantSelectChangeList(event)' }  %>
+
+
+    <%= hidden_field_tag :search, params[:search] %> 
+
+    <%= submit_tag "Limt Officiant" %>
+  <% end %> 
+<% end %>
   
   <table>
     <thead>
@@ -10,7 +39,12 @@
         <th width = 350px>Wedding </th>
         <th width = 110p>Phone</th>
         <th width = 110p>email sent date</th>
-        <th width = 290p>Location</th>
+        <% if current_user.admin? %>
+          <th width = 150>Officiant</th>
+        <% else %>
+          <th width = 290p>Location</th>
+          
+        <% end %>
         
        
         
@@ -20,16 +54,25 @@
     <tbody>
       <% @inquiries.each do |inquiry| %>
         <tr>
+          
+
           <td> <%=  link_to  inquiry.wedding.get_title, edit_inquiry_path(inquiry) %></td>
         
           <td><%= inquiry.wedding.bride_phone  %></td>
 
             
-            <td > <%= inquiry.email_sent_date %>
-              <% if inquiry.intro_meeting? %><span class="glyphicon glyphicon-ok meeting"></span><% end %>
-            </td>
-          
-          <td><%= inquiry.wedding.location%></td>
+          <td > <%= inquiry.email_sent_date %>
+            <% if inquiry.intro_meeting? %><span class="glyphicon glyphicon-ok meeting"></span><% end %>
+          </td>
+          <% if current_user.admin? %>
+            <% if inquiry.user == nil %> 
+              <td> Not Asisgned </td>
+            <% else %>
+               <td><%= inquiry.user.get_user_name %> </td>
+             <% end %>
+          <% else %>
+            <td><%= inquiry.wedding.location%></td>
+          <% end %>
           
   
         </tr>
@@ -37,7 +80,6 @@
     </tbody>
   </table>
 
-  <br>
   
-   <!-- <%= link_to 'New Inquiry', new_inquiry_path %> -->
+   
 </div>

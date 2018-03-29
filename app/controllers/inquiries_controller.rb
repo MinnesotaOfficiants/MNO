@@ -1,6 +1,8 @@
 class InquiriesController < ApplicationController
   before_action :require_user 
   before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
+
+
   #before_action :get_wedding 
 
   # GET /inquiries
@@ -10,7 +12,11 @@ class InquiriesController < ApplicationController
      @user = current_user
     # @inquiries = @user.inquiries
     if @user.admin?
-      @inquiries = Inquiry.where(closed: :isopen ).order("id")
+
+       
+      @inquiries = Inquiry.search(params[:search])
+
+      # @inquiries = Inquiry.where(closed: :isopen ).includes(:wedding).order(:user_id).order("weddings.wedding_date")
     else
       #byebug
      # @tmp = @user.inquiries.where(closed:  :isopen)
@@ -19,10 +25,8 @@ class InquiriesController < ApplicationController
      
       
       
-      # , closed: false
     end
 
-    # @inquiries=Inquiry.where(user_id: 75) 
 
   end
 

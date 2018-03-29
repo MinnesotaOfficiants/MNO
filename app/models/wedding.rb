@@ -27,6 +27,9 @@ class Wedding < ApplicationRecord
 		  end 
 		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
 	end
+
+	
+
 	def make_fee_payment
 		# byebug
 		self.update_columns(fee_paid: true, fee_paid_date: Date.today,fee_paid_amount: self.referal_fee)
@@ -36,6 +39,7 @@ class Wedding < ApplicationRecord
 		self.save
 
 	end
+
 	def  self.search(search)
 		#byebug
 		if search.present?
@@ -47,6 +51,7 @@ class Wedding < ApplicationRecord
     end
 		
 	end
+
 	def get_header
 		self.bride_last_name + '-'+self.groom_last_name 
 	end
@@ -57,6 +62,7 @@ class Wedding < ApplicationRecord
     "Dear " << self.bride_first_name + '  and ' + self.groom_first_name + ',\n\n'
 
   end
+
   def calculate_cost(current_user)
   		#byebug
 		if self.wedding_cost.blank?
@@ -95,7 +101,7 @@ class Wedding < ApplicationRecord
   	 self.status = :booked
      self.user_id = current_user.id
      self.calculate_cost(current_user)
-       self.save
+     self.save
   end
 	
 	def get_new_weddings

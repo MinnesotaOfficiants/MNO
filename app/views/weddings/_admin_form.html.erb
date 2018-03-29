@@ -28,7 +28,7 @@
       <% @inq = @wedding.inquiries.first %>
         <% if @inq.closed = :isopen %>
         <div class = 'col-sm-2'>
-          Assignd to
+          Assigned to
           <% if @inq.user_id == nil %>
             <%= "No-One" %>
           <% else %> 
