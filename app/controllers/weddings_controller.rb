@@ -74,8 +74,12 @@ class WeddingsController < ApplicationController
   # POST /weddings
   # POST /weddings.json
   def create
+    byebug
     @wedding = Wedding.new(wedding_params)
-
+    @user=current_user
+    if not @user.admin? and @wedding.status == "open"
+      @wedding.status = :booked
+    end
     respond_to do |format|
       if @wedding.save
         format.html { redirect_to weddings_path, notice: 'Wedding was successfully created.' }
@@ -94,19 +98,20 @@ class WeddingsController < ApplicationController
     respond_to do |format|
       @user =current_user
       @wedding=Wedding.find(params[:id])
-       # byebug
+       #byebug
       if @wedding.wedding_cost.blank?
         @wedding.wedding_cost=0
       end
-       if @wedding.other_cost.blank?
+      if @wedding.other_cost.blank?
         @wedding.other_cost=0
       end
-       if @wedding.referal_fee.blank?
+      if @wedding.referal_fee.blank?
         @wedding.referal_fee = 0
       end
-      if @wedding.update(wedding_params)
-        @wedding.calculate_cost(current_user)
+      if @wedding.update(wedding_params) 
         if not @user.admin?
+          @wedding.calculate_cost(current_user)
+
           if params[:etemp][:id].present?
            history =  @wedding.email_histories.new
            history.date_sent=Date.current

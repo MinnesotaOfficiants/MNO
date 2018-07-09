@@ -16,6 +16,8 @@ class Wedding < ApplicationRecord
 	attribute :other_cost, :decimal, default: 0
 	attribute :referal_fee, :decimal, default: 0
 	attribute :fee_paid_amount, :decimal, default: 0
+	attribute :status, :integer, default: 0
+
 
 
 	def get_title
