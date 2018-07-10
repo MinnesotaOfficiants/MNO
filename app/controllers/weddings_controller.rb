@@ -54,7 +54,6 @@ class WeddingsController < ApplicationController
 
   end
   def get_new_web_requests
-    # byebug
     @result = Wedding.last
     @result.get_new_weddings
     redirect_to weddings_path
@@ -74,7 +73,6 @@ class WeddingsController < ApplicationController
   # POST /weddings
   # POST /weddings.json
   def create
-    byebug
     @wedding = Wedding.new(wedding_params)
     @user=current_user
     if not @user.admin? and @wedding.status == "open"

@@ -66,7 +66,6 @@ class Wedding < ApplicationRecord
   end
 
   def calculate_cost(current_user)
-  		#byebug
 		if self.wedding_cost.blank?
 			self.wedding_cost = 0
 		end
@@ -102,6 +101,7 @@ class Wedding < ApplicationRecord
   	 # byebug
   	 self.status = :booked
      self.user_id = current_user.id
+     self.wedding_cost = 0
      self.calculate_cost(current_user)
      self.save
   end
