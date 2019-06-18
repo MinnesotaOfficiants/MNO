@@ -106,6 +106,12 @@ class WeddingsController < ApplicationController
       if @wedding.referal_fee.blank?
         @wedding.referal_fee = 0
       end
+      if @wedding.bride_last_name == nil
+        @wedding.bride_last_name = ''
+      end
+       if @wedding.groom_last_name == nil
+        @wedding.groom_last_name = ''
+      end
       if @wedding.update(wedding_params) 
         if not @user.admin?
           @wedding.calculate_cost(current_user)

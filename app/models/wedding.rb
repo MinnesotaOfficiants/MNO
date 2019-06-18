@@ -21,13 +21,13 @@ class Wedding < ApplicationRecord
 
 
 	def get_title
-		
+	
 		  if   self.wedding_date  == nil 
 			 @title = self.bride_first_name + ' ' + self.bride_last_name
 		 else
-		  	@title = self.wedding_date.strftime('%Y-%m-%d') + ' '+ self.bride_first_name + ' ' + self.bride_last_name
+		  	@title = self.wedding_date.strftime('%m/%d/%Y') + ' '+ self.bride_first_name + ' ' + self.bride_last_name
 		  end 
-		@title = @title + ' & ' + self.groom_first_name + ' ' + self.groom_last_name
+		@title = @title + ' & ' + self.groom_first_name + ' ' +self.groom_last_name
 	end
 
 	
@@ -138,7 +138,7 @@ class Wedding < ApplicationRecord
 					officiantchoice2,
 					officiantchoice3,
 					if(locate('Pre',preparations)>0,true,false) as counseling
-					from wp_pods_request where iswebupdated = 1;
+					from wp_pods_request where iswebupdated = 2;
 					")
 			# res = my.query("select count(*) from wp_pods_request;")
 			# byebug
@@ -146,7 +146,7 @@ class Wedding < ApplicationRecord
 		res.each do |row|
 
 		  @newwedding =  Wedding.new(:bride_first_name => row["bridefirstname"], 
-		  	:bride_last_name => row["bridelastname"],
+				:bride_last_name => row["bridelastname"],
 		   	:groom_first_name => row["groomfirstname"], :groom_last_name => row["groomlastname"], 
 		   	:web_date => row["weddingdate"],:web_time => row["weddingtime"], 
 		   	:web_count => row["numberofguests"], :bride_email => row["email"], :bride_phone => row["phone"],
@@ -155,11 +155,18 @@ class Wedding < ApplicationRecord
 		   	:third_choice => row["officiantchoice3"], :comments => row["comments"],
 		   	:counseling => row["counseling"],
 		   	:status => 0)
+		  if @newwedding.bride_last_name ==nil
+		  	@newwedding.bride_last_name = ''
+		  end
+
+		  if @newwedding.groom_last_name == nil
+		  	@newwedding.groom_last_name = ''
+		  end
 		   @newwedding.save
 		  
 		end
 		# now update the iswebupdated
-		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 1")
+		res = mnosql.query("update wp_pods_request set iswebupdated = 2 where iswebupdated = 1")
 	end
 	private 
 		
