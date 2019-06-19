@@ -138,7 +138,7 @@ class Wedding < ApplicationRecord
 					officiantchoice2,
 					officiantchoice3,
 					if(locate('Pre',preparations)>0,true,false) as counseling
-					from wp_pods_request where iswebupdated = 2;
+					from wp_pods_request where iswebupdated = 1;
 					")
 			# res = my.query("select count(*) from wp_pods_request;")
 			# byebug
@@ -166,7 +166,7 @@ class Wedding < ApplicationRecord
 		  
 		end
 		# now update the iswebupdated
-		res = mnosql.query("update wp_pods_request set iswebupdated = 2 where iswebupdated = 1")
+		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 1")
 	end
 	private 
 		
