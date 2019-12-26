@@ -111,7 +111,7 @@ class Wedding < ApplicationRecord
 		require "mysql2"
 		# old conect
 		if Rails.env.development?
-			mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
+			mnosql = Mysql2::Client.new(:host => "50.87.192.171",  :username => "minnesu5_Allan",  :password => "L1nda46",  :database => "minnesu5_mnofficiants")
 		else
 		# use in dev
 		#mnosql = Mysql2::Client.new(:host => "66.147.244.127",  :username => "minnesu5_FMP",  :password => "MN!#Wed13",  :database => "minnesu5_mnofficiants", :conect_timeout => nil)
@@ -166,7 +166,12 @@ class Wedding < ApplicationRecord
 		  
 		end
 		# now update the iswebupdated
-		res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 1")
+		if Rails.env.development?
+			# dont update if testing
+			res = mnosql.query("update wp_pods_request set iswebupdated = 1 where iswebupdated = 1")
+		else
+			res = mnosql.query("update wp_pods_request set iswebupdated = 0 where iswebupdated = 1")
+		end
 	end
 	private 
 		
