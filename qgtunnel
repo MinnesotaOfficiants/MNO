@@ -1,0 +1,6 @@
+
+[qgtunnel.0]
+accept = "127.0.0.1:3306"
+connect = "minnesotaofficiants.com:443"
+encrypted = true
+transparent = true
