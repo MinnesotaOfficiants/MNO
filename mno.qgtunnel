@@ -1,6 +1,6 @@
 
 [qgtunnel.0]
 accept = "127.0.0.1:3306"
-connect = "50.87.192.171:3306"
+connect = "http://50.87.192.171:3306"
 encrypted = false
 transparent = true
