@@ -6,7 +6,7 @@ ruby '2.3.4'
 gem 'rails', '~> 5.0.0'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.8.2'
+gem 'puma', '~> 3.12.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.6'
 # Use Uglifier as compressor for JavaScript assets
@@ -46,7 +46,7 @@ gem 'yaml_db'
 #gem 'paperclip'
 gem 'carrierwave' , '1.2.1'
 
-gem 'mini_magick' , '4.8.0'
+gem 'mini_magick' , '4.9.4'
 gem 'pg'
 # use this when retriving from MNO
 gem "mysql2"
