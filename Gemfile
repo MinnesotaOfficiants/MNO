@@ -1,18 +1,25 @@
 source 'https://rubygems.org'
 
-ruby '2.7.0'
+ruby '3.0.1'
+#ruby-gemset=rails6
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 6.0.2'
 
 # Use Puma as the app server
 gem 'puma', '~> 4.3.8'
+# after error in active record
+gem 'sass-rails', '6.0.0' 
+gem 'sassc-rails', '2.1.2'
+# gem "ransack", github: "activerecord-hackery/ransack", ref: "aada8"
+gem "webpacker"
+# 
 # Use SCSS for stylesheets
-gem 'sass-rails', '5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '3.0.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '4.2.1'
+gem 'coffee-rails', '5.0.0'
 # See https://github.com/rails/execjs
 #readme for more supported runtimes
 
@@ -24,7 +31,7 @@ gem 'turbolinks', '5.0.0'
 # debug with byebug
 # gem 'byebug'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '2.5.0'
+gem 'jbuilder', '2.11.2'
 
 
 # Use Capistrano for deployment

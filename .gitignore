@@ -27,3 +27,10 @@ test-wedding_2017-03-18.sql
 # Ignore image files
 /public/uploads/*
 
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
