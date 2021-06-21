@@ -44,7 +44,7 @@ gem 'bcrypt'
 gem 'yaml_db'
 # add these gems for the image uploader carrierwave and minimagick
 #gem 'paperclip'
-gem 'carrierwave' , '1.2.1'
+gem 'carrierwave' , '1.3.2'
 
 gem 'mini_magick' , '4.9.4'
 gem 'pg'
