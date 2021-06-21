@@ -6,7 +6,7 @@ ruby '2.7.0'
 gem 'rails', '~> 5.0.0'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.12.4'
+gem 'puma', '~> 4.3.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.6'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,7 +44,7 @@ gem 'bcrypt'
 gem 'yaml_db'
 # add these gems for the image uploader carrierwave and minimagick
 #gem 'paperclip'
-gem 'carrierwave' , '1.2.1'
+gem 'carrierwave' , '1.3.2'
 
 gem 'mini_magick' , '4.9.4'
 gem 'pg'
