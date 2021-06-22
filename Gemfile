@@ -82,7 +82,7 @@ end
 group :production do
   
   # use the postgres DB
-   # gem 'pg' 
+   gem 'pg' 
      
 
 end
