@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # get 'email_templates/new'
 
   # get 'email_templates/edit'
+  # version rails 6
 
   get "log_out" , to: "sessions#destroy", as: "log_out"
   get "log_in" ,to: "sessions#new", as: "log_in"
