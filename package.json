@@ -12,15 +12,7 @@
     "yarn": "1.22.4"
   },
 
-  "scripts":{
-    "dev": "yarn run test",
-  },
-
   
-
-
-
-
   
      "name": "joyfulunion",
     "author": "alindgren",
