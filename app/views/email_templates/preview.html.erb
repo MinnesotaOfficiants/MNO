@@ -1,11 +1,12 @@
 <h3>Preview Template</h3>
+
 <script type="text/javascript">
      
         // make a test email for a template
         function setEmailButton () {
       var emailTo = '<%= current_user.email %>';
      
-       var emailSubject = '<%= @email_template.template_type %>  test ' ;
+      var emailSubject = '<%= @email_template.template_type %>  test ' ;
       var userSignature1 = '<%= current_user.get_user_name  %>' ;
       var userSignature =userSignature1 + '\n' +'<%= current_user.email %>' +'\n' +'<%= current_user.user_phone %>';
       var salutation = "Dear " + userSignature1 +", \n";
@@ -22,7 +23,7 @@
         "&body=" + encodeURIComponent(emailBody).replace(/%26%2339%3B/g, "%27")
        // alert(mailo);
       mailButton = document.getElementById("sendEmailPreview")
-      mailButton.href = mailTo
+      mailButton.href = "Content-Type='text/html;' + mailTo
 
        var str = "this I'd like".replace(/'/g, "%27")
 

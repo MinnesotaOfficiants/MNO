@@ -14,6 +14,7 @@
     </div>
   <% end %>
  <!--  <script type="text/javascript">
+    header content-type: text/html
     function setEmailButton () {
         // make a test email for a template
       var emailTo = '<%= current_user.email %>';
@@ -28,7 +29,7 @@
       
       var emailBody = salutation + bodyText + userSignature +"\n" + footerText; 
       var mailTo = 'mailto:' + emailTo + "?subject=" + encodeURIComponent(emailSubject) +
-        "&body=" + encodeURIComponent(emailBody)+"&header:Content-Type=text/html"
+        "&body=" + encodeURIComponent(emailBody)
        // alert(mailTo);
        mText = $("#sendEmailTemplate")
        mText.attr('href', mailTo)
