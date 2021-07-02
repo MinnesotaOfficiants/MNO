@@ -23,7 +23,7 @@
         "&body=" + encodeURIComponent(emailBody).replace(/%26%2339%3B/g, "%27")
        // alert(mailo);
       mailButton = document.getElementById("sendEmailPreview")
-      mailButton.href = "Content-Type='text/html;'" + mailTo
+      mailButton.href = mailTo
 
        var str = "this I'd like".replace(/'/g, "%27")
 
@@ -36,7 +36,7 @@
   </script>
  
   <br>
-  <a  href = '#' id = "sendEmailPreview" class = "btn btn-sml btn-success">Test email</a>
+  <a  href = '#' id = "sendEmailPreview" class = "btn btn-sml btn-success" Content-Type="text/html">Test email</a>
   <br>
   <script type="text/javascript">
   	window.onload = setEmailButton()
