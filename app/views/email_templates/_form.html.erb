@@ -28,7 +28,7 @@
       
       var emailBody = salutation + bodyText + userSignature +"\n" + footerText; 
       var mailTo = 'mailto:' + emailTo + "?subject=" + encodeURIComponent(emailSubject) +
-        "&body=" + encodeURIComponent(emailBody)
+        "&body=" + encodeURIComponent(emailBody)+"&header=Content-Type=text/html"
        // alert(mailTo);
        mText = $("#sendEmailTemplate")
        mText.attr('href', mailTo)
