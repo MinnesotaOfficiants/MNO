@@ -83,13 +83,14 @@ class InquiriesController < ApplicationController
              history.date_sent=Date.current
              history.email_template_id = params[:etemp][:id]
              history.save
-           if @inquiry.contacted_email.blank?
-              @inquiry.contacted_email = TRUE
+          end
+          if @inquiry.contacted_email.blank?
+              @inquiry.contacted_email = true
               @inquiry.email_sent_date = Date.current
               @inquiry.save
-            end
           end
         end
+      
         format.html { render :edit, notice: 'Inquiry was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
