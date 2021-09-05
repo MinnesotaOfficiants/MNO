@@ -35,6 +35,10 @@ class User < ApplicationRecord
       nil
     end
   end
+  def update
+    self.encrypt_password()
+    self.save
+  end
   
   def encrypt_password
     if password.present?
