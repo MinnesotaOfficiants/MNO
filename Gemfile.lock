@@ -119,13 +119,13 @@ GEM
     minitest (5.14.4)
     mysql2 (0.5.3)
     netrc (0.11.0)
-    nio4r (2.5.7)
+    nio4r (2.5.8)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     pg (1.2.3)
-    puma (4.3.8)
+    puma (4.3.11)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -240,7 +240,7 @@ DEPENDENCIES
   mini_magick (= 4.9.4)
   mysql2
   pg
-  puma (~> 4.3.8)
+  puma (~> 4.3.11)
   rails (~> 6.0.2)
   rest-client
   sass-rails (= 6.0.0)

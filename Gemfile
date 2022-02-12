@@ -8,7 +8,7 @@ ruby '3.0.1'
 gem 'rails', '~> 6.0.2'
 
 # Use Puma as the app server
-gem 'puma', '~> 4.3.8'
+gem 'puma', '~> 4.3.11'
 # after error in active record
 gem 'sass-rails', '6.0.0' 
 gem 'sassc-rails', '2.1.2'
