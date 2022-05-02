@@ -31,7 +31,7 @@ class Inquiry < ApplicationRecord
   end
   def on_update
     if self.isclosed?
-      puts "closeing wedding related to this inquiry"
+     # puts "closeing wedding related to this inquiry"
       wedding.closed!
     #elsif self.isopen?
       # puts "booking wedding related to this inquiry"

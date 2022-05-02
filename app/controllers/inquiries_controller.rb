@@ -119,12 +119,12 @@ class InquiriesController < ApplicationController
       #update status to closed
       # redirect user to request url
 
-      puts "find request"
+      #puts "find request"
      @inquiry =  Inquiry.find(params[:id])
      #to do autorization
-     puts "close status"
+     #puts "close status"
      @inquiry.close_status
-     puts "redirect"
+     #puts "redirect"
      # @wedding = Wedding.find(@request.wedding_id)
       # close each request
 
