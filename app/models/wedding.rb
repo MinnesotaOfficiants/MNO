@@ -82,11 +82,11 @@ class Wedding < ApplicationRecord
 	    	when  "Budget" 
 	       self.wedding_cost = 175 + rehearsalcost
 	      when "Basic"
-	       	self.wedding_cost = 295 + rehearsalcost
+	       	self.wedding_cost = 345 + rehearsalcost
 	      when "Standard"
-	       	self.wedding_cost = 395 + rehearsalcost
+	       	self.wedding_cost = 495 + rehearsalcost
 	      else
-	       	self.wedding_cost = 395 + rehearsalcost
+	       	self.wedding_cost = 495 + rehearsalcost
      	end
      end
      # if self.rehearsal? 
